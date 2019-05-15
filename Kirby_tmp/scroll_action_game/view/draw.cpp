@@ -1,6 +1,6 @@
 #include "draw.h"
 
 
-void GameDraw() {
+void Draw::GameDraw() {
 	ClearDrawScreen();
 }

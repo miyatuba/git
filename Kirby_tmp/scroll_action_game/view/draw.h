@@ -1,3 +1,10 @@
 #include "DxLib.h"
 
-void GameDraw();
+class Draw
+{
+private:
+public:
+	void GameDraw();
+
+};
+

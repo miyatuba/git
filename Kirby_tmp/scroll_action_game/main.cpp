@@ -5,8 +5,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
 	if (DxLib_Init() == -1) return -1;
 
+	Draw draw;
+
 	while (true) {
-		GameDraw();
+		draw.GameDraw();
 	}
 
 	DxLib_End();
