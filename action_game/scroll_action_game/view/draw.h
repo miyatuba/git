@@ -3,12 +3,13 @@
 
 #include <string>
 #include "../entity/character/Hero.h"
+#include "IDraw.h"
 
 class Draw
 {
 private:
 public:
-	void GameDraw(Hero);
+	void GameDraw(const IDraw&);
 
 };
 

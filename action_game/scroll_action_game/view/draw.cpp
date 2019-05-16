@@ -1,13 +1,12 @@
 #include "Draw.h"
 
-
-void Draw::GameDraw(Hero hero) {
+void Draw::GameDraw(const IDraw& drawObject) {
 	ClearDrawScreen();
-	int hero_x = hero.getPositionX();
-	int hero_y = hero.getPositionY();
-	std::string hero_image_path = hero.getImagePath();
+	int hero_x = drawObject.getPositionX();
+	int hero_y = drawObject.getPositionY();
+	std::string draw_image_path = drawObject.getImagePath();
 
-	LoadGraphScreen(hero_x, hero_y, hero_image_path.c_str(), TRUE);
+	LoadGraphScreen(hero_x, hero_y, draw_image_path.c_str(), TRUE);
 	ScreenFlip();
 
 	WaitTimer(20);

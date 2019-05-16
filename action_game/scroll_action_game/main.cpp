@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	while (true) {
 		input.CheckInput();
 		hero.MovePositionByInput(input);
-		draw.GameDraw(hero);//オブジェクトをどう渡すのか難題。とりあえずテスト動作なので今回はそのまま
+		draw.GameDraw(hero);
 		if (input.IsInputEscape()) break;
 	}
 

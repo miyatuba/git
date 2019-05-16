@@ -13,24 +13,24 @@ void Hero::MovePositionByInput(Input input)
 		this->x += 8;
 	}
 	if (input.IsInputUp()) {
-		this->y += 8;
+		this->y -= 8;
 	}
 	if (input.IsInputDown()) {
-		this->y -= 8;
+		this->y += 8;
 	}
 }
 
-int Hero::getPositionX()
+int Hero::getPositionX() const
 {
 	return this->x;
 }
 
-int Hero::getPositionY()
+int Hero::getPositionY() const
 {
 	return this->y;
 }
 
-std::string Hero::getImagePath()
+std::string Hero::getImagePath() const
 {
 	return this->image_path;
 }

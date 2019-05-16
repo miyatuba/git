@@ -159,12 +159,14 @@
     <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="view\draw.cpp" />
+    <ClCompile Include="view\IDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entity\character\Hero.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="view\draw.h" />
+    <ClInclude Include="view\IDraw.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
