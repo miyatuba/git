@@ -35,7 +35,6 @@ public class Player1 : MonoBehaviour
             card_image.transform.position = new Vector3(x_base_position, -3, 0);
             x_base_position += 0.2f;
             card_image.GetComponent<SpriteRenderer>().sortingOrder = draw_order;
-            Debug.Log(draw_order);
             draw_order += 1;
             card_image.SetActive(true);
         }
