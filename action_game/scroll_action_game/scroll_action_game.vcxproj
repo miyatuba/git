@@ -156,15 +156,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="entity\character\Hero.cpp" />
+    <ClCompile Include="entity\stage\Stage.cpp" />
     <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="scene\BaseScene.cpp" />
+    <ClCompile Include="scene\DemoScene.cpp" />
+    <ClCompile Include="scene\SceneService.cpp" />
     <ClCompile Include="view\draw.cpp" />
     <ClCompile Include="view\IDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entity\character\Hero.h" />
+    <ClInclude Include="entity\stage\Stage.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="scene\BaseScene.h" />
+    <ClInclude Include="scene\DemoScene.h" />
+    <ClInclude Include="scene\SceneService.h" />
     <ClInclude Include="view\draw.h" />
     <ClInclude Include="view\IDraw.h" />
   </ItemGroup>

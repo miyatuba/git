@@ -13,18 +13,22 @@ boolean Input::IsInputLeft()
 {
 	return this->is_input_left;
 }
+
 boolean Input::IsInputRight() 
 {
 	return this->is_input_right;
 }
+
 boolean Input::IsInputUp() 
 {
 	return this->is_input_up;
 }
+
 boolean Input::IsInputDown() 
 {
 	return this->is_input_down;
 }
+
 boolean Input::IsInputEscape()
 {
 	return this->is_input_escape;
