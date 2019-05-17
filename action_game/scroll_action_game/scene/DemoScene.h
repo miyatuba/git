@@ -10,5 +10,5 @@ private:
 	Hero hero;
 public:
 	DemoScene();
-	void Play();
+	virtual void Play();
 };

@@ -16,5 +16,4 @@ public:
 	virtual void Play();
 	bool isGameEnd();
 
-
 };

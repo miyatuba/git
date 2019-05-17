@@ -3,10 +3,11 @@
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
+
 	ChangeWindowMode(TRUE);
+	SetKeyboardNotDirectInputFlag(TRUE);//デバッグ用
 	if (DxLib_Init() == -1) return -1;
 
-	//この辺り、sceneクラスで管理する必要出てくる。
 	
 	SceneService scene_service;
 
