@@ -17,5 +17,5 @@ void BaseScene::Play()
 
 bool BaseScene::isGameEnd()
 {
-	return this->input.IsInputEscape() == TRUE;
+	return this->input.IsInputEscape() == true;
 }

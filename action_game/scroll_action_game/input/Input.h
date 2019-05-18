@@ -4,17 +4,19 @@
 class Input
 {
 private:
-	boolean is_input_left = false;
-	boolean is_input_right = false;
-	boolean is_input_up = false;
-	boolean is_input_down = false;
-	boolean is_input_escape = false;
+	bool is_input_left = false;
+	bool is_input_right = false;
+	bool is_input_up = false;
+	bool is_input_down = false;
+	bool is_input_a = false;
+	bool is_input_escape = false;
 
 public:
 	void CheckInput();
-	boolean IsInputLeft();
-	boolean IsInputRight();
-	boolean IsInputUp();
-	boolean IsInputDown();
-	boolean IsInputEscape();
+	bool IsInputLeft();
+	bool IsInputRight();
+	bool IsInputUp();
+	bool IsInputDown();
+	bool IsInputA();
+	bool IsInputEscape();
 };

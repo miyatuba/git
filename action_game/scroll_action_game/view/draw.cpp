@@ -9,6 +9,6 @@ void Draw::GameDraw(const IDraw& drawObject) {
 	LoadGraphScreen(hero_x, hero_y, draw_image_path.c_str(), TRUE);
 	ScreenFlip();
 
-	WaitTimer(20);
+	//WaitTimer(20);
 
 }
