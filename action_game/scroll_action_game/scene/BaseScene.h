@@ -6,13 +6,12 @@
 class BaseScene 
 {
 private:
-	
-	
 protected:
 	Input input;
 	Draw draw;
 public:
 	BaseScene();
+	BaseScene(int);
 	virtual void Play();
 	bool isGameEnd();
 

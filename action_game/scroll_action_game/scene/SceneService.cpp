@@ -4,7 +4,8 @@ SceneService::SceneService()
 {
 	this->current_scene_type_id = SceneService::SCENE_TYPE_DEMO;
 
-	DemoScene demo_scene;
+	int stage_no = 1;
+	DemoScene demo_scene(stage_no);
 	this->demo_scene = demo_scene;
 }
 

@@ -10,10 +10,11 @@ private:
 	const static int JUMP_FORCE_POINT = 32;
 	const static int JUMP_FRAME_TIME = 5;
 	const static int FALL_SPEED = 16;
+	std::string IMAGE_PATH = "./resource/image/test_image.jpg";
 
 	int x = 0;
 	int y = 10;
-	std::string image_path = "./resource/image/test_image.jpg";
+
 	bool is_fall = true;
 	bool is_jump = false;
 

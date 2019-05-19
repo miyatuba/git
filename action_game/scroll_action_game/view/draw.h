@@ -2,14 +2,17 @@
 #include "DxLib.h"
 
 #include <string>
-#include "../entity/character/Hero.h"
 #include "IDraw.h"
+#include "../entity/stage/BaseStage.h"
+
 
 class Draw
 {
 private:
 public:
-	void GameDraw(const IDraw&);
-
+	void DrawGame(const IDraw&);
+	void StageDraw(BaseStage&, int, int);
+	void CallScreenFlip();
+	void CallClearDrawScreen();
 };
 

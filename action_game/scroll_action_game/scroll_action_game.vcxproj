@@ -156,7 +156,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="entity\character\Hero.cpp" />
-    <ClCompile Include="entity\stage\Stage.cpp" />
+    <ClCompile Include="entity\stage\BaseStage.cpp" />
+    <ClCompile Include="entity\stage\DemoStage.cpp" />
     <ClCompile Include="input\Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="scene\BaseScene.cpp" />
@@ -167,7 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entity\character\Hero.h" />
-    <ClInclude Include="entity\stage\Stage.h" />
+    <ClInclude Include="entity\stage\BaseStage.h" />
+    <ClInclude Include="entity\stage\DemoStage.h" />
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="scene\BaseScene.h" />

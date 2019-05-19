@@ -12,12 +12,6 @@ void Hero::MovePositionByInput(Input input)
 	if (input.IsInputRight()) {
 		this->x += 8;
 	}
-	/*if (input.IsInputUp()) {
-//		this->y -= 8;
-	}*/
-	/*if (input.IsInputDown()) {
-//		this->y += 8;
-	}*/
 
 	if (input.IsInputA()) {
 		if (! this->is_jump) { //‹ó‚ª”ò‚×‚é‘O’ñ‚È‚Ì‚ÅA—Ž‰ºó‘Ô‚ÍŒ©‚È‚¢
@@ -79,5 +73,5 @@ int Hero::getPositionY() const
 
 std::string Hero::getImagePath() const
 {
-	return this->image_path;
+	return this->IMAGE_PATH;
 }

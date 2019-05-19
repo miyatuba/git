@@ -2,6 +2,11 @@
 
 BaseScene::BaseScene()
 {
+
+}
+
+BaseScene::BaseScene(int stage_number)
+{
 	Draw draw;
 	this->draw = draw;
 	Input input;
