@@ -1,0 +1,5 @@
+BaseParty = function ()
+{
+
+}
+
