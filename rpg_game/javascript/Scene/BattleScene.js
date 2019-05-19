@@ -28,4 +28,5 @@ BattleScene.prototype.play = function ()
     //“ü—Íˆ—
     //“à•”ŒvZ
     //•\¦
+    this.draw();
 };
