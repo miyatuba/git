@@ -13,8 +13,9 @@ DemoStage::DemoStage()
 }
 
 //–ß‚è’l‚ğMapƒNƒ‰ƒX‚É•Ï‚¦‚é‚×‚«
-int DemoStage::getMapTopHandol(int x, int y)
+MapTip DemoStage::getMapTip(int x, int y)
 {
 	int tip_id = this->map[y][x];
-	return this->map_tip_list[tip_id];
+	MapTip map(this->map_tip_list[tip_id]);
+	return map;
 }

@@ -40,7 +40,8 @@ void DemoScene::DrawStage()
 		case DemoScene::STAGE_ID_DEMO:
 			for (int y = 0; y < DemoStage::Y_SQUARES_NUMBER; ++y) {
 				for (int x = 0; x < DemoStage::X_SQUARES_NUMBER; ++x) {
-					this->draw.StageDraw(this->demo_stage, x, y);//ここの第一引数はIDrawを実装したmapクラスに変更するべき
+					MapTip map_tip = this->demo_stage.getMapTip(x, y);
+					this->draw.StageDraw(map_tip, x, y);//ここの第一引数はIDrawを実装したmapクラスに変更するべき
 				}
 			}
 			return;

@@ -16,10 +16,10 @@ void Draw::DrawGame(const IDraw& drawObject) {
 }
 
 //第一引数はIDrawでタイプヒッティングするべき
-void Draw::StageDraw(BaseStage& stage, int x, int y)
+void Draw::StageDraw(MapTip& map, int x, int y)
 {
-	int debug = stage.getMapTopHandol(x, y);
-	DrawGraph(x * BaseStage::DIVIDED_MAP_TIP_X_SIZE, y * BaseStage::DIVIDED_MAP_TIP_Y_SIZE, debug, FALSE);
+	int map_handol = map.getMapTipHandol(x, y);
+	DrawGraph(x * BaseStage::DIVIDED_MAP_TIP_X_SIZE, y * BaseStage::DIVIDED_MAP_TIP_Y_SIZE, map, FALSE);
 }
 
 //namespace使ったら？

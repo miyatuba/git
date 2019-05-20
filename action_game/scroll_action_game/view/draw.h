@@ -11,7 +11,7 @@ class Draw
 private:
 public:
 	void DrawGame(const IDraw&);
-	void StageDraw(BaseStage&, int, int);
+	void StageDraw(MapTip&, int, int);
 	void CallScreenFlip();
 	void CallClearDrawScreen();
 };

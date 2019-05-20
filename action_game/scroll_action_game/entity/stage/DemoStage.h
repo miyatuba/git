@@ -42,5 +42,5 @@ private:
 
 public:
 	DemoStage();
-	Map getMapTopHandol(int, int);
+	MapTip getMapTip(int, int);
 };
