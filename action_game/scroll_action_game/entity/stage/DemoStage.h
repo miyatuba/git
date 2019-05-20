@@ -16,8 +16,6 @@ private:
 	std::string MAP_TIP_IMAGE_PATH = "./resource/image/test_block.png";
 	const static int DIVIDED_MAP_TIP_TOTAL_NUMBER = 9;
 
-
-
 	/*
 	0:‰½‚à‚È‚µ
 	1:•Ç
@@ -44,5 +42,5 @@ private:
 
 public:
 	DemoStage();
-	int getMapTopHandol(int, int);
+	Map getMapTopHandol(int, int);
 };

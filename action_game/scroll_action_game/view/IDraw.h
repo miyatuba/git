@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 
-class IDraw {
+class IDraw 
+{
 private:
 public:
 	virtual int getPositionX() const = 0;

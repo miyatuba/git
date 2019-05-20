@@ -155,7 +155,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="collision\BaseCollision.cpp" />
+    <ClCompile Include="collision\CollisionService.cpp" />
+    <ClCompile Include="collision\ICollision.cpp" />
+    <ClCompile Include="collision\RectCollision.cpp" />
     <ClCompile Include="entity\character\Hero.cpp" />
+    <ClCompile Include="entity\map\map.cpp" />
     <ClCompile Include="entity\stage\BaseStage.cpp" />
     <ClCompile Include="entity\stage\DemoStage.cpp" />
     <ClCompile Include="input\Input.cpp" />
@@ -167,7 +172,12 @@
     <ClCompile Include="view\IDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="collision\BaseCollision.h" />
+    <ClInclude Include="collision\CollisionService.h" />
+    <ClInclude Include="collision\ICollision.h" />
+    <ClInclude Include="collision\RectCollision.h" />
     <ClInclude Include="entity\character\Hero.h" />
+    <ClInclude Include="entity\map\map.h" />
     <ClInclude Include="entity\stage\BaseStage.h" />
     <ClInclude Include="entity\stage\DemoStage.h" />
     <ClInclude Include="input\Input.h" />

@@ -15,6 +15,7 @@ void Draw::DrawGame(const IDraw& drawObject) {
 	
 }
 
+//第一引数はIDrawでタイプヒッティングするべき
 void Draw::StageDraw(BaseStage& stage, int x, int y)
 {
 	int debug = stage.getMapTopHandol(x, y);

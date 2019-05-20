@@ -3,8 +3,9 @@
 #include <string>
 #include "../../input/Input.h"
 #include "../../view/IDraw.h"
+#include "../../collision/ICollision.h"
 
-class Hero : virtual public IDraw
+class Hero : virtual public IDraw, ICollision
 {
 private:
 	const static int JUMP_FORCE_POINT = 32;
