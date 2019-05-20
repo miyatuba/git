@@ -1,10 +1,10 @@
 #include "BaseStage.h"
 
 //–ß‚è’l‚ðMapƒNƒ‰ƒX‚É•Ï‚¦‚é‚×‚«
-Map BaseStage::getMapTopHandol(int x, int y)
+MapTip BaseStage::getMapTopHandol(int x, int y)
 {
 	std::string error_message = "BaseStage‚ÌgetMapTopHandol‚ªŒÄ‚Î‚ê‚½";
 	throw error_message;
-	Map map;
+	MapTip map(0);
 	return map;
 }

@@ -160,7 +160,7 @@
     <ClCompile Include="collision\ICollision.cpp" />
     <ClCompile Include="collision\RectCollision.cpp" />
     <ClCompile Include="entity\character\Hero.cpp" />
-    <ClCompile Include="entity\map\map.cpp" />
+    <ClCompile Include="entity\map\MapTip.cpp" />
     <ClCompile Include="entity\stage\BaseStage.cpp" />
     <ClCompile Include="entity\stage\DemoStage.cpp" />
     <ClCompile Include="input\Input.cpp" />
@@ -168,7 +168,7 @@
     <ClCompile Include="scene\BaseScene.cpp" />
     <ClCompile Include="scene\DemoScene.cpp" />
     <ClCompile Include="scene\SceneService.cpp" />
-    <ClCompile Include="view\draw.cpp" />
+    <ClCompile Include="view\Draw.cpp" />
     <ClCompile Include="view\IDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,7 +177,7 @@
     <ClInclude Include="collision\ICollision.h" />
     <ClInclude Include="collision\RectCollision.h" />
     <ClInclude Include="entity\character\Hero.h" />
-    <ClInclude Include="entity\map\map.h" />
+    <ClInclude Include="entity\map\MapTip.h" />
     <ClInclude Include="entity\stage\BaseStage.h" />
     <ClInclude Include="entity\stage\DemoStage.h" />
     <ClInclude Include="input\Input.h" />
@@ -185,7 +185,7 @@
     <ClInclude Include="scene\BaseScene.h" />
     <ClInclude Include="scene\DemoScene.h" />
     <ClInclude Include="scene\SceneService.h" />
-    <ClInclude Include="view\draw.h" />
+    <ClInclude Include="view\Draw.h" />
     <ClInclude Include="view\IDraw.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
