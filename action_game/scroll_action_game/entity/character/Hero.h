@@ -12,6 +12,7 @@ private:
 	const static int JUMP_FORCE_POINT = 32;
 	const static int JUMP_FRAME_TIME = 5;
 	const static int FALL_SPEED = 16;
+	const static int MOVE_FORCE_POINT = 8;
 	
 	std::string IMAGE_PATH = "./resource/image/test_image.jpg";
 	RectCollision rect_collision;
@@ -19,8 +20,6 @@ private:
 	const static float X_RIGHT_RECT_COLLISION;
 	const static float Y_TOP_RECT_COLLISION;
 	const static float Y_BOTTOM_RECT_COLLISION;
-
-	
 
 	int x = 0;
 	int y = 10;

@@ -5,6 +5,7 @@ const float Hero::X_RIGHT_RECT_COLLISION = 64.0f;
 const float Hero::Y_TOP_RECT_COLLISION = 0.0f;
 const float Hero::Y_BOTTOM_RECT_COLLISION = 64.0f;
 
+//引数に初期ポジション座標追加しそう
 Hero::Hero() 
 {
 	RectCollision rect_collision(this->X_LEFT_RECT_COLLISION, this->X_RIGHT_RECT_COLLISION, this->Y_TOP_RECT_COLLISION, this->Y_BOTTOM_RECT_COLLISION);
@@ -14,10 +15,13 @@ Hero::Hero()
 void Hero::MovePositionByInput(Input input)
 {
 	if (input.IsInputLeft()) {
-		this->x -= 8;
+		this->x -= Hero::MOVE_FORCE_POINT;
+		this->rect_collision.moveCollisionX((float) -Hero::MOVE_FORCE_POINT);//誤さ起きそう
 	}
 	if (input.IsInputRight()) {
-		this->x += 8;
+		this->x += Hero::MOVE_FORCE_POINT;
+		this->rect_collision.moveCollisionX;
+		this->rect_collision.moveCollisionX((float) Hero::MOVE_FORCE_POINT);
 	}
 
 	if (input.IsInputA()) {
@@ -33,13 +37,15 @@ void Hero::MoveNoInput()
 {
 	this->CheckFallStatus();
 	if (this->is_fall) {
-		this->y += Hero::FALL_SPEED;//今作では重力加速度はない予定
+		this->y += Hero::FALL_SPEED;//重力加速度は、加速度に最大値を付けて実装予定
+		this->rect_collision.moveCollisionY((float) Hero::FALL_SPEED);
 	}
 
 	this->CheckJumpStatus();
 	if (this->is_jump) {
 		this->y -= Hero::JUMP_FORCE_POINT;
 		this->jump_frame_elapsed_time -= 1;
+		this->rect_collision.moveCollisionY((float) -Hero::JUMP_FORCE_POINT);
 	}
 	
 }
