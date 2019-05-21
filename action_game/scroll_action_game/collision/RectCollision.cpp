@@ -1,5 +1,10 @@
 #include "RectCollision.h"
 
+RectCollision::RectCollision()
+{
+
+}
+
 RectCollision::RectCollision(float x_left, float x_right, float y_top, float y_bottom)
 {
 	this->x_left = x_left;

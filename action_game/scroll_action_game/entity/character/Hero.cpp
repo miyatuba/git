@@ -1,7 +1,14 @@
 #include "Hero.h"
 
-Hero::Hero() {
+const float Hero::X_LEFT_RECT_COLLISION = 0.0f;
+const float Hero::X_RIGHT_RECT_COLLISION = 64.0f;
+const float Hero::Y_TOP_RECT_COLLISION = 0.0f;
+const float Hero::Y_BOTTOM_RECT_COLLISION = 64.0f;
 
+Hero::Hero() 
+{
+	RectCollision rect_collision(this->X_LEFT_RECT_COLLISION, this->X_RIGHT_RECT_COLLISION, this->Y_TOP_RECT_COLLISION, this->Y_BOTTOM_RECT_COLLISION);
+	this->rect_collision = rect_collision;
 }
 
 void Hero::MovePositionByInput(Input input)
@@ -74,4 +81,9 @@ int Hero::getPositionY() const
 std::string Hero::getImagePath() const
 {
 	return this->IMAGE_PATH;
+}
+
+BaseCollision Hero::getCollision() const
+{
+	return this->rect_collision;
 }

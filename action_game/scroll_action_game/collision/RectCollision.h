@@ -10,5 +10,6 @@ private:
 	float y_bottom;
 	
 public:
+	RectCollision();
 	RectCollision(float, float, float, float);
 };

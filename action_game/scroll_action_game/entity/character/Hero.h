@@ -4,6 +4,7 @@
 #include "../../input/Input.h"
 #include "../../view/IDraw.h"
 #include "../../collision/ICollision.h"
+#include "../../collision/RectCollision.h"
 
 class Hero : virtual public IDraw, ICollision
 {
@@ -11,7 +12,15 @@ private:
 	const static int JUMP_FORCE_POINT = 32;
 	const static int JUMP_FRAME_TIME = 5;
 	const static int FALL_SPEED = 16;
+	
 	std::string IMAGE_PATH = "./resource/image/test_image.jpg";
+	RectCollision rect_collision;
+	const static float X_LEFT_RECT_COLLISION;
+	const static float X_RIGHT_RECT_COLLISION;
+	const static float Y_TOP_RECT_COLLISION;
+	const static float Y_BOTTOM_RECT_COLLISION;
+
+	
 
 	int x = 0;
 	int y = 10;
@@ -33,4 +42,5 @@ public:
 	virtual int getPositionX() const;
 	virtual int getPositionY() const;
 	virtual std::string getImagePath() const;
+	virtual BaseCollision getCollision() const;
 };
