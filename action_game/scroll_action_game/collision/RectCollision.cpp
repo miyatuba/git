@@ -29,3 +29,21 @@ void RectCollision::moveCollisionY(float y)
 	this->current_y_top = this->y_top + y;
 	this->current_y_bottom = this->y_bottom + y;
 }
+
+
+float RectCollision::getCurrentXLeft()
+{
+	return this->current_x_left;
+}
+float RectCollision::getCurrentXRight()
+{
+	return this->current_x_right;
+}
+float RectCollision::getCurrentYTop()
+{
+	return this->current_y_top;
+}
+float RectCollision::getCurrentYBottom()
+{
+	return this->current_y_bottom;
+}

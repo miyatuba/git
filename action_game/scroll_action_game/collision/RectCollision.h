@@ -19,4 +19,9 @@ public:
 	RectCollision(float, float, float, float);
 	void moveCollisionX(float);
 	void moveCollisionY(float);
+
+	float getCurrentXLeft();
+	float getCurrentXRight();
+	float getCurrentYTop();
+	float getCurrentYBottom();
 };
