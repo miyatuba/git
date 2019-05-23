@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 
+bool is_debug_mode = false;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 
@@ -10,6 +12,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	try {
 		GameMain();
+
 	}
 	catch (std::string error_message){
 		std::ofstream outputfile("error_log/error_log.txt");
@@ -55,3 +58,5 @@ void GameMain()
 
 	DxLib_End();
 }
+
+

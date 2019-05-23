@@ -12,7 +12,7 @@ DemoStage::DemoStage()
 		this->map_tip_list);
 }
 
-//–ß‚è’l‚ðMapƒNƒ‰ƒX‚É•Ï‚¦‚é‚×‚«
+
 MapTip DemoStage::getMapTip(int x, int y)
 {
 	int tip_id = this->map[y][x];

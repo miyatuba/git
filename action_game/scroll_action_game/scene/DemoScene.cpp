@@ -41,7 +41,7 @@ void DemoScene::DrawStage()
 			for (int y = 0; y < DemoStage::Y_SQUARES_NUMBER; ++y) {
 				for (int x = 0; x < DemoStage::X_SQUARES_NUMBER; ++x) {
 					MapTip map_tip = this->demo_stage.getMapTip(x, y);
-					this->draw.StageDraw(map_tip, x, y);//‚±‚±‚Ì‘æˆêˆø”‚ÍIDraw‚ðŽÀ‘•‚µ‚½mapƒNƒ‰ƒX‚É•ÏX‚·‚é‚×‚«
+					this->draw.StageDraw(map_tip, x, y);
 				}
 			}
 			return;

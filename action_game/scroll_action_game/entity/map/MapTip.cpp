@@ -9,3 +9,8 @@ int MapTip::getMapTipHandol()
 {
 	return map_tip_handle;
 }
+
+bool MapTip::hasCollision()
+{
+	return false;
+}
