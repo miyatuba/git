@@ -37,6 +37,9 @@ private:
 		{ 1,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1 },
 		{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 	};
+	
+	//“–‚½‚è”»’è‚Ì—L–³‚Ì‰½‚©‚ª•K—v
+
 
 	int map_tip_list[DemoStage::DIVIDED_MAP_TIP_X_NUMBER * DemoStage::DIVIDED_MAP_TIP_Y_NUMBER];
 

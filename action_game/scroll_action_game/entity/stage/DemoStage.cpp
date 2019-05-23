@@ -16,6 +16,6 @@ DemoStage::DemoStage()
 MapTip DemoStage::getMapTip(int x, int y)
 {
 	int tip_id = this->map[y][x];
-	MapTip map(this->map_tip_list[tip_id]);
+	MapTip map(this->map_tip_list[tip_id]);//“–‚½‚è”»’èƒtƒ‰ƒO‚ª‚¢‚é
 	return map;
 }

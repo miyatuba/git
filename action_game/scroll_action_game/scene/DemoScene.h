@@ -3,6 +3,7 @@
 #include "BaseScene.h"
 #include "../entity/character/Hero.h"
 #include "../entity/stage/DemoStage.h"
+#include "../collision/CollisionService.h"
 
 class DemoScene : public BaseScene
 {
@@ -20,5 +21,6 @@ public:
 	DemoScene();
 	DemoScene(int);
 	virtual void Play();
-	void DrawStage();
+	void ProcessStage();
+	void checkCollisionByHeroAndMapTip(Hero, MapTip);
 };

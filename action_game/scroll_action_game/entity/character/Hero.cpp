@@ -5,7 +5,7 @@ const float Hero::X_RIGHT_RECT_COLLISION = 64.0f;
 const float Hero::Y_TOP_RECT_COLLISION = 0.0f;
 const float Hero::Y_BOTTOM_RECT_COLLISION = 64.0f;
 
-//引数に初期ポジション座標追加しそう
+
 Hero::Hero() 
 {
 	RectCollision rect_collision(this->X_LEFT_RECT_COLLISION, this->X_RIGHT_RECT_COLLISION, this->Y_TOP_RECT_COLLISION, this->Y_BOTTOM_RECT_COLLISION);
@@ -20,7 +20,6 @@ void Hero::MovePositionByInput(Input input)
 	}
 	if (input.IsInputRight()) {
 		this->x += Hero::MOVE_FORCE_POINT;
-		this->rect_collision.moveCollisionX;
 		this->rect_collision.moveCollisionX((float) Hero::MOVE_FORCE_POINT);
 	}
 
@@ -89,7 +88,17 @@ std::string Hero::getImagePath() const
 	return this->IMAGE_PATH;
 }
 
-BaseCollision Hero::getCollision() const
+RectCollision Hero::getCollision() const
 {
 	return this->rect_collision;
+}
+
+bool Hero::isFall()
+{
+	return this->is_fall;
+}
+
+bool Hero::isJump()
+{
+	return this->is_jump;
 }

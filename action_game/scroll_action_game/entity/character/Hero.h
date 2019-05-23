@@ -38,8 +38,12 @@ public:
 	void ChangeJumpStatus();
 
 	void CheckFallStatus();
+
+	bool isFall();
+	bool isJump();
+
 	virtual int getPositionX() const;
 	virtual int getPositionY() const;
 	virtual std::string getImagePath() const;
-	virtual BaseCollision getCollision() const;
+	virtual RectCollision getCollision() const;
 };
