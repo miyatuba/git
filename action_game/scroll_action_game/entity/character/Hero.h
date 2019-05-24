@@ -21,8 +21,8 @@ private:
 	const static float Y_TOP_RECT_COLLISION;
 	const static float Y_BOTTOM_RECT_COLLISION;
 
-	int x = 0;
-	int y = 10;
+	int x = 90;
+	int y = 120;
 
 	bool is_fall = true;
 	bool is_jump = false;

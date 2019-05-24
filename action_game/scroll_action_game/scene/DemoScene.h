@@ -12,7 +12,7 @@ private:
 	const static int STAGE_NUMBER_i = 1;
 	Hero hero;
 	
-	int current_stage_id;
+	int current_stage_id = 0;
 
 	const static int STAGE_ID_DEMO = 1;
 	DemoStage demo_stage;
