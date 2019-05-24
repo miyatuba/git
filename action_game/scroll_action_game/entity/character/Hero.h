@@ -31,6 +31,12 @@ private:
 
 public:
 	Hero();
+
+	void MoveLeft(int);
+	void MoveRight(int);
+	void MoveTop(int);
+	void MoveBottom(int);
+
 	void MovePositionByInput(Input);
 	void MoveNoInput();
 

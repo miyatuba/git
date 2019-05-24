@@ -66,14 +66,18 @@ void DemoScene::checkCollisionByHeroAndMapTip(Hero hero, MapTip map_tip)
 
 	if (this->input.IsInputLeft()) {
 		float difference = CollisionService::differenceXLeftByRectandRect(hero.getCollision(), map_tip.getCollision());
+		hero.MoveLeft((int) difference);
 	}
 	if (this->input.IsInputRight()) {
-
+		float difference = CollisionService::differenceXRightByRectandRect(hero.getCollision(), map_tip.getCollision());
+		hero.MoveRight((int) difference);
 	}
 	if (hero.isFall()) {
-
+		float difference = CollisionService::differenceYBottomByRectandRect(hero.getCollision(), map_tip.getCollision());
+		hero.MoveTop((int) difference);
 	}
 	if (hero.isJump()) {
-
+		float difference = CollisionService::differenceYTopByRectandRect(hero.getCollision(), map_tip.getCollision());
+		hero.MoveBottom((int) difference);
 	}
 }

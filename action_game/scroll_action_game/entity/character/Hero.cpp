@@ -5,22 +5,46 @@ const float Hero::X_RIGHT_RECT_COLLISION = 64.0f;
 const float Hero::Y_TOP_RECT_COLLISION = 0.0f;
 const float Hero::Y_BOTTOM_RECT_COLLISION = 64.0f;
 
-
 Hero::Hero() 
 {
 	RectCollision rect_collision(this->X_LEFT_RECT_COLLISION, this->X_RIGHT_RECT_COLLISION, this->Y_TOP_RECT_COLLISION, this->Y_BOTTOM_RECT_COLLISION);
 	this->rect_collision = rect_collision;
 }
 
+//この辺り、intで扱って最終的にfloatに変換するか、もしくはその逆か、はっきりさせないと危ない
+void Hero::MoveLeft(int x)
+{
+	this->x -= x;
+	this->rect_collision.moveCollisionX((float) -x);//誤さ起きそう
+}
+
+void Hero::MoveRight(int x)
+{
+	this->x += x;
+	this->rect_collision.moveCollisionX((float) x);//誤さ起きそう
+}
+
+void Hero::MoveTop(int y)
+{
+	int display_position = -y;//DXライブラリでは表示のY座標が逆になるため
+	this->y += display_position;
+	this->rect_collision.moveCollisionY((float) y);//誤さ起きそう
+}
+
+void Hero::MoveBottom(int y)
+{
+	int display_position = -y;//DXライブラリでは表示のY座標が逆になるため
+	this->y -= display_position;
+	this->rect_collision.moveCollisionY((float) -y);//誤さ起きそう
+}
+
 void Hero::MovePositionByInput(Input input)
 {
 	if (input.IsInputLeft()) {
-		this->x -= Hero::MOVE_FORCE_POINT;
-		this->rect_collision.moveCollisionX((float) -Hero::MOVE_FORCE_POINT);//誤さ起きそう
+		this->MoveLeft(Hero::MOVE_FORCE_POINT);
 	}
 	if (input.IsInputRight()) {
-		this->x += Hero::MOVE_FORCE_POINT;
-		this->rect_collision.moveCollisionX((float) Hero::MOVE_FORCE_POINT);
+		this->MoveRight(Hero::MOVE_FORCE_POINT);
 	}
 
 	if (input.IsInputA()) {
@@ -36,15 +60,13 @@ void Hero::MoveNoInput()
 {
 	this->CheckFallStatus();
 	if (this->is_fall) {
-		this->y += Hero::FALL_SPEED;//重力加速度は、加速度に最大値を付けて実装予定
-		this->rect_collision.moveCollisionY((float) Hero::FALL_SPEED);
+		this->MoveBottom(Hero::FALL_SPEED);//重力加速度は、加速度に最大値を付けて実装予定
 	}
 
 	this->CheckJumpStatus();
 	if (this->is_jump) {
-		this->y -= Hero::JUMP_FORCE_POINT;
+		this->MoveTop(Hero::JUMP_FORCE_POINT);
 		this->jump_frame_elapsed_time -= 1;
-		this->rect_collision.moveCollisionY((float) -Hero::JUMP_FORCE_POINT);
 	}
 	
 }
