@@ -1,8 +1,7 @@
 #include "main.h"
-#include <fstream>
-#include <string>
 
-bool is_debug_mode = false;
+
+bool is_debug_mode = true;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -27,15 +26,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 void GameMain() 
 {
-	if (DxLib_Init() == -1)
-	{
+	if (DxLib_Init() == -1) {
 		std::string error_message = "Exception : DxLib Init false";
 		throw error_message;
 	}
 
-	if (is_debug_mode == true)
-	{
-		DebugMode::OnDebug();
+	if (is_debug_mode == true) {
+		DebugMode::OnDebugMode();
 	}
 
 	SceneService scene_service;

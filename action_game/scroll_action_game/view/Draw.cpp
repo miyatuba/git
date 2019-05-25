@@ -8,7 +8,7 @@ void Draw::CallClearDrawScreen()
 
 void Draw::DrawGame(const IDraw& drawObject) {
 	int x = drawObject.getPositionX();
-	int y = drawObject.getPositionY();
+	int y = -drawObject.getPositionY(); //DXライブラリでは表示のY座標が逆になるため
 	std::string draw_image_path = drawObject.getImagePath();
 
 	LoadGraphScreen(x, y, draw_image_path.c_str(), TRUE);

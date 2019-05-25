@@ -4,6 +4,7 @@
 #include "../entity/character/Hero.h"
 #include "../entity/stage/DemoStage.h"
 #include "../collision/CollisionService.h"
+#include "../debug_mode/DebugMode.h"
 
 class DemoScene : public BaseScene
 {

@@ -51,6 +51,15 @@ void CollisionService::drawCollisionByRect(RectCollision rectCollision)
 		GetColor(0, 255, 0),
 		true
 	);
-		
-	
+
+	/*DrawBox(
+		0,
+		100,
+		100,
+		0,
+		GetColor(0, 255, 0),
+		true
+	);*/
+
+	int i = 0;
 }

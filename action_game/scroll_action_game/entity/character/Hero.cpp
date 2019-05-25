@@ -7,7 +7,12 @@ const float Hero::Y_BOTTOM_RECT_COLLISION = 64.0f;
 
 Hero::Hero() 
 {
-	RectCollision rect_collision(this->X_LEFT_RECT_COLLISION, this->X_RIGHT_RECT_COLLISION, this->Y_TOP_RECT_COLLISION, this->Y_BOTTOM_RECT_COLLISION);
+	RectCollision rect_collision((float) this->x,
+								 (float) (Hero::X_SIZE + this->x),
+								 (float) (this->y + Hero::Y_SIZE),
+								 (float) this->y
+	);
+
 	this->rect_collision = rect_collision;
 }
 
@@ -15,27 +20,25 @@ Hero::Hero()
 void Hero::MoveLeft(int x)
 {
 	this->x -= x;
-	this->rect_collision.moveCollisionX((float) -x);//誤さ起きそう
+	this->rect_collision.moveCollisionX(-x);//誤さ起きそう
 }
 
 void Hero::MoveRight(int x)
 {
 	this->x += x;
-	this->rect_collision.moveCollisionX((float) x);//誤さ起きそう
+	this->rect_collision.moveCollisionX(x);//誤さ起きそう
 }
 
 void Hero::MoveTop(int y)
 {
-	int display_position = -y;//DXライブラリでは表示のY座標が逆になるため
-	this->y += display_position;
-	this->rect_collision.moveCollisionY((float) y);//誤さ起きそう
+	this->y += y;
+	this->rect_collision.moveCollisionY(y);//誤さ起きそう
 }
 
 void Hero::MoveBottom(int y)
 {
-	int display_position = -y;//DXライブラリでは表示のY座標が逆になるため
-	this->y -= display_position;
-	this->rect_collision.moveCollisionY((float) -y);//誤さ起きそう
+	this->y -= y;
+	this->rect_collision.moveCollisionY(-y);//誤さ起きそう
 }
 
 void Hero::MovePositionByInput(Input input)
@@ -90,7 +93,7 @@ void Hero::CheckFallStatus()
 {
 	//後で当たり判定処理を追加
 	//今は160を超えないようにする
-	if (this->y >= 320) {
+	if (this->y <= -320) {
 		this->is_fall = false;
 	}
 }

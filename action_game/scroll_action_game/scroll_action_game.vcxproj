@@ -159,6 +159,7 @@
     <ClCompile Include="collision\CollisionService.cpp" />
     <ClCompile Include="collision\ICollision.cpp" />
     <ClCompile Include="collision\RectCollision.cpp" />
+    <ClCompile Include="debug_mode\DebugMode.cpp" />
     <ClCompile Include="entity\character\Hero.cpp" />
     <ClCompile Include="entity\map\MapTip.cpp" />
     <ClCompile Include="entity\stage\BaseStage.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="collision\CollisionService.h" />
     <ClInclude Include="collision\ICollision.h" />
     <ClInclude Include="collision\RectCollision.h" />
+    <ClInclude Include="debug_mode\DebugMode.h" />
     <ClInclude Include="entity\character\Hero.h" />
     <ClInclude Include="entity\map\MapTip.h" />
     <ClInclude Include="entity\stage\BaseStage.h" />

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include "scene/SceneService.h"
-
+#include "debug_mode/DebugMode.h"
 
 
 void GameMain();
