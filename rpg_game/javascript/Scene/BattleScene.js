@@ -28,5 +28,6 @@ BattleScene.prototype.play = function ()
     //“ü—Íˆ—
     //“à•”ŒvZ
     //•\¦
-    this.draw();
+    this.draw.DrawBmp(this.soldier.getBmp(), 100, 20);
+    this.draw.updateStageCreateJS();
 };

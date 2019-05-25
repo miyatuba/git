@@ -1,4 +1,4 @@
-Rook = funcntion()
+Rook = function ()
 {
 
 }
