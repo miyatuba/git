@@ -7,11 +7,10 @@ Draw.stageCreateJS;
 
 Draw.prototype.DrawBmp = function (bmp, x, y)
 {
-    bmp1 = new createjs.Bitmap("soldier_default.png");
 
-    bmp1.x = x;
-    bmp1.y = y;
-    this.stageCreateJS.addChild(bmp1);
+    bmp.x = x;
+    bmp.y = y;
+    this.stageCreateJS.addChild(bmp);
 }
 
 Draw.prototype.updateStageCreateJS = function ()
