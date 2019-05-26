@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player1 : MonoBehaviour
 {
-    private CardCollection cards = new CardCollection(new List<CardModel>());
+    private CardCollection cards = new CardCollection(new Dictionary<int, CardModel>());
 
     void Start()
     {
@@ -25,13 +25,13 @@ public class Player1 : MonoBehaviour
 
     public void DrawCards()
     {
-        List<CardModel> card_list = this.cards.GetCardList();
+        Dictionary<int, CardModel> card_list = this.cards.GetCardList();
 
         float x_base_position = -1;
         int draw_order = 0;
-        foreach (CardModel card in card_list)
+        foreach (KeyValuePair<int, CardModel> card_pair in card_list)
         {
-            GameObject card_image = card.GetCardImage();
+            GameObject card_image = card_pair.Value.GetCardImage();
             card_image.transform.position = new Vector3(x_base_position, -3, 0);
             x_base_position += 0.2f;
             card_image.GetComponent<SpriteRenderer>().sortingOrder = draw_order;

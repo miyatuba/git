@@ -28,26 +28,34 @@ public class CardShuffleService : MonoBehaviour
         //カード生成
         CardCollection cards = card_factory.GetComponent<CardFactory>().create();
 
+        int debug = 0;
+        
         //各プレイヤーに配る
         while (true)
         {
             if (cards.IsEmpty()) break;
             CardModel card1 = cards.RandomPickUp();
-            player1.GetComponent<Player1>().addCard(card1);
+            this.player1.GetComponent<Player1>().addCard(card1);
+            debug += 1;
 
             if (cards.IsEmpty()) break;
             CardModel card2 = cards.RandomPickUp();
-            player2.GetComponent<Player2>().addCard(card2);
+            this.player2.GetComponent<Player2>().addCard(card2);
+            debug += 1;
 
             if (cards.IsEmpty()) break;
             CardModel card3 = cards.RandomPickUp();
-            player3.GetComponent<Player3>().addCard(card3);
+            this.player3.GetComponent<Player3>().addCard(card3);
+            debug += 1;
 
             if (cards.IsEmpty()) break;
             CardModel card4 = cards.RandomPickUp();
-            player4.GetComponent<Player4>().addCard(card4);
+            this.player4.GetComponent<Player4>().addCard(card4);
+            debug += 1;
 
         }
+
+        int a = 1;
 
     }
 }
