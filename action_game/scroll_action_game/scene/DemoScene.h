@@ -23,5 +23,5 @@ public:
 	DemoScene(int);
 	virtual void Play();
 	void ProcessStage();
-	void checkCollisionByHeroAndMapTip(Hero, MapTip);
+	void checkCollisionByHeroAndMapTip(Hero &, MapTip);
 };

@@ -41,6 +41,7 @@ void GameMain()
 		scene_service.Play();
 
 	
+		WaitTimer(20);
 
 		if (scene_service.isGameEnd()) break;
 

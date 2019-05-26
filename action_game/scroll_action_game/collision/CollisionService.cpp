@@ -5,13 +5,31 @@
 //↓結局どの部分がどれだけめり込んでるのか出さないといけないから、各条件に分離
 bool CollisionService::checkCollisionByRectandRect(RectCollision rectCollision1, RectCollision rectCollision2)
 {
-	if ((rectCollision1.getCurrentXLeft() < rectCollision2.getCurrentXRight()) &&
+/*	if ((rectCollision1.getCurrentXLeft() < rectCollision2.getCurrentXRight()) &&
 		(rectCollision1.getCurrentYTop() < rectCollision2.getCurrentYBottom()) &&
 		(rectCollision1.getCurrentXRight() > rectCollision2.getCurrentXLeft()) &&
 		(rectCollision1.getCurrentYBottom() > rectCollision2.getCurrentYTop())
-		) return true;
+		) return true;*/
 
-	return false;
+//	return false;
+
+	if (! (rectCollision1.getCurrentXLeft() < rectCollision2.getCurrentXRight()) ) {
+		return false;
+	}
+
+	if (!(rectCollision1.getCurrentYTop() < rectCollision2.getCurrentYBottom())) {
+		return false;
+	}
+
+	if (!(rectCollision1.getCurrentXRight() > rectCollision2.getCurrentXLeft())) {
+		return false;
+	}
+
+	if (!(rectCollision1.getCurrentYBottom() > rectCollision2.getCurrentYTop())) {
+		return false;
+	}
+
+	return true;
 }
 
 //マイナスを考えるとわけわからんので絶対値で出す。
