@@ -9,8 +9,8 @@ Hero::Hero()
 {
 	RectCollision rect_collision((float) this->x,
 								 (float) (Hero::X_SIZE + this->x),
-								 (float) (this->y + Hero::Y_SIZE),
-								 (float) this->y
+								 (float) this->y,
+								 (float) (this->y - Hero::Y_SIZE)
 	);
 
 	this->rect_collision = rect_collision;

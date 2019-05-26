@@ -36,7 +36,7 @@ void DemoScene::Play()
 
 	this->draw.DrawGame(this->hero);
 	if (DebugMode::isDebugMode()) {
-		CollisionService::drawCollisionByRect(this->hero.getCollision());
+		CollisionService::drawCollisionByRect(this->hero.getCollision(), 0, 255, 0);
 	}
 
 
@@ -54,13 +54,13 @@ void DemoScene::ProcessStage()
 					MapTip map_tip = this->demo_stage.getMapTip(x, y);
 					//主人公とマップチップの当たり判定
 					DemoScene::checkCollisionByHeroAndMapTip(this->hero, map_tip);
-					if (DebugMode::isDebugMode()) {
-						//CollisionService::drawCollisionByRect(map_tip.getCollision());
-					}
-
 					//描画
 					this->draw.StageDraw(map_tip, x, y);
-					
+
+					if (DebugMode::isDebugMode()) {
+						CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0);
+					}
+
 				}
 			}
 			return;
@@ -68,7 +68,7 @@ void DemoScene::ProcessStage()
 
 }
 
-//制作途中
+
 void DemoScene::checkCollisionByHeroAndMapTip(Hero hero, MapTip map_tip)
 {
 
