@@ -1,4 +1,3 @@
-
 const SCENE_ID_BATTLE = 1;
 
 SceneService = function ()

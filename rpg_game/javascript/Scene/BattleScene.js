@@ -53,6 +53,12 @@ BattleScene.hunter;
 BattleScene.prototype.play = function ()
 {
     //“ü—Íˆ—
+    var cleric_bmp = this.cleric.getBmp();
+    cleric_bmp.addEventListener("click", handleClick);
+    function handleClick() {
+        console.log('test');
+    }
+
     //“à•”ŒvZ
     //•\¦
 
