@@ -15,7 +15,9 @@ MapTip::MapTip(int map_tip_handle, bool has_collision, int x, int y)
 	RectCollision rect_collision(x * MapTip::X_RECT_COLLISION, 
 								 (x + 1) * MapTip::X_RECT_COLLISION,
 							     y * -MapTip::Y_RECT_COLLISION, 
-								 (y - 1) * -MapTip::Y_RECT_COLLISION);
+								 (y + 1) * -MapTip::Y_RECT_COLLISION);
+	//float x_left, float x_right, float y_top, float y_bottom
+
 	this->rect_collision = rect_collision;
 
 	this->has_collision = has_collision;

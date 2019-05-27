@@ -29,13 +29,13 @@ void Hero::MoveRight(int x)
 	this->rect_collision.moveCollisionX(x);//誤さ起きそう
 }
 
-void Hero::MoveTop(int y)
+void Hero::MoveUp(int y)
 {
 	this->y += y;
 	this->rect_collision.moveCollisionY(y);//誤さ起きそう
 }
 
-void Hero::MoveBottom(int y)
+void Hero::MoveDown(int y)
 {
 	this->y -= y;
 	this->rect_collision.moveCollisionY(-y);//誤さ起きそう
@@ -48,6 +48,14 @@ void Hero::MovePositionByInput(Input input)
 	}
 	if (input.IsInputRight()) {
 		this->MoveRight(Hero::MOVE_FORCE_POINT);
+	}
+
+	//デバッグ用
+	if (input.IsInputUp()) {
+		this->MoveUp(Hero::MOVE_FORCE_POINT);
+	}
+	if (input.IsInputDown()) {
+		this->MoveDown(Hero::MOVE_FORCE_POINT);
 	}
 
 	if (input.IsInputA()) {
@@ -63,12 +71,12 @@ void Hero::MoveNoInput()
 {
 	this->CheckFallStatus();
 	if (this->is_fall) {
-		this->MoveBottom(Hero::FALL_SPEED);//重力加速度は、加速度に最大値を付けて実装予定
+		this->MoveDown(Hero::FALL_SPEED);//重力加速度は、加速度に最大値を付けて実装予定
 	}
 
 	this->CheckJumpStatus();
 	if (this->is_jump) {
-		this->MoveTop(Hero::JUMP_FORCE_POINT);
+		this->MoveUp(Hero::JUMP_FORCE_POINT);
 		this->jump_frame_elapsed_time -= 1;
 	}
 	

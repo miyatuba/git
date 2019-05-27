@@ -17,11 +17,12 @@ private:
 
 	const static int STAGE_ID_DEMO = 1;
 	DemoStage demo_stage;
+	void ProcessStage();
+	void checkCollisionByHeroAndMapTip(Hero&, MapTip);
 
 public:
 	DemoScene();
 	DemoScene(int);
 	virtual void Play();
-	void ProcessStage();
-	void checkCollisionByHeroAndMapTip(Hero &, MapTip);
+
 };
