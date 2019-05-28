@@ -5,39 +5,24 @@
 //↓結局どの部分がどれだけめり込んでるのか出さないといけないから、各条件に分離
 bool CollisionService::checkCollisionByRectandRect(RectCollision rectCollision1, RectCollision rectCollision2)//このメソッドはいらなくなりそう、そもそも間違えてる
 {
-	/*	if ((rectCollision1.getCurrentXLeft() < rectCollision2.getCurrentXRight()) &&
-			(rectCollision1.getCurrentYTop() < rectCollision2.getCurrentYBottom()) &&
+	if ((rectCollision1.getCurrentXLeft() < rectCollision2.getCurrentXRight()) &&
+			(rectCollision1.getCurrentYTop() > rectCollision2.getCurrentYBottom()) &&
 			(rectCollision1.getCurrentXRight() > rectCollision2.getCurrentXLeft()) &&
-			(rectCollision1.getCurrentYBottom() > rectCollision2.getCurrentYTop())
-			) return true;*/
+			(rectCollision1.getCurrentYBottom() < rectCollision2.getCurrentYTop())
+			) return true;
 
-			//	return false;
+	return false;
 
-	if (!(rectCollision1.getCurrentXLeft() < rectCollision2.getCurrentXRight())) {
-		return false;
-	}
-
-	if (!(rectCollision1.getCurrentYBottom() > rectCollision2.getCurrentYTop())) {
-		return false;
-	}
-
-	if (!(rectCollision1.getCurrentYTop() < rectCollision2.getCurrentYBottom())) {
-		return false;
-	}
-
-	if (!(rectCollision1.getCurrentXRight() > rectCollision2.getCurrentXLeft())) {
-		return false;
-	}
-
-	return true;
 }
 
 
-//矩形の場合、右から、左から、上から、下からの判定を分ける必要があることに気づいた
-//右の判定をし、上もしくは下がめり込んでいれば当たっている
+//検証した結果、別ける必要なかったために、恐らく下記4つは全部要らない
 bool CollisionService::checkCollisionFromRightByRectandRect(RectCollision rectCollision1, RectCollision rectCollision2)
 {
 	if (! (rectCollision1.getCurrentXRight() > rectCollision2.getCurrentXLeft()) ) {
+		return false;
+	}
+	if (!(rectCollision1.getCurrentXLeft() < rectCollision2.getCurrentXRight())) {
 		return false;
 	}
 
@@ -53,8 +38,11 @@ bool CollisionService::checkCollisionFromLeftByRectandRect(RectCollision rectCol
 	if (! (rectCollision1.getCurrentXLeft() < rectCollision2.getCurrentXRight()) ) {
 		return false;
 	}
+	if (!(rectCollision1.getCurrentXRight() > rectCollision2.getCurrentXLeft())) {
+		return false;
+	}
 
-	if ((rectCollision1.getCurrentYTop() > rectCollision2.getCurrentYBottom()) || (rectCollision1.getCurrentYBottom() < rectCollision2.getCurrentYTop())) {
+	if ((rectCollision1.getCurrentYTop() > rectCollision2.getCurrentYBottom()) && (rectCollision1.getCurrentYBottom() < rectCollision2.getCurrentYTop())) {
 		return true;
 	}
 	return false;

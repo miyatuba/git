@@ -54,7 +54,7 @@ void DemoScene::ProcessStage()
 					MapTip map_tip = this->demo_stage.getMapTip(x, y);
 
 					//一気にやると訳が分からないのでデバッグ用に1つピックアップ
-					if (x == 3 && y == 5) {
+					if (x == 3 && y == 4) {
 						//主人公とマップチップの当たり判定
 						this->checkCollisionByHeroAndMapTip(this->hero, map_tip);
 
@@ -64,7 +64,7 @@ void DemoScene::ProcessStage()
 					this->draw.StageDraw(map_tip, x, y);
 
 					//一気にやると訳が分からないのでデバッグ用に1つピックアップ
-					if (x == 3 && y == 5) {
+					if (x == 3 && y == 4) {
 						if (DebugMode::isDebugMode()) {
 							CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0);
 						}
@@ -77,29 +77,37 @@ void DemoScene::ProcessStage()
 
 }
 
-//メモ、デバッグで追ってみたが、そもそもmap_tipのY座標がおかしい
+//斜め移動、実際は落下しながらとかジャンプしながらの左右移動の挙動だと怪しいの、そこを煮詰める必要がある
 void DemoScene::checkCollisionByHeroAndMapTip(Hero &hero, MapTip map_tip)
 {
 
 	if (this->input.IsInputLeft()) {
-		if (CollisionService::checkCollisionFromLeftByRectandRect(hero.getCollision(), map_tip.getCollision())) {
+		if (CollisionService::checkCollisionByRectandRect(hero.getCollision(), map_tip.getCollision())) {
 			float difference = CollisionService::differenceXLeftByRectandRect(hero.getCollision(), map_tip.getCollision());
 			hero.MoveRight((int)difference);
 		}
 		
 	}
 	if (this->input.IsInputRight()) {
-		if (CollisionService::checkCollisionFromRightByRectandRect(hero.getCollision(), map_tip.getCollision())) {
+		if (CollisionService::checkCollisionByRectandRect(hero.getCollision(), map_tip.getCollision())) {
 			float difference = CollisionService::differenceXRightByRectandRect(hero.getCollision(), map_tip.getCollision());
 			hero.MoveLeft((int)difference);
 		}
 	}
 
-	/*if (this->input.IsInputDown()) {
-		float difference = CollisionService::differenceYBottomByRectandRect(hero.getCollision(), map_tip.getCollision());
-		hero.MoveUp((int) difference);
-	}*/
+	if (this->input.IsInputDown()) {
+		if (CollisionService::checkCollisionByRectandRect(hero.getCollision(), map_tip.getCollision())) {
+			float difference = CollisionService::differenceYBottomByRectandRect(hero.getCollision(), map_tip.getCollision());
+			hero.MoveUp((int)difference);
+		}
+	}
 
+	if (this->input.IsInputUp()) {
+		if (CollisionService::checkCollisionByRectandRect(hero.getCollision(), map_tip.getCollision())) {
+			float difference = CollisionService::differenceYTopByRectandRect(hero.getCollision(), map_tip.getCollision());
+			hero.MoveDown((int)difference);
+		}
+	}
 	/*if (hero.isFall()) {
 		float difference = CollisionService::differenceYBottomByRectandRect(hero.getCollision(), map_tip.getCollision());
 		hero.MoveUp((int) 100);
