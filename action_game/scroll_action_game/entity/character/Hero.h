@@ -27,7 +27,7 @@ private:
 	int x = 90;//初期ポジションを入れておく（普通コンストラクターで設定する気が
 	int y = -310;//初期ポジションを入れておく（普通コンストラクターで設定する気が
 
-	bool is_fall = false;
+	bool is_fall = true;
 	bool is_jump = false;
 
 	int jump_frame_elapsed_time = this->JUMP_FRAME_TIME;
@@ -47,6 +47,8 @@ public:
 	void ChangeJumpStatus();
 
 	void CheckFallStatus();
+	void ChangeFallStatusFalse();
+	void ChangeFallStatusTrue();
 
 	bool isFall();
 	bool isJump();

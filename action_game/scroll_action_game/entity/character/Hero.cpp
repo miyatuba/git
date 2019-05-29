@@ -50,13 +50,6 @@ void Hero::MovePositionByInput(Input input)
 		this->MoveRight(Hero::MOVE_FORCE_POINT);
 	}
 
-	//デバッグ用
-	if (input.IsInputUp()) {
-		this->MoveUp(Hero::MOVE_FORCE_POINT);
-	}
-	if (input.IsInputDown()) {
-		this->MoveDown(Hero::MOVE_FORCE_POINT);
-	}
 
 	if (input.IsInputA()) {
 		if (! this->is_jump) { //空が飛べる前提なので、落下状態は見ない
@@ -104,6 +97,18 @@ void Hero::CheckFallStatus()
 	if (this->y <= -320) {
 		this->is_fall = false;
 	}
+}
+
+void Hero::ChangeFallStatusFalse()
+{
+	//CheckFallStatusに集約することになると思う
+	this->is_fall = false;
+}
+
+void Hero::ChangeFallStatusTrue()
+{
+	//CheckFallStatusに集約することになると思う
+	this->is_fall = true;
 }
 
 int Hero::getPositionX() const
