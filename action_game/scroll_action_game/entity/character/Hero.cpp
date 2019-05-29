@@ -83,10 +83,12 @@ void Hero::ChangeJumpStatus()
 
 void Hero::CheckJumpStatus()
 {
-	if (this->jump_frame_elapsed_time == 0)
-	{
-		this->is_jump = false;
-		this->is_fall = true;
+	if (this->is_jump) {
+		if (this->jump_frame_elapsed_time == 0)
+		{
+			this->is_jump = false;
+			this->is_fall = true;
+		}
 	}
 }
 

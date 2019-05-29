@@ -110,5 +110,6 @@ void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 	if (! CollisionService::checkCollisionByRectandRect(expected_rect_collision, map_tip.getCollision())) {
 			hero.ChangeFallStatusTrue();//å„íˆè¡Ç∑Ç∆évÇ§
 	}
+	expected_rect_collision.moveCollisionY(1);
 
 }

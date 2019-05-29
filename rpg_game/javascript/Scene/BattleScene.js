@@ -28,6 +28,8 @@ BattleScene = function ()
     this.draw.DrawBmp(this.archer.getBmp(), 570, 70);
     this.draw.DrawBmp(this.mage.getBmp(), 570, 220);
     this.draw.DrawBmp(this.cleric.getBmp(), 700, 20);
+    this.draw.DrawBmp(this.cleric.getRectCollision(), 700, 20);
+
     this.draw.DrawBmp(this.rook.getBmp(), 700, 170);
     this.draw.DrawBmp(this.berserk.getBmp(), 820, 70);
     this.draw.DrawBmp(this.hunter.getBmp(), 820, 220);
@@ -53,10 +55,10 @@ BattleScene.hunter;
 BattleScene.prototype.play = function ()
 {
     //入力処理
-    var cleric_bmp = this.cleric.getBmp();
-    cleric_bmp.addEventListener("click", handleClick);
-    function handleClick() {
-        console.log('test');
+    var clericRectCollision = this.cleric.getRectCollision();
+    clericRectCollision.addEventListener("click", handleTest);
+    function handleTest() {
+        alert("クレリックが選択されました");
     }
 
     //内部計算

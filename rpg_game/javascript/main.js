@@ -11,7 +11,7 @@ var Main = function () {
 Main.prototype.update = function ()
 {
     scene_service.play();
-    console.log('パクチー');
+    //console.log('パクチー');
     return;
 };
 
