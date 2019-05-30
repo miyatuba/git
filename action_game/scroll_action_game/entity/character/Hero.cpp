@@ -142,3 +142,21 @@ bool Hero::isJump()
 {
 	return this->is_jump;
 }
+
+void Hero::UpdateBeforeMovingRectCollision()
+{
+	RectCollision current_rect_collision = this->rect_collision;
+	RectCollision before_moving_rect_collision(
+		current_rect_collision.getCurrentXLeft(),
+		current_rect_collision.getCurrentXRight(),
+		current_rect_collision.getCurrentYTop(),
+		current_rect_collision.getCurrentYBottom()
+	);
+	this->before_moving_rect_collision = before_moving_rect_collision;
+}
+
+RectCollision Hero::getBeforeMovingRectCollision()
+{
+	return this->before_moving_rect_collision;
+}
+

@@ -39,7 +39,6 @@ private:
 		{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 	};
 	
-	//“–‚½‚è”»’è‚Ì—L–³‚Ì‰½‚©‚ª•K—v
 	std::map<int, bool> map_tip_collision_type_list{
 		{0, false},
 		{1, true},

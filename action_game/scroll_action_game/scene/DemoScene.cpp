@@ -23,6 +23,7 @@ void DemoScene::Play()
 
 	//プレイヤーの移動
 	this->hero.MovePositionByInput(this->input);
+	this->hero.UpdateBeforeMovingRectCollision();//ベクトルを使わないため、動く前の座標を記録し、当たり判定が左右or上下の判断をする
 	this->hero.MoveNoInput();
 
 

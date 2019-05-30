@@ -19,6 +19,7 @@ private:
 	
 	std::string IMAGE_PATH = "./resource/image/test_image.jpg";
 	RectCollision rect_collision;
+	RectCollision before_moving_rect_collision;
 	const static float X_LEFT_RECT_COLLISION;
 	const static float X_RIGHT_RECT_COLLISION;
 	const static float Y_TOP_RECT_COLLISION;
@@ -43,6 +44,8 @@ public:
 	void MovePositionByInput(Input);
 	void MoveNoInput();
 
+	void UpdateBeforeMovingRectCollision();
+
 	void CheckJumpStatus();
 	void ChangeJumpStatus();
 
@@ -57,4 +60,6 @@ public:
 	virtual int getPositionY() const;
 	virtual std::string getImagePath() const;
 	virtual RectCollision getCollision() const;
+
+	RectCollision getBeforeMovingRectCollision();
 };
