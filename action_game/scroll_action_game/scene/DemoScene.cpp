@@ -53,8 +53,8 @@ void DemoScene::ProcessStage()
 				for (int x = 0; x < DemoStage::X_SQUARES_NUMBER; ++x) {
 					MapTip map_tip = this->demo_stage.getMapTip(x, y);
 
-					//一気にやると訳が分からないのでデバッグ用に1つピックアップ
-					if (x == 3 && y == 3) {
+					//一気にやると訳が分からないのでデバッグ用にピックアップ
+					if ((x == 3 && y == 3) || (x == 3 && y == 4) || (x == 5 && y == 3)) {
 						//主人公とマップチップの当たり判定
 						this->checkCollisionByHeroAndMapTip(this->hero, map_tip);
 
@@ -63,8 +63,8 @@ void DemoScene::ProcessStage()
 					//描画
 					this->draw.StageDraw(map_tip, x, y);
 
-					//一気にやると訳が分からないのでデバッグ用に1つピックアップ
-					if (x == 3 && y == 3) {
+					//一気にやると訳が分からないのでデバッグ用にピックアップ
+					if ((x == 3 && y == 3) || (x == 3 && y == 4) || (x == 5 && y == 3)) {
 						if (DebugMode::isDebugMode()) {
 							CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0);
 						}
@@ -80,7 +80,22 @@ void DemoScene::ProcessStage()
 //斜め移動、実際は落下しながらとかジャンプしながらの左右移動の挙動だと怪しいの、そこを煮詰める必要がある
 void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 {
-	bool debug = CollisionService::checkCollisionByRectandRect(hero.getCollision(), map_tip.getCollision());
+	//上下と左右どちらの当たり判定を先にするか、状況に応じる構成にしないとうまく動かない
+	//移動前の座標も保持し、そちらの当たり上下、左右別々に判別。→スマートじゃないと思う方法
+	if (CollisionService::checkCollisionByRectandRect(hero.getCollision(), map_tip.getCollision())) {
+		if (hero.isFall()) {
+			float difference = CollisionService::differenceYBottomByRectandRect(hero.getCollision(), map_tip.getCollision());
+			hero.MoveUp((int)difference);
+			hero.ChangeFallStatusFalse();//後程消すと思う
+		}
+
+		if (hero.isJump()) {
+			float difference = CollisionService::differenceYTopByRectandRect(hero.getCollision(), map_tip.getCollision());
+			hero.MoveDown((int)difference);
+			hero.ChangeJumpStatus();
+		}
+	}
+
 	if (CollisionService::checkCollisionByRectandRect(hero.getCollision(), map_tip.getCollision())) {
 		if (this->input.IsInputLeft()) {
 			float difference = CollisionService::differenceXLeftByRectandRect(hero.getCollision(), map_tip.getCollision());
@@ -91,17 +106,7 @@ void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 			hero.MoveLeft((int)difference);
 		}
 
-		if (hero.isFall()) {
-			float difference = CollisionService::differenceYBottomByRectandRect(hero.getCollision(), map_tip.getCollision());
-			hero.MoveUp((int)difference);
-			hero.ChangeFallStatusFalse();//後程消すと思う
-		}
-
-		if (hero.isJump()) {
-			float difference = CollisionService::differenceYTopByRectandRect(hero.getCollision(), map_tip.getCollision());
-			hero.MoveDown((int)difference);	
-			hero.ChangeJumpStatus();
-		}
+		
 	}
 
 	//下が足場かどうか確認
