@@ -18,12 +18,18 @@ DemoScene::DemoScene(int stage_number)
 void DemoScene::Play()
 {
 	BaseScene::Play();
+	//入力用デバッグ
+	if (DebugMode::isDebugMode()) {
+		if ((this->input.IsInputUp()) && (this->input.IsInputRight())) {
+			int a = 1;
+		}
+	}
 
 	//プレイヤーの攻撃
 
 	//プレイヤーの移動
-	this->hero.MovePositionByInput(this->input);
 	this->hero.UpdateBeforeMovingRectCollision();//ベクトルを使わないため、動く前の座標を記録し、当たり判定が左右or上下の判断をする
+	this->hero.MovePositionByInput(this->input);
 	this->hero.MoveNoInput();
 
 
@@ -40,6 +46,28 @@ void DemoScene::Play()
 		CollisionService::drawCollisionByRect(this->hero.getCollision(), 0, 255, 0);
 	}
 
+	if (DebugMode::isDebugMode()) {
+		DrawFormatString(0, 0, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
+			this->hero.getCollision().getCurrentXLeft(),
+			this->hero.getCollision().getCurrentXRight(),
+			this->hero.getCollision().getCurrentYTop(),
+			this->hero.getCollision().getCurrentYBottom()
+		);
+		DrawFormatString(0, 50, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
+			this->hero.getBeforeMovingRectCollision().getCurrentXLeft(),
+			this->hero.getBeforeMovingRectCollision().getCurrentXRight(),
+			this->hero.getBeforeMovingRectCollision().getCurrentYTop(),
+			this->hero.getBeforeMovingRectCollision().getCurrentYBottom()
+		);
+		MapTip map_tip_debug = this->demo_stage.getMapTip(3, 3);
+		DrawFormatString(0, 100, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
+			map_tip_debug.getCollision().getCurrentXLeft(),
+			map_tip_debug.getCollision().getCurrentXRight(),
+			map_tip_debug.getCollision().getCurrentYTop(),
+			map_tip_debug.getCollision().getCurrentYBottom()
+		);
+	}
+	
 
 	this->draw.CallScreenFlip();
 }
@@ -55,7 +83,7 @@ void DemoScene::ProcessStage()
 					MapTip map_tip = this->demo_stage.getMapTip(x, y);
 
 					//一気にやると訳が分からないのでデバッグ用にピックアップ
-					if ((x == 3 && y == 3) || (x == 3 && y == 4) || (x == 5 && y == 3)) {
+					if ((x == 3 && y == 3) || (x == 3 && y == 4) || (x == 4 && y == 3) || (x == 4 && y == 4) ) {
 						//主人公とマップチップの当たり判定
 						this->checkCollisionByHeroAndMapTip(this->hero, map_tip);
 
@@ -65,7 +93,7 @@ void DemoScene::ProcessStage()
 					this->draw.StageDraw(map_tip, x, y);
 
 					//一気にやると訳が分からないのでデバッグ用にピックアップ
-					if ((x == 3 && y == 3) || (x == 3 && y == 4) || (x == 5 && y == 3)) {
+					if ((x == 3 && y == 3) || (x == 3 && y == 4) || (x == 4 && y == 3) || (x == 4 && y == 4) ) {
 						if (DebugMode::isDebugMode()) {
 							CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0);
 						}
@@ -81,30 +109,54 @@ void DemoScene::ProcessStage()
 //斜め移動、実際は落下しながらとかジャンプしながらの左右移動の挙動だと怪しいの、そこを煮詰める必要がある
 void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 {
-	//上下と左右どちらの当たり判定を先にするか、状況に応じる構成にしないとうまく動かない
-	//移動前の座標も保持し、そちらの当たり上下、左右別々に判別。→スマートじゃないと思う方法
+	//入力状況に応じる方法をとってみた、これでうまくいかなければ、入力状況により、マップチップの処理の順番を左順or右順、上順or下順の切り替えしか思いつかない
+	//上記の方法だと、プレイヤー以外のキャラが移動する場合に詰む
 	if (CollisionService::checkCollisionByRectandRect(hero.getCollision(), map_tip.getCollision())) {
-		if (hero.isFall()) {
-			float difference = CollisionService::differenceYBottomByRectandRect(hero.getCollision(), map_tip.getCollision());
-			hero.MoveUp((int)difference);
-			hero.ChangeFallStatusFalse();//後程消すと思う
+		
+		//if (hero.isFall()) {
+		if (this->input.IsInputDown()){
+			if (!CollisionService::checkCollisionLeftAndRightByRectandRect(hero.getBeforeMovingRectCollision(), map_tip.getCollision()) &&
+				(this->input.IsInputLeft() || this->input.IsInputRight())) {
+			}
+			else {
+				float difference = CollisionService::differenceYBottomByRectandRect(hero.getCollision(), map_tip.getCollision());
+				hero.MoveUp(difference);
+				hero.ChangeFallStatusFalse();//後程消すと思う
+			}
+			
 		}
 
-		if (hero.isJump()) {
-			float difference = CollisionService::differenceYTopByRectandRect(hero.getCollision(), map_tip.getCollision());
-			hero.MoveDown((int)difference);
-			hero.ChangeJumpStatus();
-		}
-	}
+		//if (hero.isJump()) {
+		if (this->input.IsInputUp()) {
+			if (! CollisionService::checkCollisionLeftAndRightByRectandRect(hero.getBeforeMovingRectCollision(), map_tip.getCollision()) &&
+				(this->input.IsInputLeft() || this->input.IsInputRight())) {
+			}else {
+				float difference = CollisionService::differenceYTopByRectandRect(hero.getCollision(), map_tip.getCollision());
+				hero.MoveDown((int)difference);
+				hero.ChangeJumpStatus();
+			}
 
-	if (CollisionService::checkCollisionByRectandRect(hero.getCollision(), map_tip.getCollision())) {
+		}
+
 		if (this->input.IsInputLeft()) {
-			float difference = CollisionService::differenceXLeftByRectandRect(hero.getCollision(), map_tip.getCollision());
-			hero.MoveRight((int)difference);
+			if (! CollisionService::checkCollisionUpAndDownByRectandRect(hero.getBeforeMovingRectCollision(), map_tip.getCollision()) &&
+				(this->input.IsInputUp() || this->input.IsInputDown())) {
+			} else {
+				// (hero.isFall() || hero.isJump())) {
+				float difference = CollisionService::differenceXLeftByRectandRect(hero.getCollision(), map_tip.getCollision());
+				hero.MoveRight((int)difference);
+			}
 		}
+
 		if (this->input.IsInputRight()) {
-			float difference = CollisionService::differenceXRightByRectandRect(hero.getCollision(), map_tip.getCollision());
-			hero.MoveLeft((int)difference);
+			if (!CollisionService::checkCollisionUpAndDownByRectandRect(hero.getBeforeMovingRectCollision(), map_tip.getCollision()) &&
+				(this->input.IsInputUp() || this->input.IsInputDown())) {
+			} else {
+				// (hero.isFall() || hero.isJump())) {
+				float difference = CollisionService::differenceXRightByRectandRect(hero.getCollision(), map_tip.getCollision());
+				hero.MoveLeft((int)difference);
+			}
+	
 		}
 
 		

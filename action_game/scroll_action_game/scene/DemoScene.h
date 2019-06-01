@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string.h>
 #include "BaseScene.h"
 #include "../entity/character/Hero.h"
 #include "../entity/stage/DemoStage.h"

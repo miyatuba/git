@@ -49,6 +49,12 @@ void Hero::MovePositionByInput(Input input)
 	if (input.IsInputRight()) {
 		this->MoveRight(Hero::MOVE_FORCE_POINT);
 	}
+	if (input.IsInputUp()) {
+		this->MoveUp(Hero::MOVE_FORCE_POINT);
+	}
+	if (input.IsInputDown()) {
+		this->MoveDown(Hero::MOVE_FORCE_POINT);
+	}
 
 
 	if (input.IsInputA()) {
@@ -87,7 +93,7 @@ void Hero::CheckJumpStatus()
 		if (this->jump_frame_elapsed_time == 0)
 		{
 			this->is_jump = false;
-			this->is_fall = true;
+			//this->is_fall = true;
 		}
 	}
 }
@@ -110,7 +116,7 @@ void Hero::ChangeFallStatusFalse()
 void Hero::ChangeFallStatusTrue()
 {
 	//CheckFallStatus‚ÉW–ñ‚·‚é‚±‚Æ‚É‚È‚é‚ÆŽv‚¤
-	this->is_fall = true;
+	//this->is_fall = true;
 }
 
 int Hero::getPositionX() const
@@ -143,6 +149,7 @@ bool Hero::isJump()
 	return this->is_jump;
 }
 
+//—v‚ç‚È‚¢‚©‚à
 void Hero::UpdateBeforeMovingRectCollision()
 {
 	RectCollision current_rect_collision = this->rect_collision;

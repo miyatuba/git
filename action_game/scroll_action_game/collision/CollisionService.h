@@ -9,10 +9,8 @@ private:
 
 public:
 	static bool checkCollisionByRectandRect(RectCollision, RectCollision);
-	static bool checkCollisionFromRightByRectandRect(RectCollision, RectCollision);
-	static bool checkCollisionFromLeftByRectandRect(RectCollision, RectCollision);
-	static bool checkCollisionFromUpByRectandRect(RectCollision, RectCollision);
-	static bool checkCollisionFromDownByRectandRect(RectCollision, RectCollision);
+	static bool checkCollisionLeftAndRightByRectandRect(RectCollision, RectCollision);
+	static bool checkCollisionUpAndDownByRectandRect(RectCollision, RectCollision);
 
 	static float differenceXLeftByRectandRect(RectCollision, RectCollision);
 	static float differenceXRightByRectandRect(RectCollision, RectCollision);

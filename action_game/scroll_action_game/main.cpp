@@ -7,7 +7,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
 
 	ChangeWindowMode(TRUE);
-	//SetKeyboardNotDirectInputFlag(TRUE);//デバッグ用
+
 
 	try {
 		GameMain();
