@@ -29,8 +29,9 @@ bool CollisionService::checkCollisionUpAndDownByRectandRect(RectCollision rectCo
 {
 	if ((rectCollision1.getCurrentYTop() > rectCollision2.getCurrentYBottom()) &&
 		(rectCollision1.getCurrentYBottom() < rectCollision2.getCurrentYTop())
-		) return true;
-
+		) {
+		return true;
+	}
 	return false;
 }
 

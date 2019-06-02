@@ -19,6 +19,9 @@ private:
 	DemoStage demo_stage;
 	void ProcessStage();
 	void checkCollisionByHeroAndMapTip(Hero&, MapTip);
+	void initLoopDemoScene();
+
+	bool is_checked_scaffold_for_hero = false;
 
 public:
 	DemoScene();

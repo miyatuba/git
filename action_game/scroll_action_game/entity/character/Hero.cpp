@@ -50,10 +50,10 @@ void Hero::MovePositionByInput(Input input)
 		this->MoveRight(Hero::MOVE_FORCE_POINT);
 	}
 	if (input.IsInputUp()) {
-		this->MoveUp(Hero::MOVE_FORCE_POINT);
+		//this->MoveUp(Hero::MOVE_FORCE_POINT);
 	}
 	if (input.IsInputDown()) {
-		this->MoveDown(Hero::MOVE_FORCE_POINT);
+		//this->MoveDown(Hero::MOVE_FORCE_POINT);
 	}
 
 
@@ -68,7 +68,7 @@ void Hero::MovePositionByInput(Input input)
 
 void Hero::MoveNoInput()
 {
-	this->CheckFallStatus();
+	//this->CheckFallStatus();
 	if (this->is_fall) {
 		this->MoveDown(Hero::FALL_SPEED);//重力加速度は、加速度に最大値を付けて実装予定
 	}
@@ -93,18 +93,16 @@ void Hero::CheckJumpStatus()
 		if (this->jump_frame_elapsed_time == 0)
 		{
 			this->is_jump = false;
-			//this->is_fall = true;
+			this->is_fall = true;
 		}
 	}
 }
 
+//もう使わない
 void Hero::CheckFallStatus()
 {
 	//後で当たり判定処理を追加
 	//今は160を超えないようにする
-	if (this->y <= -320) {
-		this->is_fall = false;
-	}
 }
 
 void Hero::ChangeFallStatusFalse()
@@ -116,7 +114,7 @@ void Hero::ChangeFallStatusFalse()
 void Hero::ChangeFallStatusTrue()
 {
 	//CheckFallStatusに集約することになると思う
-	//this->is_fall = true;
+	this->is_fall = true;
 }
 
 int Hero::getPositionX() const

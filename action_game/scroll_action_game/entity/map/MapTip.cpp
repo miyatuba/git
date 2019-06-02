@@ -30,7 +30,7 @@ int MapTip::getMapTipHandol()
 
 bool MapTip::hasCollision()
 {
-	return false;
+	return this->has_collision;
 }
 
 RectCollision MapTip::getCollision()

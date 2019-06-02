@@ -14,9 +14,14 @@ DemoScene::DemoScene(int stage_number)
 	this->current_stage_id = DemoScene::STAGE_ID_DEMO;
 }
 
+void DemoScene::initLoopDemoScene()
+{	
+	this->is_checked_scaffold_for_hero = false;
+}
 
 void DemoScene::Play()
 {
+	this->initLoopDemoScene();
 	BaseScene::Play();
 	//入力用デバッグ
 	if (DebugMode::isDebugMode()) {
@@ -83,7 +88,7 @@ void DemoScene::ProcessStage()
 					MapTip map_tip = this->demo_stage.getMapTip(x, y);
 
 					//一気にやると訳が分からないのでデバッグ用にピックアップ
-					if ((x == 3 && y == 3) || (x == 3 && y == 4) || (x == 4 && y == 3) || (x == 4 && y == 4) ) {
+					if (map_tip.hasCollision()) {
 						//主人公とマップチップの当たり判定
 						this->checkCollisionByHeroAndMapTip(this->hero, map_tip);
 
@@ -93,7 +98,7 @@ void DemoScene::ProcessStage()
 					this->draw.StageDraw(map_tip, x, y);
 
 					//一気にやると訳が分からないのでデバッグ用にピックアップ
-					if ((x == 3 && y == 3) || (x == 3 && y == 4) || (x == 4 && y == 3) || (x == 4 && y == 4) ) {
+					if (map_tip.hasCollision()) {
 						if (DebugMode::isDebugMode()) {
 							CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0);
 						}
@@ -113,8 +118,8 @@ void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 	//上記の方法だと、プレイヤー以外のキャラが移動する場合に詰む
 	if (CollisionService::checkCollisionByRectandRect(hero.getCollision(), map_tip.getCollision())) {
 		
-		//if (hero.isFall()) {
-		if (this->input.IsInputDown()){
+		if (hero.isFall()) {
+		//if (this->input.IsInputDown()){
 			if (!CollisionService::checkCollisionLeftAndRightByRectandRect(hero.getBeforeMovingRectCollision(), map_tip.getCollision()) &&
 				(this->input.IsInputLeft() || this->input.IsInputRight())) {
 			}
@@ -126,8 +131,8 @@ void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 			
 		}
 
-		//if (hero.isJump()) {
-		if (this->input.IsInputUp()) {
+		if (hero.isJump()) {
+		//if (this->input.IsInputUp()) {
 			if (! CollisionService::checkCollisionLeftAndRightByRectandRect(hero.getBeforeMovingRectCollision(), map_tip.getCollision()) &&
 				(this->input.IsInputLeft() || this->input.IsInputRight())) {
 			}else {
@@ -140,9 +145,9 @@ void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 
 		if (this->input.IsInputLeft()) {
 			if (! CollisionService::checkCollisionUpAndDownByRectandRect(hero.getBeforeMovingRectCollision(), map_tip.getCollision()) &&
-				(this->input.IsInputUp() || this->input.IsInputDown())) {
+				//(this->input.IsInputUp() || this->input.IsInputDown())) {
+				 (!hero.isFall() || !hero.isJump())) {
 			} else {
-				// (hero.isFall() || hero.isJump())) {
 				float difference = CollisionService::differenceXLeftByRectandRect(hero.getCollision(), map_tip.getCollision());
 				hero.MoveRight((int)difference);
 			}
@@ -150,9 +155,9 @@ void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 
 		if (this->input.IsInputRight()) {
 			if (!CollisionService::checkCollisionUpAndDownByRectandRect(hero.getBeforeMovingRectCollision(), map_tip.getCollision()) &&
-				(this->input.IsInputUp() || this->input.IsInputDown())) {
+				//(this->input.IsInputUp() || this->input.IsInputDown())) {
+				 (!hero.isFall() || !hero.isJump())) {
 			} else {
-				// (hero.isFall() || hero.isJump())) {
 				float difference = CollisionService::differenceXRightByRectandRect(hero.getCollision(), map_tip.getCollision());
 				hero.MoveLeft((int)difference);
 			}
@@ -163,11 +168,14 @@ void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 	}
 
 	//下が足場かどうか確認
-	RectCollision expected_rect_collision = hero.getCollision();
-	expected_rect_collision.moveCollisionY(-1);
-	if (! CollisionService::checkCollisionByRectandRect(expected_rect_collision, map_tip.getCollision())) {
+	if (!this->is_checked_scaffold_for_hero) {
+		RectCollision expected_rect_collision = hero.getCollision();
+		expected_rect_collision.moveCollisionY(-1);
+		if (!CollisionService::checkCollisionByRectandRect(expected_rect_collision, map_tip.getCollision())) {
 			hero.ChangeFallStatusTrue();//後程消すと思う
+		}
+		expected_rect_collision.moveCollisionY(1);
+		this->is_checked_scaffold_for_hero = true;
 	}
-	expected_rect_collision.moveCollisionY(1);
 
 }
