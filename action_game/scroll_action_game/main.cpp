@@ -41,6 +41,8 @@ void GameMain()
 		scene_service.Play();
 
 	
+		//タブーメモhttps://dixq.net/g/h_11.html
+		//下記の関数を使わず裏画面処理をすること
 		WaitTimer(20);
 
 		if (scene_service.isGameEnd()) break;

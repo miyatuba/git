@@ -11,6 +11,8 @@ void Draw::DrawGame(const IDraw& drawObject) {
 	int y = -drawObject.getPositionY(); //DXライブラリでは表示のY座標が逆になるため
 	std::string draw_image_path = drawObject.getImagePath();
 
+	//タブーメモhttps://dixq.net/g/h_11.html
+	//下記の関数は重い為にデバッグ以外で使用するべきではないらしいLoadGraphとDrawGraphを使用する処理に変えよう
 	LoadGraphScreen(x, y, draw_image_path.c_str(), TRUE);
 
 }
