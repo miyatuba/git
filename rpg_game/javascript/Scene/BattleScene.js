@@ -24,15 +24,21 @@ BattleScene = function ()
     bmp_back_ground.scaleY = 1;
     this.draw.DrawBmp(bmp_back_ground, 0, 0);
     this.draw.DrawBmp(this.soldier.getBmp(), 450, 20);
+    this.draw.DrawBmp(this.soldier.getRectCollision(), 450, 20);
     this.draw.DrawBmp(this.lancer.getBmp(), 450, 170);
+    this.draw.DrawBmp(this.lancer.getRectCollision(), 450, 170);
     this.draw.DrawBmp(this.archer.getBmp(), 570, 70);
+    this.draw.DrawBmp(this.archer.getRectCollision(), 570, 70);
     this.draw.DrawBmp(this.mage.getBmp(), 570, 220);
+    this.draw.DrawBmp(this.mage.getRectCollision(), 570, 220);
     this.draw.DrawBmp(this.cleric.getBmp(), 700, 20);
     this.draw.DrawBmp(this.cleric.getRectCollision(), 700, 20);
-
     this.draw.DrawBmp(this.rook.getBmp(), 700, 170);
+    this.draw.DrawBmp(this.rook.getRectCollision(), 700, 170);
     this.draw.DrawBmp(this.berserk.getBmp(), 820, 70);
+    this.draw.DrawBmp(this.berserk.getRectCollision(), 820, 70);
     this.draw.DrawBmp(this.hunter.getBmp(), 820, 220);
+    this.draw.DrawBmp(this.hunter.getRectCollision(), 820, 220);
     this.draw.DrawBmp(this.enemy1.getBmp(), 200, 70);
     this.draw.DrawBmp(this.enemy2.getBmp(), 200, 220);
     this.draw.DrawBmp(this.enemy3.getBmp(), 100, 20);
