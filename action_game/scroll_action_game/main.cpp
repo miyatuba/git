@@ -31,6 +31,8 @@ void GameMain()
 		throw error_message;
 	}
 
+	SetDrawScreen(DX_SCREEN_BACK);
+
 	if (is_debug_mode == true) {
 		DebugMode::OnDebugMode();
 	}

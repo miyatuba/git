@@ -13,6 +13,7 @@ Hero::Hero()
 								 (float) (this->y - Hero::Y_SIZE)
 	);
 
+	this->defult_image = LoadGraph(this->IMAGE_PATH.c_str());
 	this->rect_collision = rect_collision;
 }
 
@@ -127,9 +128,10 @@ int Hero::getPositionY() const
 	return this->y;
 }
 
-std::string Hero::getImagePath() const
+int Hero::getImageHandle() const
 {
-	return this->IMAGE_PATH;
+	//アニメーション実装時に、個々の返しは切り返し気にする
+	return this->defult_image;
 }
 
 RectCollision Hero::getCollision() const

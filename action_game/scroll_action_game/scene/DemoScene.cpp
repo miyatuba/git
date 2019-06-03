@@ -7,6 +7,8 @@ DemoScene::DemoScene()
 
 DemoScene::DemoScene(int stage_number)
 {
+	MainCamera main_camera(0,0);
+	this->main_camera = main_camera;
 	Hero hero;
 	this->hero = hero;
 	DemoStage demo_stage;
@@ -23,11 +25,25 @@ void DemoScene::Play()
 {
 	this->initLoopDemoScene();
 	BaseScene::Play();
-	//入力用デバッグ
+	//入力用デバッグ指定したキーのみでブレークしたいときに
 	if (DebugMode::isDebugMode()) {
 		if ((this->input.IsInputUp()) && (this->input.IsInputRight())) {
 			int a = 1;
 		}
+	}
+
+	//試しにキーで操作できるカメラ操作を入れてみる
+	if (this->input.IsInput1()) {
+
+	}
+	if (this->input.IsInput2()) {
+
+	}
+	if (this->input.IsInput3()) {
+
+	}
+	if (this->input.IsInput4()) {
+
 	}
 
 	//プレイヤーの攻撃
@@ -47,10 +63,10 @@ void DemoScene::Play()
 
 
 	this->draw.DrawGame(this->hero);
+
 	if (DebugMode::isDebugMode()) {
 		CollisionService::drawCollisionByRect(this->hero.getCollision(), 0, 255, 0);
 	}
-
 	if (DebugMode::isDebugMode()) {
 		DrawFormatString(0, 0, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
 			this->hero.getCollision().getCurrentXLeft(),
@@ -125,7 +141,7 @@ void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 			}
 			else {
 				float difference = CollisionService::differenceYBottomByRectandRect(hero.getCollision(), map_tip.getCollision());
-				hero.MoveUp(difference);
+				hero.MoveUp((int)difference);
 				hero.ChangeFallStatusFalse();//後程消すと思う
 			}
 			

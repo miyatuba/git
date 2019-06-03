@@ -18,6 +18,8 @@ private:
 	const static int Y_SIZE = 64;
 	
 	std::string IMAGE_PATH = "./resource/image/test_image.jpg";
+	int defult_image;
+
 	RectCollision rect_collision;
 	RectCollision before_moving_rect_collision;
 	const static float X_LEFT_RECT_COLLISION;
@@ -58,7 +60,7 @@ public:
 
 	virtual int getPositionX() const;
 	virtual int getPositionY() const;
-	virtual std::string getImagePath() const;
+	virtual int getImageHandle() const;
 	virtual RectCollision getCollision() const;
 
 	RectCollision getBeforeMovingRectCollision();

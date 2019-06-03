@@ -11,6 +11,10 @@ void Input::CheckInput()
 	this->is_input_escape = (bool)CheckHitKey(KEY_INPUT_ESCAPE);
 
 
+	this->is_input_1 = (bool)CheckHitKey(KEY_INPUT_1);
+	this->is_input_2 = (bool)CheckHitKey(KEY_INPUT_2);
+	this->is_input_3 = (bool)CheckHitKey(KEY_INPUT_3);
+	this->is_input_4 = (bool)CheckHitKey(KEY_INPUT_4);
 }
 
 bool Input::IsInputLeft() 
@@ -41,4 +45,24 @@ bool Input::IsInputA()
 bool Input::IsInputEscape()
 {
 	return this->is_input_escape;
+}
+
+bool Input::IsInput1()
+{
+	return this->is_input_1;
+}
+
+bool Input::IsInput2()
+{
+	return this->is_input_2;
+}
+
+bool Input::IsInput3()
+{
+	return this->is_input_3;
+}
+
+bool Input::IsInput4()
+{
+	return this->is_input_4;
 }
