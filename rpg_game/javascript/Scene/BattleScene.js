@@ -3,14 +3,14 @@ BattleScene = function ()
 {
     this.draw = new Draw();
 
-    this.soldier = new Soldier;
-    this.lancer = new Lancer;
-    this.archer = new Archer;
-    this.mage = new Mage;
-    this.cleric = new Cleric;
-    this.rook = new Rook;
-    this.berserk = new Berserk;
-    this.hunter = new Hunter;
+    this.soldier = new Soldier(false);
+    this.lancer = new Lancer(false);
+    this.archer = new Archer(false);
+    this.mage = new Mage(false);
+    this.cleric = new Cleric(false);
+    this.rook = new Rook(false);
+    this.berserk = new Berserk(true);
+    this.hunter = new Hunter(false);
 
     this.enemy1 = new Goblin;
     this.enemy2 = new Goblin;
@@ -67,6 +67,7 @@ BattleScene.prototype.play = function ()
         alert("クレリックが選択されました");
     }
 
+    console.log(this.berserk.isPlayable());
     //内部計算
     //表示
 

@@ -1,7 +1,8 @@
 const MAGE_IMAGE_DEFAULT_1_PATH = "resource/image/party_character/mage_default.png";
 
-Mage = function ()
+Mage = function (isPlayable)
 {
+    this.prototype = new BaseParty(isPlayable);
     this.bmp = new createjs.Bitmap(MAGE_IMAGE_DEFAULT_1_PATH);
     this.bmp.scaleX = 0.25;
     this.bmp.scaleY = 0.25;
@@ -14,7 +15,6 @@ Mage = function ()
 
 Mage.bmp;
 Mage.rectCollision;
-Mage.prototype = new BaseParty();
 
 Mage.prototype.getBmp = function ()
 {

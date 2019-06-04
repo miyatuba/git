@@ -1,7 +1,8 @@
 const ROOK_IMAGE_DEFAULT_1_PATH = "resource/image/party_character/rook_default.png";
 
-Rook = function ()
+Rook = function (isPlayable)
 {
+    this.prototype = new BaseParty(isPlayable);
     this.bmp = new createjs.Bitmap(ROOK_IMAGE_DEFAULT_1_PATH);
     this.bmp.scaleX = 0.2;
     this.bmp.scaleY = 0.2;
@@ -14,7 +15,6 @@ Rook = function ()
 
 Rook.bmp;
 Rook.rectCollision;
-Rook.prototype = new BaseParty();
 
 Rook.prototype.getBmp = function ()
 {
