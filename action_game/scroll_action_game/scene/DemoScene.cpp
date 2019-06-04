@@ -34,16 +34,16 @@ void DemoScene::Play()
 
 	//試しにキーで操作できるカメラ操作を入れてみる
 	if (this->input.IsInput1()) {
-
+		this->main_camera.moveLeftX(1);
 	}
 	if (this->input.IsInput2()) {
-
+		this->main_camera.moveRightX(1);
 	}
 	if (this->input.IsInput3()) {
-
+		this->main_camera.moveUpY(1);
 	}
 	if (this->input.IsInput4()) {
-
+		this->main_camera.moveDownY(1);
 	}
 
 	//プレイヤーの攻撃
@@ -53,6 +53,7 @@ void DemoScene::Play()
 	this->hero.MovePositionByInput(this->input);
 	this->hero.MoveNoInput();
 
+	//プレイヤーの位置とカメラ補正
 
 	this->draw.CallClearDrawScreen();
 
@@ -62,10 +63,10 @@ void DemoScene::Play()
 	//敵からの攻撃や障害物
 
 
-	this->draw.DrawGame(this->hero);
+	this->draw.DrawGame(this->hero, this->main_camera);
 
 	if (DebugMode::isDebugMode()) {
-		CollisionService::drawCollisionByRect(this->hero.getCollision(), 0, 255, 0);
+		CollisionService::drawCollisionByRect(this->hero.getCollision(), 0, 255, 0, this->main_camera);
 	}
 	if (DebugMode::isDebugMode()) {
 		DrawFormatString(0, 0, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
@@ -73,12 +74,6 @@ void DemoScene::Play()
 			this->hero.getCollision().getCurrentXRight(),
 			this->hero.getCollision().getCurrentYTop(),
 			this->hero.getCollision().getCurrentYBottom()
-		);
-		DrawFormatString(0, 50, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
-			this->hero.getBeforeMovingRectCollision().getCurrentXLeft(),
-			this->hero.getBeforeMovingRectCollision().getCurrentXRight(),
-			this->hero.getBeforeMovingRectCollision().getCurrentYTop(),
-			this->hero.getBeforeMovingRectCollision().getCurrentYBottom()
 		);
 		MapTip map_tip_debug = this->demo_stage.getMapTip(3, 3);
 		DrawFormatString(0, 100, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
@@ -99,11 +94,13 @@ void DemoScene::ProcessStage()
 	switch (this->current_stage_id)
 	{
 		case DemoScene::STAGE_ID_DEMO:
+			//ステージのカメラ操作の上下左右限界をここで判断するんだろうが、下記は描画処理を含むために、分けなくてはならない、
+			//再度ループを回すのは如何なものか・・
+
 			for (int y = 0; y < DemoStage::Y_SQUARES_NUMBER; ++y) {
 				for (int x = 0; x < DemoStage::X_SQUARES_NUMBER; ++x) {
 					MapTip map_tip = this->demo_stage.getMapTip(x, y);
 
-					//一気にやると訳が分からないのでデバッグ用にピックアップ
 					if (map_tip.hasCollision()) {
 						//主人公とマップチップの当たり判定
 						this->checkCollisionByHeroAndMapTip(this->hero, map_tip);
@@ -111,12 +108,11 @@ void DemoScene::ProcessStage()
 					}
 
 					//描画
-					this->draw.StageDraw(map_tip, x, y);
+					this->draw.StageDraw(map_tip, x, y, this->main_camera);
 
-					//一気にやると訳が分からないのでデバッグ用にピックアップ
 					if (map_tip.hasCollision()) {
 						if (DebugMode::isDebugMode()) {
-							CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0);
+							CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0, this->main_camera);
 						}
 					}
 

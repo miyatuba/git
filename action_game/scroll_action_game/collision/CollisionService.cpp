@@ -64,13 +64,13 @@ float CollisionService::differenceYBottomByRectandRect(RectCollision rectCollisi
 
 
 //debug—p
-void CollisionService::drawCollisionByRect(RectCollision rectCollision, int r, int g, int b)
+void CollisionService::drawCollisionByRect(RectCollision rectCollision, int r, int g, int b, MainCamera main_camera)
 {
 	DrawBox(
-		(int) rectCollision.getCurrentXLeft(),
-		-(int) rectCollision.getCurrentYTop(),
-		(int) rectCollision.getCurrentXRight(),
-		-(int) rectCollision.getCurrentYBottom(),
+		(int) rectCollision.getCurrentXLeft() - main_camera.MovingDistanceX(),
+		-(int) rectCollision.getCurrentYTop() - main_camera.MovingDistanceY(),
+		(int) rectCollision.getCurrentXRight() - main_camera.MovingDistanceX(),
+		-(int) rectCollision.getCurrentYBottom() - main_camera.MovingDistanceY(),
 		GetColor(r, g, b),
 		false
 	);

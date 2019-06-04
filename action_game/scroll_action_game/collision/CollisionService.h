@@ -2,6 +2,7 @@
 #include "RectCollision.h"
 #include "DxLib.h"
 #include "math.h"
+#include "../camera/mainCamera.h"
 
 class CollisionService 
 {
@@ -16,5 +17,5 @@ public:
 	static float differenceXRightByRectandRect(RectCollision, RectCollision);
 	static float differenceYTopByRectandRect(RectCollision, RectCollision);
 	static float differenceYBottomByRectandRect(RectCollision, RectCollision);
-	static void drawCollisionByRect(RectCollision, int, int, int);
+	static void drawCollisionByRect(RectCollision, int, int, int, MainCamera);
 };
