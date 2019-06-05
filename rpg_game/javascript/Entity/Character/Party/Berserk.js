@@ -1,7 +1,9 @@
 const BERSERK_IMAGE_DEFAULT_1_PATH = "resource/image/party_character/berserk_default.png";
 
-class Berserk extends BaseParty {
-    constructor(is_playable) {
+class Berserk extends BaseParty
+{
+    constructor(is_playable)
+    {
         super(is_playable); 
         this.bmp = new createjs.Bitmap(BERSERK_IMAGE_DEFAULT_1_PATH);
         this.bmp.scaleX = 0.5;
@@ -10,12 +12,14 @@ class Berserk extends BaseParty {
         this.rectCollision = new createjs.Shape();
         this.rectCollision.graphics.setStrokeStyle(1);
         this.rectCollision.graphics.beginStroke("blue");
-        this.rectCollision.graphics.drawRect(0, 0, 100, 160);
-       
+        this.rectCollision.graphics.drawRect(0, 0, 100, 160);  
     }
-    getBmp() {
+
+    getBmp()
+    {
         return this.bmp;
     }
+
     getRectCollision()
     {
         return this.rectCollision;

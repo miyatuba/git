@@ -1,9 +1,12 @@
-class BaseParty {
-
-    constructor(is_playable) {
+class BaseParty
+{
+    constructor(is_playable)
+    {
         this.is_playable = is_playable;
     }
-    isPlayable() {
+
+    isPlayable()
+    {
         return this.is_playable;
     }
 }

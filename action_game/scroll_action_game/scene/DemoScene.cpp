@@ -54,6 +54,7 @@ void DemoScene::Play()
 	this->hero.MoveNoInput();
 
 	//プレイヤーの位置とカメラ補正
+	this->main_camera.TrackingByTargetPosition(this->hero.getPositionX(), this->hero.getPositionY());
 
 	this->draw.CallClearDrawScreen();
 

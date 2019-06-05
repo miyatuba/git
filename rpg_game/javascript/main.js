@@ -2,18 +2,21 @@ window.addEventListener('load', init);
 
 var main;
 
-//初回処理
-var Main = function () {
-    scene_service = new SceneService();
+class Main
+{
+    constructor()
+    {
+        this.scene_service = new SceneService();
+    }
+
+    update()
+    {
+        this.scene_service.play();
+        //console.log('パクチー');
+        return;
+    }
 }
 
-//ループ
-Main.prototype.update = function ()
-{
-    scene_service.play();
-    //console.log('パクチー');
-    return;
-};
 
 function init()
 {
