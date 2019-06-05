@@ -65,17 +65,17 @@ class BattleScene
     {
         //入力処理
         var soldierRectCollision = this.soldier.getRectCollision();
-        var soldierRectCollision = this.lancer.getRectCollision();
-        var soldierRectCollision = this.archer.getRectCollision();
-        var soldierRectCollision = this.mage.getRectCollision();
+        var lanerRectCollision = this.lancer.getRectCollision();
+        var archerRectCollision = this.archer.getRectCollision();
+        var mageRectCollision = this.mage.getRectCollision();
         var clericRectCollision = this.cleric.getRectCollision();
         clericRectCollision.addEventListener("click", changePartyTargetCleric);
         function changePartyTargetCleric() {
-            alert("クレリックが選択されました");
+            this.cleric.chagePartyTargetPositionNumber();
         }
-        var soldierRectCollision = this.rook.getRectCollision();
-        var soldierRectCollision = this.berserk.getRectCollision();
-        var soldierRectCollision = this.hunter.getRectCollision();
+        var rookRectCollision = this.rook.getRectCollision();
+        var berserkRectCollision = this.berserk.getRectCollision();
+        var hunterRectCollision = this.hunter.getRectCollision();
     }
 }
 
