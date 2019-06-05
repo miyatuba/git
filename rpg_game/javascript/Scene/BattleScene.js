@@ -53,17 +53,29 @@ class BattleScene
     play()
     {
         //入力処理
-        var clericRectCollision = this.cleric.getRectCollision();
-        clericRectCollision.addEventListener("click", handleTest);
-        function handleTest() {
-            alert("クレリックが選択されました");
-        }
 
         console.log(this.berserk.isPlayable());
         //内部計算
         //表示
 
         this.draw.updateStageCreateJS();
+    }
+
+    input()
+    {
+        //入力処理
+        var soldierRectCollision = this.soldier.getRectCollision();
+        var soldierRectCollision = this.lancer.getRectCollision();
+        var soldierRectCollision = this.archer.getRectCollision();
+        var soldierRectCollision = this.mage.getRectCollision();
+        var clericRectCollision = this.cleric.getRectCollision();
+        clericRectCollision.addEventListener("click", changePartyTargetCleric);
+        function changePartyTargetCleric() {
+            alert("クレリックが選択されました");
+        }
+        var soldierRectCollision = this.rook.getRectCollision();
+        var soldierRectCollision = this.berserk.getRectCollision();
+        var soldierRectCollision = this.hunter.getRectCollision();
     }
 }
 
