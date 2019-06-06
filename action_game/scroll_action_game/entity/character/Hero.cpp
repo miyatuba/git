@@ -167,3 +167,12 @@ RectCollision Hero::getBeforeMovingRectCollision()
 	return this->before_moving_rect_collision;
 }
 
+int Hero::getSizeY()
+{
+	return Hero::Y_SIZE;
+}
+
+int Hero::getSizeX()
+{
+	return Hero::X_SIZE;
+}

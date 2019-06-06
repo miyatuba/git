@@ -64,4 +64,7 @@ public:
 	virtual RectCollision getCollision() const;
 
 	RectCollision getBeforeMovingRectCollision();
+
+	int getSizeY();
+	int getSizeX();
 };

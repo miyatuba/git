@@ -34,16 +34,16 @@ void DemoScene::Play()
 
 	//試しにキーで操作できるカメラ操作を入れてみる
 	if (this->input.IsInput1()) {
-		this->main_camera.moveLeftX(1);
+		//this->main_camera.moveLeftX(1);
 	}
 	if (this->input.IsInput2()) {
-		this->main_camera.moveRightX(1);
+		//this->main_camera.moveRightX(1);
 	}
 	if (this->input.IsInput3()) {
-		this->main_camera.moveUpY(1);
+		//this->main_camera.moveUpY(1);
 	}
 	if (this->input.IsInput4()) {
-		this->main_camera.moveDownY(1);
+		//this->main_camera.moveDownY(1);
 	}
 
 	//プレイヤーの攻撃
@@ -53,13 +53,13 @@ void DemoScene::Play()
 	this->hero.MovePositionByInput(this->input);
 	this->hero.MoveNoInput();
 
-	//プレイヤーの位置とカメラ補正
-	this->main_camera.TrackingByTargetPosition(this->hero.getPositionX(), this->hero.getPositionY());
-
 	this->draw.CallClearDrawScreen();
 
 	
 	this->ProcessStage();
+
+	//プレイヤーの位置とカメラ補正
+	this->main_camera.TrackingByTargetPosition(this->hero.getPositionX() + (this->hero.getSizeX() / 2), this->hero.getPositionY() - this->hero.getSizeY() - (this->hero.getSizeY()));
 
 	//敵からの攻撃や障害物
 
@@ -77,11 +77,9 @@ void DemoScene::Play()
 			this->hero.getCollision().getCurrentYBottom()
 		);
 		MapTip map_tip_debug = this->demo_stage.getMapTip(3, 3);
-		DrawFormatString(0, 100, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
-			map_tip_debug.getCollision().getCurrentXLeft(),
-			map_tip_debug.getCollision().getCurrentXRight(),
-			map_tip_debug.getCollision().getCurrentYTop(),
-			map_tip_debug.getCollision().getCurrentYBottom()
+		DrawFormatString(0, 100, GetColor(0, 0, 255), "LX座標%d:TY座標%d",
+			this->main_camera.MovingDistanceX(),
+			this->main_camera.MovingDistanceY()
 		);
 	}
 	

@@ -13,6 +13,8 @@ class Berserk extends BaseParty
         this.rectCollision.graphics.setStrokeStyle(1);
         this.rectCollision.graphics.beginStroke("blue");
         this.rectCollision.graphics.drawRect(0, 0, 100, 160);  
+
+        this.party_id = 7;
     }
 
     getBmp()

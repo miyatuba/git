@@ -14,6 +14,8 @@ class Soldier extends BaseParty
         this.rectCollision.graphics.beginStroke("blue");
         this.rectCollision.graphics.drawRect(0, 0, 100, 160);
 
+        this.party_id = 1;
+
     }
 
     getBmp()
