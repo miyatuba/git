@@ -32,13 +32,13 @@ public class Player2 : MonoBehaviour
         Debug.Log(card_list.Count);
         foreach (KeyValuePair<int, CardModel> card_pair in card_list)
         {
-            GameObject card_image = card_pair.Value.GetCardImage();
-            card_image.transform.position = new Vector3(8, y_base_position, 0);
-            card_image.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            GameObject card_object = card_pair.Value.GetCardObject();
+            card_object.transform.position = new Vector3(8, y_base_position, 0);
+            card_object.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             y_base_position -= 0.2f;
-            card_image.GetComponent<SpriteRenderer>().sortingOrder = draw_order;
+            card_object.GetComponent<SpriteRenderer>().sortingOrder = draw_order;
             draw_order += 1;
-            card_image.SetActive(true);
+            card_object.SetActive(true);
         }
     }
 }

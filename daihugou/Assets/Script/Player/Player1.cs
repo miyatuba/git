@@ -14,6 +14,8 @@ public class Player1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.CheckCollision();
+
         //毎回描画するのも美しくないので後程改善
         this.DrawCards();
     }
@@ -23,7 +25,7 @@ public class Player1 : MonoBehaviour
         this.cards.Push(card);
     }
 
-    public void DrawCards()
+    private void DrawCards()
     {
         Dictionary<int, CardModel> card_list = this.cards.GetCardList();
 
@@ -31,13 +33,34 @@ public class Player1 : MonoBehaviour
         int draw_order = 0;
         foreach (KeyValuePair<int, CardModel> card_pair in card_list)
         {
-            GameObject card_image = card_pair.Value.GetCardImage();
-            card_image.transform.position = new Vector3(x_base_position, -3, 0);
+            GameObject card_object = card_pair.Value.GetCardObject();
+            card_object.transform.position = new Vector3(x_base_position, -3, 0);
             x_base_position += 0.2f;
-            card_image.GetComponent<SpriteRenderer>().sortingOrder = draw_order;
+            card_object.GetComponent<SpriteRenderer>().sortingOrder = draw_order;
             draw_order += 1;
-            card_image.SetActive(true);
+            card_object.SetActive(true);
+            card_object.GetComponent<Collider2D>().isTrigger = true;
         }
 
     }
+
+    private void CheckCollision()
+    {
+        // 左クリックを取得
+        if (Input.GetMouseButtonDown(0))
+        {
+            // クリックしたスクリーン座標をrayに変換
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // Rayの当たったオブジェクトの情報を格納する
+            RaycastHit hit = new RaycastHit();
+            // オブジェクトにrayが当たった時
+            if (Physics.Raycast(ray, out hit, 100f))
+            {
+                // rayが当たったオブジェクトの名前を取得
+                string objectName = hit.collider.gameObject.name;
+                Debug.Log(objectName);
+            }
+        }
+    }
+
 }
