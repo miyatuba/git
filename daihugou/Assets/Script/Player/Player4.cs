@@ -30,12 +30,12 @@ public class Player4 : MonoBehaviour
         int draw_order = 0;
         foreach (KeyValuePair<int, CardModel> card_pair in card_list)
         {
-            GameObject card_image = card_pair.Value.GetCardImage();
-            card_image.transform.position = new Vector3(x_base_position, 3, 0);
+            GameObject card_object = card_pair.Value.GetCardObject();
+            card_object.transform.position = new Vector3(x_base_position, 3, 0);
             x_base_position += 0.2f;
-            card_image.GetComponent<SpriteRenderer>().sortingOrder = draw_order;
+            card_object.GetComponent<SpriteRenderer>().sortingOrder = draw_order;
             draw_order += 1;
-            card_image.SetActive(true);
+            card_object.SetActive(true);
         }
 
     }

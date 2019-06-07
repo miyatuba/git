@@ -7,14 +7,14 @@ public class CardModel : MonoBehaviour
     private int card_id;
     private int value;
     private int mark_id;
-    private GameObject card_image;
+    private GameObject card_object;
 
     public CardModel(Hashtable card_data)
     {
         this.card_id = (int)card_data["card_id"];
         this.value = (int) card_data["value"];
         this.mark_id = (int) card_data["mark_id"];
-        this.card_image = (GameObject) card_data["card_image"];
+        this.card_object = (GameObject) card_data["card_object"];
     }
 
     public int GetCardId()
@@ -32,8 +32,8 @@ public class CardModel : MonoBehaviour
         return this.mark_id;
     }
 
-    public GameObject GetCardImage()
+    public GameObject GetCardObject()
     {
-        return this.card_image;
+        return this.card_object;
     }
 }
