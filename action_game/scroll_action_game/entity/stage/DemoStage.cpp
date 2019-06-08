@@ -16,6 +16,13 @@ DemoStage::DemoStage()
 MapTip DemoStage::getMapTip(int x, int y)
 {
 	int tip_id = this->map_tip_type_id_list[y][x];
-	MapTip map(this->map_tip_list[tip_id], this->map_tip_collision_type_list[tip_id], x, y);
+
+	int map_tip_handle = 0;
+
+	if (tip_id != DemoStage::NO_MAP_TIP) {
+		map_tip_handle = this->map_tip_list[tip_id];
+	} 
+
+	MapTip map(map_tip_handle, this->map_tip_collision_type_list[tip_id], x, y);
 	return map;
 }

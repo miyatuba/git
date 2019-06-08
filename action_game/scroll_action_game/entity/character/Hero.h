@@ -27,7 +27,7 @@ private:
 	const static float Y_TOP_RECT_COLLISION;
 	const static float Y_BOTTOM_RECT_COLLISION;
 
-	int x = 90;//初期ポジションを入れておく（普通コンストラクターで設定する気が
+	int x = 170;//初期ポジションを入れておく（普通コンストラクターで設定する気が
 	int y = -250;//初期ポジションを入れておく（普通コンストラクターで設定する気が
 
 	bool is_fall = true;
@@ -52,8 +52,8 @@ public:
 	void ChangeJumpStatus();
 
 	void CheckFallStatus();
-	void ChangeFallStatusFalse();
-	void ChangeFallStatusTrue();
+	void OffFallStatus();
+	void OnFallStatus();
 
 	bool isFall();
 	bool isJump();

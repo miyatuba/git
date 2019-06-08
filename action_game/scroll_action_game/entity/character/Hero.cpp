@@ -8,7 +8,7 @@ const float Hero::Y_BOTTOM_RECT_COLLISION = 64.0f;
 Hero::Hero() 
 {
 	RectCollision rect_collision((float) this->x,
-								 (float) (Hero::X_SIZE + this->x),
+								 (float) (this->x + Hero::X_SIZE),
 								 (float) this->y,
 								 (float) (this->y - Hero::Y_SIZE)
 	);
@@ -106,13 +106,13 @@ void Hero::CheckFallStatus()
 	//今は160を超えないようにする
 }
 
-void Hero::ChangeFallStatusFalse()
+void Hero::OffFallStatus()
 {
 	//CheckFallStatusに集約することになると思う
 	this->is_fall = false;
 }
 
-void Hero::ChangeFallStatusTrue()
+void Hero::OnFallStatus()
 {
 	//CheckFallStatusに集約することになると思う
 	this->is_fall = true;

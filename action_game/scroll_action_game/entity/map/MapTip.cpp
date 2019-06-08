@@ -8,6 +8,7 @@ const float MapTip::Y_BOTTOM_RECT_COLLISION = -80.0f;
 const float MapTip::X_RECT_COLLISION = 80.0f;
 const float MapTip::Y_RECT_COLLISION = 80.0f;
 
+//map_tip_handle = 0はマップチップの画像描画なし
 MapTip::MapTip(int map_tip_handle, bool has_collision, int x, int y)
 {
 	this->map_tip_handle = map_tip_handle;
@@ -16,10 +17,8 @@ MapTip::MapTip(int map_tip_handle, bool has_collision, int x, int y)
 								 (x + 1) * MapTip::X_RECT_COLLISION,
 							     y * -MapTip::Y_RECT_COLLISION, 
 								 (y + 1) * -MapTip::Y_RECT_COLLISION);
-	//float x_left, float x_right, float y_top, float y_bottom
 
-	this->rect_collision = rect_collision;
-
+	this->rect_collision = rect_collision;//メモリを食いそうならhas_collision==false時は生成しない方が良いかも
 	this->has_collision = has_collision;
 }
 
@@ -36,4 +35,9 @@ bool MapTip::hasCollision()
 RectCollision MapTip::getCollision()
 {
 	return this->rect_collision;
+}
+
+bool MapTip::hasMapTipHandle()
+{
+	return this->map_tip_handle != 0;
 }

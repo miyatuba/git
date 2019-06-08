@@ -23,4 +23,6 @@ public:
 	int getMapTipHandol();
 	bool hasCollision();
 	RectCollision getCollision();
+
+	bool hasMapTipHandle();
 };
