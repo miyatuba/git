@@ -1,5 +1,4 @@
-class BattleScene
-{
+class BattleScene {
     BATTLE_BACK_GRAUND_IMAGE = "resource/image/back_graund/back_ground1.jpg";
 
     PARTY_NUMBER_ID_SOLDIER = 1;
@@ -11,11 +10,11 @@ class BattleScene
     PARTY_NUMBER_ID_BERSERK = 7;
     PARTY_NUMBER_ID_HUNTER = 8;
 
-    constructor()
-    {
+    constructor() {
         this.draw = new Draw();
 
         this._initPartyDeploy();
+        this._initEnemyDeploy();
 
         var bmp_back_ground = new createjs.Bitmap(this.BATTLE_BACK_GRAUND_IMAGE);
         bmp_back_ground.scaleX = 1;
@@ -45,8 +44,7 @@ class BattleScene
         this.draw.DrawBmp(this.enemy_character_position6.getBmp(), 0, 220);
     }
 
-    _initPartyDeploy()
-    {
+    _initPartyDeploy() {
         this.party_character_position1 = new Soldier(false);
         this.party_character_position2 = new Lancer(false);
         this.party_character_position3 = new Archer(false);
@@ -56,10 +54,10 @@ class BattleScene
         this.party_character_position7 = new Berserk(false);
         this.party_character_position8 = new Hunter(false);
         this.playable_party_id = this.PARTY_NUMBER_ID_BERSERK;
+        this.playable_party_position_number = 7;
     }
 
-    _initEnemyDeploy()
-    {
+    _initEnemyDeploy() {
         //多分idを渡してモンスターをインスタンス化するようなfactoryクラスが必要になる予感
         this.enemy_character_position1 = new Goblin;
         this.enemy_character_position2 = new Goblin;
@@ -69,8 +67,7 @@ class BattleScene
         this.enemy_character_position6 = new Goblin;
     }
 
-    play()
-    {
+    play() {
         //入力処理
 
         console.log();
@@ -80,95 +77,130 @@ class BattleScene
         this.draw.updateStageCreateJS();
     }
 
-    input()
-    {
-        //入力処理
-        var partyPosition1RectCollision = this.party_character_position1.getRectCollision();
-        var partyPosition2RectCollision = this.party_character_position2.getRectCollision();
-        var partyPosition3RectCollision = this.party_character_position3.getRectCollision();
-        var partyPosition4RectCollision = this.party_character_position4.getRectCollision();
-        var partyPosition5RectCollision = this.party_character_position5.getRectCollision();
-        partyPosition6RectCollision.addEventListener("click", changePartyTarget);
-        function changePartyTarget() {
+    input() {
+        //メニューを開いたかどうか
 
+        //入力処理（プレイアブル
+        switch (this.playable_party_position_number) {
+            case 1://流石にここはマジックナンバーで良いと思うんだけど・・
+                this._inputPosition1();
+                break;
+            case 2:
+                this._inputPosition2();
+                break;
+            case 3:
+                this._inputPosition3();
+                break;
+            case 4:
+                this._inputPosition4();
+                break;
+            case 5:
+                this._inputPosition5();
+                break;
+            case 6:
+                this._inputPosition6();
+                break;
+            case 7:
+                this._inputPosition7();
+                break;
+            case 8:
+                this._inputPosition8();
+                break;
+        }
+
+        //味方CPの処理
+        //敵CPの処理
+
+        
+    }
+
+    _inputPosition1()
+    {
+        //戦闘可能かどうか
+        //行動中か否かの確認
+        //行動中であればアニメーションを進めてダメージ計算も進めてreturn
+        //キャラタッチの確認
+        //コマンドの確認
+    }
+
+    _inputPosition2()
+    {
+
+    }
+
+    _inputPosition3()
+    {
+
+    }
+
+    _inputPosition4()
+    {
+
+    }
+
+    _inputPosition5()
+    {
+
+    }
+
+    _inputPosition6()
+    {
+
+    }
+
+    _inputPosition7()
+    {
+        //行動中か同課の確認
+        //行動中であればアニメーションを進めてreturn
+        //キャラタッチの確認
+        var partyPosition1RectCollision = this.party_character_position1.getRectCollision();
+        partyPosition1RectCollision.addEventListener("click", changePartyTarget1);
+        function changePartyTarget1() {
+            this.party_character_position1.changePartyTarget(1);
+        }
+        var partyPosition2RectCollision = this.party_character_position2.getRectCollision();
+        partyPosition2RectCollision.addEventListener("click", changePartyTarget2);
+        function changePartyTarget2() {
+            this.party_character_position2.changePartyTarget(2);
+        }
+        var partyPosition3RectCollision = this.party_character_position3.getRectCollision();
+        partyPosition3RectCollision.addEventListener("click", changePartyTarget3);
+        function changePartyTarget3() {
+            this.party_character_position3.changePartyTarget(3);
+        }
+        var partyPosition4RectCollision = this.party_character_position4.getRectCollision();
+        partyPosition4RectCollision.addEventListener("click", changePartyTarget4);
+        function changePartyTarget4() {
+            this.party_character_position4.changePartyTarget(4);
+        }
+        var partyPosition5RectCollision = this.party_character_position5.getRectCollision();
+        partyPosition5RectCollision.addEventListener("click", changePartyTarget5);
+        function changePartyTarget5() {
+            this.party_character_position5.changePartyTarget(5);
         }
         var partyPosition6RectCollision = this.party_character_position6.getRectCollision();
+        partyPosition6RectCollision.addEventListener("click", changePartyTarget6);
+        function changePartyTarget6() {
+            this.party_character_position6.changePartyTarget(6);
+        }
         var partyPosition7RectCollision = this.party_character_position7.getRectCollision();
+        partyPosition7RectCollision.addEventListener("click", changePartyTarget7);
+        function changePartyTarget7() {
+            this.party_character_position7.changePartyTarget(7);
+        }
+
         var partyPosition8RectCollision = this.party_character_position8.getRectCollision();
-    }
-}
-
-/*BattleScene = function ()
-{
-    this.draw = new Draw();
-
-    this.soldier = new Soldier(false);
-    this.lancer = new Lancer(false);
-    this.archer = new Archer(false);
-    this.mage = new Mage(false);
-    this.cleric = new Cleric(false);
-    this.rook = new Rook(false);
-    this.berserk = new Berserk(true);
-    this.hunter = new Hunter(false);
-
-    this.enemy1 = new Goblin;
-    this.enemy2 = new Goblin;
-    this.enemy3 = new Goblin;
-    this.enemy4 = new Goblin;
-    this.enemy5 = new Goblin;
-    this.enemy6 = new Goblin;
-
-    bmp_back_ground = new createjs.Bitmap(BATTLE_BACK_GRAUND_IMAGE);
-    bmp_back_ground.scaleX = 1;
-    bmp_back_ground.scaleY = 1;
-    this.draw.DrawBmp(bmp_back_ground, 0, 0);
-    this.draw.DrawBmp(this.soldier.getBmp(), 450, 20);
-    this.draw.DrawBmp(this.soldier.getRectCollision(), 450, 20);
-    this.draw.DrawBmp(this.lancer.getBmp(), 450, 170);
-    this.draw.DrawBmp(this.lancer.getRectCollision(), 450, 170);
-    this.draw.DrawBmp(this.archer.getBmp(), 570, 70);
-    this.draw.DrawBmp(this.archer.getRectCollision(), 570, 70);
-    this.draw.DrawBmp(this.mage.getBmp(), 570, 220);
-    this.draw.DrawBmp(this.mage.getRectCollision(), 570, 220);
-    this.draw.DrawBmp(this.cleric.getBmp(), 700, 20);
-    this.draw.DrawBmp(this.cleric.getRectCollision(), 700, 20);
-    this.draw.DrawBmp(this.rook.getBmp(), 700, 170);
-    this.draw.DrawBmp(this.rook.getRectCollision(), 700, 170);
-    this.draw.DrawBmp(this.berserk.getBmp(), 820, 70);
-    this.draw.DrawBmp(this.berserk.getRectCollision(), 820, 70);
-    this.draw.DrawBmp(this.hunter.getBmp(), 820, 220);
-    this.draw.DrawBmp(this.hunter.getRectCollision(), 820, 220);
-    this.draw.DrawBmp(this.enemy1.getBmp(), 200, 70);
-    this.draw.DrawBmp(this.enemy2.getBmp(), 200, 220);
-    this.draw.DrawBmp(this.enemy3.getBmp(), 100, 20);
-    this.draw.DrawBmp(this.enemy4.getBmp(), 100, 170);
-    this.draw.DrawBmp(this.enemy5.getBmp(), 0, 70);
-    this.draw.DrawBmp(this.enemy6.getBmp(), 0, 220);
-}
-
-BattleScene.draw;
-
-BattleScene.soldier;
-BattleScene.lancer;
-BattleScene.archer;
-BattleScene.mage;
-BattleScene.cleric;
-BattleScene.rook;
-BattleScene.berserk;
-BattleScene.hunter;
-
-BattleScene.prototype.play = function ()
-{
-    //入力処理
-    var clericRectCollision = this.cleric.getRectCollision();
-    clericRectCollision.addEventListener("click", handleTest);
-    function handleTest() {
-        alert("クレリックが選択されました");
+        partyPosition8RectCollision.addEventListener("click", changePartyTarget8);
+        function changePartyTarget8() {
+            this.party_character_position8.changePartyTarget(8);
+        }
+        //コマンドの確認
     }
 
-    console.log(this.berserk.isPlayable());
-    //内部計算
-    //表示
+    _inputPosition8()
+    {
 
-    this.draw.updateStageCreateJS();
-};*/
+    }
+
+    //positionNumberから判断してxとyを返す関数
+}
