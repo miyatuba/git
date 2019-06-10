@@ -2,7 +2,7 @@
 
 //後で、この辺はベクトルを使った判定に変えたい。
 
-bool CollisionService::checkCollisionByRectandRect(RectCollision rectCollision1, RectCollision rectCollision2)//そもそも間違えてる
+bool CollisionService::checkCollisionByRectandRect(RectCollision rectCollision1, RectCollision rectCollision2)
 {
 	if ((rectCollision1.getCurrentXLeft() < rectCollision2.getCurrentXRight()) &&
 		(rectCollision1.getCurrentXRight() > rectCollision2.getCurrentXLeft()) &&
@@ -68,9 +68,9 @@ void CollisionService::drawCollisionByRect(RectCollision rectCollision, int r, i
 {
 	DrawBox(
 		(int) rectCollision.getCurrentXLeft() - main_camera.MovingDistanceX(),
-		-(int) rectCollision.getCurrentYTop() - main_camera.MovingDistanceY(),
+		-(int) (rectCollision.getCurrentYTop() - main_camera.MovingDistanceY()),
 		(int) rectCollision.getCurrentXRight() - main_camera.MovingDistanceX(),
-		-(int) rectCollision.getCurrentYBottom() - main_camera.MovingDistanceY(),
+		-(int) (rectCollision.getCurrentYBottom() - main_camera.MovingDistanceY()),
 		GetColor(r, g, b),
 		false
 	);

@@ -20,6 +20,15 @@ MapTip::MapTip(int map_tip_handle, bool has_collision, int x, int y)
 
 	this->rect_collision = rect_collision;//メモリを食いそうならhas_collision==false時は生成しない方が良いかも
 	this->has_collision = has_collision;
+
+	this->setMapTipIndex(x, y);
+}
+
+//デバッグ用
+void MapTip::setMapTipIndex(int x, int y)
+{
+	this->map_tip_index_x = x;
+	this->map_tip_index_y = y;
 }
 
 int MapTip::getMapTipHandol()

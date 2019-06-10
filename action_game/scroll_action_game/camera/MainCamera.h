@@ -8,6 +8,9 @@ private:
 	int initial_top_position_y = 0;//èâä˙ç¿ïW
 	int current_left_position_x = 0;
 	int current_top_position_y = 0;
+	int before_left_position_x = 0;
+	int before_top_position_y = 0;
+
 	const static int WIDTH = 640;
 	const static int HEIGHT = 640;
 
@@ -32,4 +35,6 @@ public:
 	void OffShouldRevision();
 
 	RectCollision createRectCollision();
+
+	void initForLoop();
 };

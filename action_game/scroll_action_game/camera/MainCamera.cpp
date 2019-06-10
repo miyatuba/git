@@ -15,8 +15,18 @@ MainCamera::MainCamera(int initial_position_x, int initial_position_y)
 	this->initial_top_position_y = initial_position_y;
 	this->current_left_position_x = initial_position_x;
 	this->current_top_position_y = initial_position_y;
+	this->before_left_position_x = initial_position_x;
+	this->before_top_position_y = initial_position_y;
 }
 
+
+void MainCamera::initForLoop()
+{
+	this->OnShouldRevision();
+	this->before_left_position_x = this->current_left_position_x;
+	this->before_top_position_y = this->current_top_position_y;
+
+}
 
 void MainCamera::moveLeftX(int x)
 {
@@ -54,7 +64,7 @@ void MainCamera::TrackingByTargetPosition(int x, int y)
 	this->current_left_position_x += difference_distance_x;
 
 	int center_position_y = this->getCenterPositionY();
-	int difference_distance_y = -y - center_position_y;
+	int difference_distance_y = y - center_position_y;
 	this->current_top_position_y += difference_distance_y;
 }
 
@@ -67,7 +77,7 @@ int MainCamera::getCenterPositionX()
 //private
 int MainCamera::getCenterPositionY()
 {
-	return this->current_top_position_y + (MainCamera::HEIGHT / 2);
+	return this->current_top_position_y - (MainCamera::HEIGHT / 4);//‰º•ûŒü‚ÉŒü‚©‚Á‚Ä‚Ìheight‚Å‚ ‚é‚½‚ß‚ÉA
 }
 
 

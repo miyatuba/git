@@ -7,7 +7,7 @@ DemoScene::DemoScene()
 
 DemoScene::DemoScene(int stage_number)
 {
-	MainCamera main_camera(0, 0);
+	MainCamera main_camera(81, -81);
 	this->main_camera = main_camera;
 	this->current_stage_id = stage_number;
 	Hero hero;
@@ -16,7 +16,7 @@ DemoScene::DemoScene(int stage_number)
 void DemoScene::initLoopDemoScene()
 {	
 	this->is_checked_scaffold_for_hero = false;
-	this->main_camera.OnShouldRevision();
+	this->main_camera.initForLoop();
 }
 
 void DemoScene::Play()
@@ -32,16 +32,16 @@ void DemoScene::Play()
 
 	//試しにキーで操作できるカメラ操作を入れてみる
 	if (this->input.IsInput1()) {
-		//this->main_camera.moveLeftX(1);
+		this->main_camera.moveLeftX(1);
 	}
 	if (this->input.IsInput2()) {
-		//this->main_camera.moveRightX(1);
+		this->main_camera.moveRightX(1);
 	}
 	if (this->input.IsInput3()) {
-		//this->main_camera.moveUpY(1);
+		this->main_camera.moveUpY(1);
 	}
 	if (this->input.IsInput4()) {
-		//this->main_camera.moveDownY(1);
+		this->main_camera.moveDownY(1);
 	}
 
 	//プレイヤーの攻撃
@@ -56,8 +56,8 @@ void DemoScene::Play()
 	
 	this->ProcessStage();
 
-	//プレイヤーの位置とカメラ補正
-	this->main_camera.TrackingByTargetPosition(this->hero.getPositionX() + (this->hero.getSizeX() / 2), this->hero.getPositionY() - this->hero.getSizeY() * 2);
+	//プレイヤーの位置とカメラ補正64
+	this->main_camera.TrackingByTargetPosition(this->hero.getPositionX() + (this->hero.getSizeX() / 2), this->hero.getPositionY() + (this->hero.getSizeY() / 2));
 
 	//敵からの攻撃や障害物
 
@@ -74,11 +74,22 @@ void DemoScene::Play()
 			this->hero.getCollision().getCurrentYTop(),
 			this->hero.getCollision().getCurrentYBottom()
 		);
-		MapTip map_tip_debug = this->demo_stage.getMapTip(3, 3);
-		DrawFormatString(0, 100, GetColor(0, 0, 255), "LX座標%d:TY座標%d",
-			this->main_camera.MovingDistanceX(),
-			this->main_camera.MovingDistanceY()
+		MainCamera camera_debug = this->main_camera;
+		RectCollision debug_collision = camera_debug.createRectCollision();
+		DrawFormatString(0, 50, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
+			debug_collision.getCurrentXLeft(),
+			debug_collision.getCurrentXRight(),
+			debug_collision.getCurrentYTop(),
+			debug_collision.getCurrentYBottom()
 		);
+		/*MapTip maptip_debug = this->demo_stage.getMapTip(1,1);
+		RectCollision debug_collision2 = maptip_debug.getCollision();
+		DrawFormatString(0, 100, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
+			debug_collision2.getCurrentXLeft(),
+			debug_collision2.getCurrentXRight(),
+			debug_collision2.getCurrentYTop(),
+			debug_collision2.getCurrentYBottom()
+		);*/
 	}
 	
 
@@ -113,13 +124,18 @@ void DemoScene::ProcessStage()
 							}
 						}
 					} else {
+						//画面外かどうかの判定
+						RectCollision a = this->main_camera.createRectCollision();
+						RectCollision b = map_tip.getCollision();
+						if (CollisionService::checkCollisionByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
+							//this->main_camera.OffShouldRevision();//この処理がいまいち。
+							//差分を計算して動かく、画面外や画面リミットのマップチップが画面内にある場合の想定は保証しない
+							this->main_camera.
+						
 
+						}
 					}
 					
-					//画面外かどうかの判定
-					if (CollisionService::checkCollisionByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
-						this->main_camera.OffShouldRevision();
-					}
 				}
 			}
 			return;

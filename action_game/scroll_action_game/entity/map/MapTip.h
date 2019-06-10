@@ -18,6 +18,12 @@ private:
 	const static float Y_RECT_COLLISION;
 
 	int map_tip_handle;
+
+	//デバッグ用
+	int map_tip_index_x;
+	int map_tip_index_y;
+	void setMapTipIndex(int x, int y);
+
 public:
 	MapTip(int, bool has_collision, int, int);
 	int getMapTipHandol();
