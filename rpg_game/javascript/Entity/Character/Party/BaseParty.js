@@ -12,15 +12,17 @@ class BaseParty
         return this.is_playable;
     }
 
-    chagePartyTargetPositionNumber(position_number)
+    setPartyTargetPositionNumber(position_number)
     {
         this.party_target_position_number = position_number;
     }
 
-    chageEnemyTargetPositionNumber(position_number)
+    setEnemyTargetPositionNumber(position_number)
     {
         this.enemy_target_position_number = position_number;
     }
+
+    get
 }
 
 
