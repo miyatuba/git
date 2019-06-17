@@ -56,8 +56,8 @@ void DemoScene::Play()
 	
 	this->ProcessStage();
 
-	//プレイヤーの位置とカメラ補正64
-	this->main_camera.TrackingByTargetPosition(this->hero.getPositionX() + (this->hero.getSizeX() / 2), this->hero.getPositionY() + (this->hero.getSizeY() / 2));
+	//プレイヤーの位置とカメラ補正
+	//this->main_camera.TrackingByTargetPosition(this->hero.getPositionX() + (this->hero.getSizeX() / 2), this->hero.getPositionY() + (this->hero.getSizeY() / 2));
 
 	//敵からの攻撃や障害物
 
@@ -148,11 +148,20 @@ void DemoScene::ProcessStage()
 							//Bの左<Aの右<Bの右の場合（反対側を見る必要はない
 							//Bの真ん中とAの真ん中を比べてAの真ん中の方が大きい
 							//AはAの左とBの右の差分だけ左にずれている
+							//これは実装しなくていい気がする
 
 							//サイズがA>Bのタイプ時に起こりうるパターン
 							//Aの左<Bの右<Aの右の場合（反対側を見る必要はない
 							//Bの真ん中とAの真ん中を比べてAの真ん中の方が大きい
 							//AはAの左とBの右の差分だけ左にずれている
+							//これは実装しなくていい気がする
+
+							if (CollisionService::checkShiftedToLeftByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
+								//↑の判定がおかしい、上で当たっていても入ってくるバグあり？
+								float difference_shifted_to_left = CollisionService::differenceXLeftByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+								
+								this->main_camera.moveRightX((int) difference_shifted_to_left);
+							}
 
 							
 							//右にずれているか
@@ -167,17 +176,24 @@ void DemoScene::ProcessStage()
 							//3：Aの右とBの左の差分とAの左のBの右の差分を比較し同値であれば、
 							//Aの右とBの右、もしくはAの左のBの左を比べて後者が大きければ、
 							//AはAの右とBの左の差分だけ右にずれている
+							//これだけは無理や。別で抜き出す
 
 							//サイズがA<Bのタイプ時に起こりうるパターン
 							//Bの左<Aの左<Bの右の場合（反対側を見る必要はない
 							//Bの真ん中とAの真ん中を比べてBの真ん中の方が大きい
 							//AはAの右とBの左の差分だけ右にずれている
+							//これは実装しなくていい気がする
 
 							//サイズがA>Bのタイプ時に起こりうるパターン
 							//Aの左<Bの左<Aの右の場合（反対側を見る必要はない
 							//Bの真ん中とAの真ん中を比べてBの真ん中の方が大きい
 							//AはAの右とBの左の差分だけ右にずれている
+							//これは実装しなくていい気がする
 
+							/*if (CollisionService::checkShiftedToRightByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
+								float difference_shifted_to_right = CollisionService::differenceXRightByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+								this->main_camera.moveLeftX((int) difference_shifted_to_right);
+							}*/
 
 							//上下の判別
 
@@ -204,6 +220,11 @@ void DemoScene::ProcessStage()
 							//Bの真ん中とAの真ん中を比べてAの真ん中の方が大きい
 							//AはAの下とBの上の差分だけ下にずれている
 
+							/*if (CollisionService::checkShiftedToBottomByRectandRect(map_tip.getCollision(), this->main_camera.createRectCollision())) {
+								float difference_shifted_to_bottom = CollisionService::differenceYBottomByRectandRect(map_tip.getCollision(), this->main_camera.createRectCollision());
+								this->main_camera.moveUpY((int) difference_shifted_to_bottom);
+							}*/
+
 
 							//上にずれているか
 							//1：Aの上とBの下の差分とAの下とBの上の差分を比較し後者が大きければ、
@@ -227,6 +248,12 @@ void DemoScene::ProcessStage()
 							//Aの下<Bの下<Aの上の場合（反対側を見る必要はない
 							//Bの真ん中とAの真ん中を比べてBの真ん中の方が大きい
 							//AはAの上とBの下の差分だけ上にずれている
+							/*if (CollisionService::checkShiftedToTopByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
+								float difference_shifted_to_top = CollisionService::differenceYTopByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+								this->main_camera.moveDownY((int) difference_shifted_to_top);
+							}*/
+
+
 						}
 					}
 					
