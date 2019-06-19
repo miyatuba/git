@@ -57,7 +57,7 @@ void DemoScene::Play()
 	this->ProcessStage();
 
 	//プレイヤーの位置とカメラ補正
-	//this->main_camera.TrackingByTargetPosition(this->hero.getPositionX() + (this->hero.getSizeX() / 2), this->hero.getPositionY() + (this->hero.getSizeY() / 2));
+	this->main_camera.TrackingByTargetPosition(this->hero.getPositionX() + (this->hero.getSizeX() / 2), this->hero.getPositionY() + (this->hero.getSizeY() / 2));
 
 	//敵からの攻撃や障害物
 
@@ -128,8 +128,8 @@ void DemoScene::ProcessStage()
 						RectCollision a = this->main_camera.createRectCollision();
 						RectCollision b = map_tip.getCollision();
 						if (CollisionService::checkCollisionByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
-							//差分を計算して動かく、画面外や画面リミットのマップチップが画面内にある場合の想定は保証しない
-							//左右の判別
+							//差分を計算して動く、画面外や画面リミットのマップチップが画面内にある場合の想定は保証しない
+							
 
 							//左にずれているか（左を先に確認するために、同値であった場合は右に優先的にずらすことになる。
 							//1：Aの右とBの左の差分とAの左とBの右の差分を比較し前者が大きければ、
@@ -156,12 +156,12 @@ void DemoScene::ProcessStage()
 							//AはAの左とBの右の差分だけ左にずれている
 							//これは実装しなくていい気がする
 
-							if (CollisionService::checkShiftedToLeftByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
+							/*if (CollisionService::checkShiftedToLeftByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
 								//↑の判定がおかしい、上で当たっていても入ってくるバグあり？
 								float difference_shifted_to_left = CollisionService::differenceXLeftByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
 								
 								this->main_camera.moveRightX((int) difference_shifted_to_left);
-							}
+							}*/
 
 							
 							//右にずれているか
