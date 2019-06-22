@@ -9,7 +9,7 @@ class CollisionService
 private:
 
 public:
-	static bool checkCollisionByRectandRect(RectCollision, RectCollision);
+	static bool checkCollisionByRectAndRect(RectCollision, RectCollision);
 	static bool checkCollisionLeftAndRightByRectandRect(RectCollision, RectCollision);
 	static bool checkCollisionUpAndDownByRectandRect(RectCollision, RectCollision);
 	static bool checkShiftedToLeftByRectandRect(RectCollision, RectCollision);

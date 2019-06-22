@@ -2,7 +2,7 @@
 
 //後で、この辺はベクトルを使った判定に変えたい。
 
-bool CollisionService::checkCollisionByRectandRect(RectCollision basis_rect_collision, RectCollision target_rect_collision)
+bool CollisionService::checkCollisionByRectAndRect(RectCollision basis_rect_collision, RectCollision target_rect_collision)
 {
 	if ((basis_rect_collision.getCurrentXLeft() < target_rect_collision.getCurrentXRight()) &&
 		(basis_rect_collision.getCurrentXRight() > target_rect_collision.getCurrentXLeft()) &&

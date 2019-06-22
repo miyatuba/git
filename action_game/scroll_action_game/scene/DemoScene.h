@@ -23,10 +23,13 @@ private:
 	void initLoopDemoScene();
 
 	bool is_checked_scaffold_for_hero = false;
-
+	void checkPlayerAndMapForLeftRight();
+	void checkPlayerAndMapForTopBottom();
 public:
 	DemoScene();
 	DemoScene(int);
 	virtual void Play();
+
+
 
 };

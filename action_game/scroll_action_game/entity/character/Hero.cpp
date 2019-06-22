@@ -17,27 +17,40 @@ Hero::Hero()
 	this->rect_collision = rect_collision;
 }
 
+void Hero::initForLoop()
+{
+	this->can_down_move = true;
+	this->can_left_move = true;
+	this->can_right_move = true;
+	this->can_up_move = true;
+	this->UpdateBeforeMovingRectCollision();
+}
+
 //この辺り、intで扱って最終的にfloatに変換するか、もしくはその逆か、はっきりさせないと危ない
 void Hero::MoveLeft(int x)
 {
+	if (!this->can_left_move) return;
 	this->x -= x;
 	this->rect_collision.moveCollisionX(-x);//誤さ起きそう
 }
 
 void Hero::MoveRight(int x)
 {
+	if (!this->can_right_move) return;
 	this->x += x;
 	this->rect_collision.moveCollisionX(x);//誤さ起きそう
 }
 
 void Hero::MoveUp(int y)
 {
+	if (!this->can_up_move) return;
 	this->y += y;
 	this->rect_collision.moveCollisionY(y);//誤さ起きそう
 }
 
 void Hero::MoveDown(int y)
 {
+	if (!this->can_down_move) return;
 	this->y -= y;
 	this->rect_collision.moveCollisionY(-y);//誤さ起きそう
 }
@@ -99,12 +112,6 @@ void Hero::CheckJumpStatus()
 	}
 }
 
-//もう使わない
-void Hero::CheckFallStatus()
-{
-	//後で当たり判定処理を追加
-	//今は160を超えないようにする
-}
 
 void Hero::OffFallStatus()
 {
@@ -130,7 +137,7 @@ int Hero::getPositionY() const
 
 int Hero::getImageHandle() const
 {
-	//アニメーション実装時に、個々の返しは切り返し気にする
+	//アニメーション実装時に、個々の返しは切り替えにする
 	return this->defult_image;
 }
 

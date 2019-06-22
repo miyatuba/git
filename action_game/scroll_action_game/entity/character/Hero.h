@@ -33,10 +33,17 @@ private:
 	bool is_fall = true;
 	bool is_jump = false;
 
+	bool can_left_move = true;
+	bool can_right_move = true;
+	bool can_up_move = true;
+	bool can_down_move = true;
+
 	int jump_frame_elapsed_time = this->JUMP_FRAME_TIME;
 
 public:
 	Hero();
+
+	void initForLoop();
 
 	void MoveLeft(int);
 	void MoveRight(int);
@@ -51,7 +58,6 @@ public:
 	void CheckJumpStatus();
 	void ChangeJumpStatus();
 
-	void CheckFallStatus();
 	void OffFallStatus();
 	void OnFallStatus();
 
