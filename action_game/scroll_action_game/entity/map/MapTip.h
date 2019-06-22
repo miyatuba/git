@@ -17,18 +17,24 @@ private:
 	const static float X_RECT_COLLISION;
 	const static float Y_RECT_COLLISION;
 
+	const static int TYPE_ID_CAMERA_MOVEMENT_RESTRICTION = -1;
+
 	int map_tip_handle;
+
+	int map_tip_id;
 
 	//デバッグ用
 	int map_tip_index_x;
 	int map_tip_index_y;
-	void setMapTipIndex(int x, int y);
 
 public:
-	MapTip(int, bool has_collision, int, int);
+	MapTip(int, int, bool has_collision, int, int);
 	int getMapTipHandol();
 	bool hasCollision();
 	RectCollision getCollision();
 
 	bool hasMapTipHandle();
+	bool isCameraMovementRestriction();
+
+	void setMapTipIndex(int x, int y);
 };

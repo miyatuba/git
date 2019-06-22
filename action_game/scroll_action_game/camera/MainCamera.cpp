@@ -55,6 +55,7 @@ int MainCamera::MovingDistanceY()
 	return this->current_top_position_y;
 }
 
+//‘½•ªAã‰º¶‰E•ª‚¯‚½•û‚ª—Ç‚¢
 void MainCamera::TrackingByTargetPosition(int x, int y)
 {
 	if (! this->shouldRevision()) return;
@@ -63,6 +64,20 @@ void MainCamera::TrackingByTargetPosition(int x, int y)
 	int difference_distance_x = x - center_position_x;
 	this->current_left_position_x += difference_distance_x;
 
+	int center_position_y = this->getCenterPositionY();
+	int difference_distance_y = y - center_position_y;
+	this->current_top_position_y += difference_distance_y;
+}
+
+void MainCamera::TrackingByTargetPositionX(int x)
+{
+	int center_position_x = this->getCenterPositionX();
+	int difference_distance_x = x - center_position_x;
+	this->current_left_position_x += difference_distance_x;
+}
+
+void MainCamera::TrackingByTargetPositionY(int y)
+{
 	int center_position_y = this->getCenterPositionY();
 	int difference_distance_y = y - center_position_y;
 	this->current_top_position_y += difference_distance_y;
@@ -80,7 +95,7 @@ int MainCamera::getCenterPositionY()
 	return this->current_top_position_y - (MainCamera::HEIGHT / 4);//‰º•ûŒü‚ÉŒü‚©‚Á‚Ä‚Ìheight‚Å‚ ‚é‚½‚ß‚ÉA
 }
 
-
+//‚±‚Ì•Ó‚è‚¢‚ç‚È‚­‚È‚é
 void MainCamera::OnShouldRevision()
 {
 	this->should_revision = true;
@@ -118,4 +133,14 @@ RectCollision MainCamera::createBeforeRectCollision()
 		);
 
 	return rect_collision;
+}
+
+bool MainCamera::isCameraMoveLeft()
+{
+	return this->before_left_position_x >= this->current_left_position_x;
+}
+
+bool MainCamera::isCameraMoveRight()
+{
+	return this->before_left_position_x < this->current_left_position_x;
 }

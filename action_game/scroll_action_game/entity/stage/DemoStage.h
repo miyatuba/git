@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include "DxLib.h"
+#include "../../debug_mode/DebugMode.h"
 
 
 class DemoStage : public BaseStage
@@ -24,6 +25,7 @@ private:
 	0:何もなし
 	1:壁
 	*/
+	//MapTipに定数を起こしたいが、それはそれで下記が見にくい為に、敢えてこのままでいく。
 	int map_tip_type_id_list[DemoStage::Y_SQUARES_NUMBER][DemoStage::X_SQUARES_NUMBER] = {
 		{ -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
 		{ -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,-1},

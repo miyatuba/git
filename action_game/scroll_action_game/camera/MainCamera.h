@@ -30,6 +30,11 @@ public:
 	int MovingDistanceX();
 	int MovingDistanceY();
 	void TrackingByTargetPosition(int, int);
+	void TrackingByTargetPositionX(int);
+	void TrackingByTargetPositionY(int);
+
+	bool isCameraMoveLeft();
+	bool isCameraMoveRight();
 
 	void OnShouldRevision();
 	void OffShouldRevision();

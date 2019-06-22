@@ -25,6 +25,8 @@ private:
 	bool is_checked_scaffold_for_hero = false;
 	void checkPlayerAndMapForLeftRight();
 	void checkPlayerAndMapForTopBottom();
+	void checkCameraAndMapForLeftRight();
+	void checkCameraAndMapForTopBottom();
 public:
 	DemoScene();
 	DemoScene(int);

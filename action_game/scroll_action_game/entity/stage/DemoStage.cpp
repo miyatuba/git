@@ -23,6 +23,12 @@ MapTip DemoStage::getMapTip(int x, int y)
 		map_tip_handle = this->map_tip_list[tip_id];
 	} 
 
-	MapTip map(map_tip_handle, this->map_tip_collision_type_list[tip_id], x, y);
+	MapTip map(map_tip_handle, tip_id, this->map_tip_collision_type_list[tip_id], x, y);
+
+	if (DebugMode::isDebugMode())
+	{
+		map.setMapTipIndex(x, y);
+	}
+
 	return map;
 }

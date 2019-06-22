@@ -9,9 +9,10 @@ const float MapTip::X_RECT_COLLISION = 80.0f;
 const float MapTip::Y_RECT_COLLISION = 80.0f;
 
 //map_tip_handle = 0はマップチップの画像描画なし
-MapTip::MapTip(int map_tip_handle, bool has_collision, int x, int y)
+MapTip::MapTip(int map_tip_handle, int map_tip_id, bool has_collision, int x, int y)
 {
 	this->map_tip_handle = map_tip_handle;
+	this->map_tip_id = map_tip_id;
 
 	RectCollision rect_collision(x * MapTip::X_RECT_COLLISION, 
 								 (x + 1) * MapTip::X_RECT_COLLISION,
@@ -49,4 +50,9 @@ RectCollision MapTip::getCollision()
 bool MapTip::hasMapTipHandle()
 {
 	return this->map_tip_handle != 0;
+}
+
+bool MapTip::isCameraMovementRestriction()
+{
+	return this->map_tip_id == MapTip::TYPE_ID_CAMERA_MOVEMENT_RESTRICTION;
 }
