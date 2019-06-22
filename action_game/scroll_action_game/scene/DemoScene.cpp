@@ -47,18 +47,18 @@ void DemoScene::Play()
 	//プレイヤーの攻撃
 
 	//プレイヤーの移動
-	this->hero.UpdateBeforeMovingRectCollision();//ベクトルを使わないため、動く前の座標を記録し、当たり判定が左右or上下の判断をする
+	this->hero.UpdateBeforeMovingRectCollision();
 	this->hero.MovePositionByInput(this->input);
 	this->hero.MoveNoInput();
 
 	this->draw.CallClearDrawScreen();
 
-	
-	this->ProcessStage();
-
 	//プレイヤーの位置とカメラ補正
 	this->main_camera.TrackingByTargetPosition(this->hero.getPositionX() + (this->hero.getSizeX() / 2), this->hero.getPositionY() + (this->hero.getSizeY() / 2));
 
+	this->ProcessStage();
+
+	
 	//敵からの攻撃や障害物
 
 
@@ -104,7 +104,7 @@ void DemoScene::ProcessStage()
 		case DemoScene::STAGE_ID_DEMO:
 			//ステージのカメラ操作の上下左右限界をここで判断するんだろうが、下記は描画処理を含むために、分けなくてはならない、
 			//再度ループを回すのは如何なものか・・
-
+			bool debug = true;
 			for (int y = 0; y < DemoStage::Y_SQUARES_NUMBER; ++y) {
 				for (int x = 0; x < DemoStage::X_SQUARES_NUMBER; ++x) {
 					MapTip map_tip = this->demo_stage.getMapTip(x, y);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
@@ -114,28 +114,19 @@ void DemoScene::ProcessStage()
 
 					}
 
-					//描画
-					if (map_tip.hasMapTipHandle()) {
-						this->draw.StageDraw(map_tip, x, y, this->main_camera);
-
-						if (map_tip.hasCollision()) {
-							if (DebugMode::isDebugMode()) {
-								CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0, this->main_camera);                                                                                 
-							}
-						}
-					} else {
+					//画面外かどうかのチェック
+					if (!map_tip.hasMapTipHandle()) {
 						//画面外かどうかの判定
 						RectCollision a = this->main_camera.createRectCollision();
 						RectCollision b = map_tip.getCollision();
 						if (CollisionService::checkCollisionByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
 							//差分を計算して動く、画面外や画面リミットのマップチップが画面内にある場合の想定は保証しない
-							
 
 							//左にずれているか（左を先に確認するために、同値であった場合は右に優先的にずらすことになる。
 							//1：Aの右とBの左の差分とAの左とBの右の差分を比較し前者が大きければ、
 							//Aの右とBの右の差分とBの右とAの左の差分を比較し前者が大きければ
 							//AはAの左とBの右の差分だけ左にずれている
-							
+
 							//2：Aの右とBの左の差分とAの左とBの右の差分を比較し前者が大きければ、
 							//Aの右とBの右の差分とBの右とAの左の差分を比較し後者が大きければ
 							//AはAの左とBの右の差分だけ左にずれている
@@ -156,14 +147,32 @@ void DemoScene::ProcessStage()
 							//AはAの左とBの右の差分だけ左にずれている
 							//これは実装しなくていい気がする
 
+							/*if (hero.isFall()) {
+								if (! CollisionService::checkCollisionLeftAndRightByRectandRect(this->main_camera.createBeforeRectCollision(), map_tip.getCollision()) &&
+									(this->input.IsInputLeft() || this->input.IsInputRight())) {
+								}
+								else {
+									float difference = CollisionService::differenceYBottomByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+									hero.MoveUp((int)difference);
+									hero.OffFallStatus();
+								}
+							}*/
+
+							/*if (!CollisionService::checkCollisionUpAndDownByRectandRect(this->main_camera.createBeforeRectCollision(), map_tip.getCollision())) {
+							}
+							else {
+								float difference = CollisionService::differenceXLeftByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+								this->main_camera.moveRightX((int)difference);
+								debug = false;
+							}*/
 							/*if (CollisionService::checkShiftedToLeftByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
 								//↑の判定がおかしい、上で当たっていても入ってくるバグあり？
 								float difference_shifted_to_left = CollisionService::differenceXLeftByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
-								
+
 								this->main_camera.moveRightX((int) difference_shifted_to_left);
 							}*/
 
-							
+
 							//右にずれているか
 							//1：Aの右とBの左の差分とAの左とBの右の差分を比較し後者が大きければ、
 							//Aの左とBの左の差分とBの左とAの右の差分を比較し前者が大きければ
@@ -252,10 +261,21 @@ void DemoScene::ProcessStage()
 								float difference_shifted_to_top = CollisionService::differenceYTopByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
 								this->main_camera.moveDownY((int) difference_shifted_to_top);
 							}*/
-
-
 						}
+
 					}
+
+					//描画 
+					if (map_tip.hasMapTipHandle()) {
+						this->draw.StageDraw(map_tip, x, y, this->main_camera);
+
+						if (map_tip.hasCollision()) {
+							if (DebugMode::isDebugMode()) {
+								CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0, this->main_camera);                                                                                 
+							}
+						}
+					} 
+					
 					
 				}
 			}
@@ -264,7 +284,6 @@ void DemoScene::ProcessStage()
 
 }
 
-//斜め移動、実際は落下しながらとかジャンプしながらの左右移動の挙動だと怪しいの、そこを煮詰める必要がある
 void DemoScene::checkCollisionByHeroAndMapTip(Hero& hero, MapTip map_tip)
 {
 	//入力状況に応じる方法をとってみた、これでうまくいかなければ、入力状況により、マップチップの処理の順番を左順or右順、上順or下順の切り替えしか思いつかない

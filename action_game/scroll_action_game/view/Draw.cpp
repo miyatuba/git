@@ -6,7 +6,9 @@ void Draw::CallClearDrawScreen()
 	ClearDrawScreen();
 }
 
-void Draw::DrawGame(const IDraw& drawObject, MainCamera main_camera) {
+void Draw::DrawGame(const IDraw& drawObject, MainCamera main_camera) 
+{
+
 	int x = drawObject.getPositionX() - main_camera.MovingDistanceX();
 	int y = -(drawObject.getPositionY() - main_camera.MovingDistanceY()); //DXライブラリでは表示のY座標が逆になるため
 	int draw_image_handle = drawObject.getImageHandle();

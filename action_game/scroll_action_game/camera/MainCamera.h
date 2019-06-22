@@ -35,6 +35,8 @@ public:
 	void OffShouldRevision();
 
 	RectCollision createRectCollision();
+	RectCollision createBeforeRectCollision();
 
 	void initForLoop();
+
 };
