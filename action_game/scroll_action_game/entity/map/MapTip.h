@@ -23,9 +23,7 @@ private:
 
 	int map_tip_id;
 
-	//デバッグ用
-	int map_tip_index_x;
-	int map_tip_index_y;
+	
 
 public:
 	MapTip(int, int, bool has_collision, int, int);
@@ -37,4 +35,8 @@ public:
 	bool isCameraMovementRestriction();
 
 	void setMapTipIndex(int x, int y);
+
+	//デバッグ用
+	int map_tip_index_x;
+	int map_tip_index_y;
 };

@@ -7,7 +7,7 @@ DemoScene::DemoScene()
 
 DemoScene::DemoScene(int stage_number)
 {
-	MainCamera main_camera(80, -81);
+	MainCamera main_camera(80, -80);
 	this->main_camera = main_camera;
 	this->current_stage_id = stage_number;
 	Hero hero;
@@ -66,15 +66,14 @@ void DemoScene::Play()
 	//敵からの攻撃や障害物
 
 	//プレイヤーの位置とカメラ補正
-	//this->main_camera.TrackingByTargetPosition(this->hero.getPositionX() + (this->hero.getSizeX() / 2), this->hero.getPositionY() + (this->hero.getSizeY() / 2));
 	this->main_camera.TrackingByTargetPositionX(this->hero.getPositionX() + (this->hero.getSizeX() / 2));
 
 	//カメラとマップチップの判定で、カメラの補正
 	this->checkCameraAndMapForLeftRight();
 
-	//this->main_camera.TrackingByTargetPositionY(this->hero.getPositionY() + (this->hero.getSizeY() / 2));
+	this->main_camera.TrackingByTargetPositionY(this->hero.getPositionY() - (this->hero.getSizeY() / 2));
 
-	//this->checkCameraAndMapForTopBottom();
+	this->checkCameraAndMapForTopBottom();
 
 	//描画削除
 	this->draw.CallClearDrawScreen();
@@ -103,6 +102,13 @@ void DemoScene::Play()
 			debug_collision.getCurrentXRight(),
 			debug_collision.getCurrentYTop(),
 			debug_collision.getCurrentYBottom()
+		);
+		MapTip map = this->demo_stage.getMapTip(1,16);
+		DrawFormatString(0, 100, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
+			map.getCollision().getCurrentXLeft(),
+			map.getCollision().getCurrentXRight(),
+			map.getCollision().getCurrentYTop(),
+			map.getCollision().getCurrentYBottom()
 		);
 		/*MapTip maptip_debug = this->demo_stage.getMapTip(1,1);
 		RectCollision debug_collision2 = maptip_debug.getCollision();
@@ -153,6 +159,7 @@ void DemoScene::checkPlayerAndMapForLeftRight()
 
 void DemoScene::checkPlayerAndMapForTopBottom()
 {
+
 	switch (this->current_stage_id)
 	{
 		case DemoScene::STAGE_ID_DEMO:
@@ -168,7 +175,9 @@ void DemoScene::checkPlayerAndMapForTopBottom()
 
 							if (hero.isJump()) {
 								float difference = CollisionService::differenceYTopByRectandRect(this->hero.getCollision(), map_tip.getCollision());
+								DebugMode::floatVariable = difference;
 								this->hero.MoveDown((int)difference);
+								
 							}
 						}
 
@@ -189,6 +198,7 @@ void DemoScene::checkPlayerAndMapForTopBottom()
 					}
 				}
 			}
+
 			return;
 	}
 
@@ -208,12 +218,12 @@ void DemoScene::checkCameraAndMapForLeftRight()
 					if (map_tip.isCameraMovementRestriction()) {
 						if (CollisionService::checkCollisionByRectAndRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
 							if (isChecked == false) {
-								if (this->main_camera.isCameraMoveLeft()) {
+								if (this->main_camera.isCameraMovedLeft()) {
 									float difference = CollisionService::differenceXLeftByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
 									this->main_camera.moveRightX((int)difference);
 								}
 
-								if (this->main_camera.isCameraMoveRight()) {
+								if (this->main_camera.isCameraMovedRight()) {
 									float difference = CollisionService::differenceXRightByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
 									this->main_camera.moveLeftX((int)difference);
 									
@@ -232,7 +242,37 @@ void DemoScene::checkCameraAndMapForLeftRight()
 
 void DemoScene::checkCameraAndMapForTopBottom()
 {
+	switch (this->current_stage_id) {
+		case DemoScene::STAGE_ID_DEMO:
+			bool isChecked = false;
+			for (int y = 0; y < DemoStage::Y_SQUARES_NUMBER; ++y) {
+				for (int x = 0; x < DemoStage::X_SQUARES_NUMBER; ++x) {
+					MapTip map_tip = this->demo_stage.getMapTip(x, y);
+					if (map_tip.isCameraMovementRestriction()) {
+						RectCollision b = this->main_camera.createRectCollision();
+						RectCollision c = map_tip.getCollision();
+						if (CollisionService::checkCollisionByRectAndRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
+							if (isChecked == false) {
+								if (this->main_camera.isCameraMovedUp()) {
+									float difference = CollisionService::differenceYTopByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+									this->main_camera.moveDownY((int)difference);
+								}
 
+								if (this->main_camera.isCameraMovedDown()) {
+									float difference = CollisionService::differenceYBottomByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+									this->main_camera.moveUpY((int)difference);
+
+								}
+								isChecked = true;
+							}
+							int a = 1;
+						}
+					}
+				}
+			}
+			return;
+	}
+	return;
 }
 
 //マップチップのループで当たり判定しておく方が良い？ループ節約(処理の順番見直しの為に下記は消すかも
@@ -397,7 +437,7 @@ void DemoScene::ProcessStage()
 
 						if (map_tip.hasCollision()) {
 							if (DebugMode::isDebugMode()) {
-								CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0, this->main_camera);                                                                                 
+								CollisionService::drawCollisionByRect(map_tip.getCollision(), 255, 0, 0, this->main_camera);
 							}
 						}
 					} 

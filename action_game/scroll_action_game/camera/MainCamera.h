@@ -12,7 +12,7 @@ private:
 	int before_top_position_y = 0;
 
 	const static int WIDTH = 640;
-	const static int HEIGHT = 640;
+	const static int HEIGHT = 480;
 
 	bool should_revision = true;
 
@@ -33,8 +33,10 @@ public:
 	void TrackingByTargetPositionX(int);
 	void TrackingByTargetPositionY(int);
 
-	bool isCameraMoveLeft();
-	bool isCameraMoveRight();
+	bool isCameraMovedLeft();
+	bool isCameraMovedRight();
+	bool isCameraMovedUp();
+	bool isCameraMovedDown();
 
 	void OnShouldRevision();
 	void OffShouldRevision();

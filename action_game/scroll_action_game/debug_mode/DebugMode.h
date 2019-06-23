@@ -8,4 +8,6 @@ public:
 	static void OnDebugMode();
 	static void OffDebugMode();
 	static bool isDebugMode();
+
+	static float floatVariable;
 };

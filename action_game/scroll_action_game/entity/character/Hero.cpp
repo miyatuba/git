@@ -72,11 +72,9 @@ void Hero::MovePositionByInput(Input input)
 
 
 	if (input.IsInputA()) {
-		if (! this->is_jump) { //空が飛べる前提なので、落下状態は見ない
-			this->ChangeJumpStatus();
-			this->jump_frame_elapsed_time = Hero::JUMP_FRAME_TIME;
-		}
-
+		//空が飛べる前提なので、落下状態は見ない
+		this->ChangeJumpStatus();
+		this->jump_frame_elapsed_time = Hero::JUMP_FRAME_TIME;
 	}
 }
 

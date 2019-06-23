@@ -92,7 +92,7 @@ int MainCamera::getCenterPositionX()
 //private
 int MainCamera::getCenterPositionY()
 {
-	return this->current_top_position_y - (MainCamera::HEIGHT / 4);//‰º•ûŒü‚ÉŒü‚©‚Á‚Ä‚Ìheight‚Å‚ ‚é‚½‚ß‚ÉA
+	return this->current_top_position_y - (MainCamera::HEIGHT/2);//‰º•ûŒü‚ÉŒü‚©‚Á‚Ä‚Ìheight‚Å‚ ‚é‚½‚ß‚ÉA
 }
 
 //‚±‚Ì•Ó‚è‚¢‚ç‚È‚­‚È‚é
@@ -135,12 +135,22 @@ RectCollision MainCamera::createBeforeRectCollision()
 	return rect_collision;
 }
 
-bool MainCamera::isCameraMoveLeft()
+bool MainCamera::isCameraMovedLeft()
 {
-	return this->before_left_position_x >= this->current_left_position_x;
+	return this->before_left_position_x > this->current_left_position_x;
 }
 
-bool MainCamera::isCameraMoveRight()
+bool MainCamera::isCameraMovedRight()
 {
 	return this->before_left_position_x < this->current_left_position_x;
+}
+
+bool MainCamera::isCameraMovedUp()
+{
+	return this->before_top_position_y < this->current_top_position_y;
+}
+
+bool MainCamera::isCameraMovedDown()
+{
+	return this->before_top_position_y > this->current_top_position_y;
 }

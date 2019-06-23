@@ -1,6 +1,7 @@
 #include "DebugMode.h"
 
 bool DebugMode::is_debug_mode = false;
+float DebugMode::floatVariable = 0.0f;
 
 void DebugMode::OnDebugMode()
 {
