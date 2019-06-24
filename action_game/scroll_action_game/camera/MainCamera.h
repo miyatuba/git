@@ -29,7 +29,6 @@ public:
 	void moveDownY(int);
 	int MovingDistanceX();
 	int MovingDistanceY();
-	void TrackingByTargetPosition(int, int);
 	void TrackingByTargetPositionX(int);
 	void TrackingByTargetPositionY(int);
 

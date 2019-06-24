@@ -19,7 +19,6 @@ private:
 	const static int STAGE_ID_DEMO = 1;
 	DemoStage demo_stage;
 	void ProcessStage();
-	void checkCollisionByHeroAndMapTip(Hero&, MapTip);
 	void initLoopDemoScene();
 
 	bool is_checked_scaffold_for_hero = false;
@@ -31,7 +30,6 @@ public:
 	DemoScene();
 	DemoScene(int);
 	virtual void Play();
-
 
 
 };

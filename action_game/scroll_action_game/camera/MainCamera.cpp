@@ -55,20 +55,6 @@ int MainCamera::MovingDistanceY()
 	return this->current_top_position_y;
 }
 
-//‘½•ªAã‰º¶‰E•ª‚¯‚½•û‚ª—Ç‚¢
-void MainCamera::TrackingByTargetPosition(int x, int y)
-{
-	if (! this->shouldRevision()) return;
-
-	int center_position_x = this->getCenterPositionX();
-	int difference_distance_x = x - center_position_x;
-	this->current_left_position_x += difference_distance_x;
-
-	int center_position_y = this->getCenterPositionY();
-	int difference_distance_y = y - center_position_y;
-	this->current_top_position_y += difference_distance_y;
-}
-
 void MainCamera::TrackingByTargetPositionX(int x)
 {
 	int center_position_x = this->getCenterPositionX();
@@ -114,10 +100,10 @@ bool MainCamera::shouldRevision()
 RectCollision MainCamera::createRectCollision()
 {
 	RectCollision rect_collision(
-		this->current_left_position_x,
-		this->current_left_position_x + MainCamera::WIDTH,
-		this->current_top_position_y,
-		this->current_top_position_y - MainCamera::HEIGHT
+		(float) this->current_left_position_x,
+		(float) this->current_left_position_x + MainCamera::WIDTH,
+		(float) this->current_top_position_y,
+		(float) this->current_top_position_y - MainCamera::HEIGHT
 		);
 
 	return rect_collision;
