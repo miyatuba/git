@@ -1,10 +1,10 @@
 class BaseParty
 {
-    constructor(is_playable,)
+    constructor(is_playable)
     {
         this.is_playable = is_playable;
-        this.party_target_position_number = 1;
-        this.enemy_target_position_number = 1;
+        this.to_party_target_position_number = 1;
+        this.to_enemy_target_position_number = 1;
     }
 
     isPlayable()
@@ -12,17 +12,25 @@ class BaseParty
         return this.is_playable;
     }
 
-    setPartyTargetPositionNumber(position_number)
+    setToPartyTargetPositionNumber(position_number)
     {
-        this.party_target_position_number = position_number;
+        this.to_party_target_position_number = position_number;
     }
 
-    setEnemyTargetPositionNumber(position_number)
+    setToEnemyTargetPositionNumber(position_number)
     {
-        this.enemy_target_position_number = position_number;
+        this.to_enemy_target_position_number = position_number;
     }
 
-    get
+    getToPartyTargetPositionNumber()
+    {
+        return this.to_party_target_position_number;
+    }
+
+    getToEnemyTargetPositionNumber()
+    {
+        return this.to_party_target_position_number;
+    }
 }
 
 

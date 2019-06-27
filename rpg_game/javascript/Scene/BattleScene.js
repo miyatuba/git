@@ -71,52 +71,74 @@ class BattleScene {
         this.draw.DrawBmp(this.enemy_character_position5.getBmp(), 0, 70);
         this.draw.DrawBmp(this.enemy_character_position6.getBmp(), 0, 220);
 
-        this.playerCursor1Bmp = new createjs.Bitmap(this.PLAYER_CURSOR_1_PATH);
-        this.playerCursor1Bmp.scaleX = 0.1;
-        this.playerCursor1Bmp.scaleY = 0.1;
-        var targetPositionNumber = 0;
-        var playerCursorPositionX = 0;
-        var playerCursorPositionY = 0;
-        switch (this.playable_party_position_number) {
+        this.playerableToPartyCursor1Bmp = new createjs.Bitmap(this.PLAYER_CURSOR_1_PATH);
+        this.playerableToPartyCursor1Bmp.scaleX = 0.1;
+        this.playerableToPartyCursor1Bmp.scaleY = 0.1;
+        var playerableToPartyCursorPositionX = 0;
+        var playerableToPartyCursorPositionY = 0;
+        
+        switch (this.getPlayableCharacter().getToPartyTargetPositionNumber()) {
             case 1:
+                playerableToPartyCursorPositionX = this.PARTY_CHARACTER1_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                playerableToPartyCursorPositionY = this.PARTY_CHARACTER1_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
             case 2:
+                playerableToPartyCursorPositionX = this.PARTY_CHARACTER2_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                playerableToPartyCursorPositionY = this.PARTY_CHARACTER2_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
             case 3:
+                playerableToPartyCursorPositionX = this.PARTY_CHARACTER3_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                playerableToPartyCursorPositionY = this.PARTY_CHARACTER3_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
             case 4:
+                playerableToPartyCursorPositionX = this.PARTY_CHARACTER4_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                playerableToPartyCursorPositionY = this.PARTY_CHARACTER4_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
             case 5:
+                playerableToPartyCursorPositionX = this.PARTY_CHARACTER5_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                playerableToPartyCursorPositionY = this.PARTY_CHARACTER5_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
             case 6:
+                playerableToPartyCursorPositionX = this.PARTY_CHARACTER6_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                playerableToPartyCursorPositionY = this.PARTY_CHARACTER6_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
             case 7:
-                targetPositionNumber = this.getTargetPosition;
+                playerableToPartyCursorPositionX = this.PARTY_CHARACTER7_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                playerableToPartyCursorPositionY = this.PARTY_CHARACTER7_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
             case 8:
+                playerableToPartyCursorPositionX = this.PARTY_CHARACTER8_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                playerableToPartyCursorPositionY = this.PARTY_CHARACTER8_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
         }
-        switch (this.playable_party_position_number) {
+        this.draw.DrawBmp(this.playerableToPartyCursor1Bmp, playerableToPartyCursorPositionX, playerableToPartyCursorPositionY);
+
+
+        //各キャラ用に必要
+        this.partyToEnemyCursor1Bmp = new createjs.Bitmap(this.ENEMY_CURSOR_1_PATH);
+        this.partyToEnemyCursor1Bmp.scaleX = 0.1;
+        this.partyToEnemyCursor1Bmp.scaleY = 0.1;
+        var partyToEnemyCursorPositionX = 0;
+        var partyToEnemyCursorPositionY = 0;
+        switch (this.target_enemy_position_number) {
             case 1:
+                partyToEnemyCursorPositionX = this.PARTY_CHARACTER7_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                partyToEnemyCursorPositionY = this.PARTY_CHARACTER7_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
             case 2:
+                partyToEnemyCursorPositionX = this.PARTY_CHARACTER7_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                partyToEnemyCursorPositionY = this.PARTY_CHARACTER7_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
             case 3:
+                partyToEnemyCursorPositionX = this.PARTY_CHARACTER7_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                partyToEnemyCursorPositionY = this.PARTY_CHARACTER7_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
             case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                playerCursorPositionX = 820 + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
-                playerCursorPositionY = 70 + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
-                break;
-            case 8:
+                partyToEnemyCursorPositionX = this.PARTY_CHARACTER7_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                partyToEnemyCursorPositionY = this.PARTY_CHARACTER7_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
                 break;
         }
-        this.draw.DrawBmp(this.playerCursor1Bmp, playerCursorPositionX, playerCursorPositionY);
+        this.draw.DrawBmp(this.partyToEnemyCursor1Bmp, partyToEnemyCursorPositionX, partyToEnemyCursorPositionY);
         
 
     }
