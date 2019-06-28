@@ -112,10 +112,10 @@ RectCollision MainCamera::createRectCollision()
 RectCollision MainCamera::createBeforeRectCollision()
 {
 	RectCollision rect_collision(
-		this->before_left_position_x,
-		this->before_left_position_x + MainCamera::WIDTH,
-		this->before_top_position_y,
-		this->before_top_position_y - MainCamera::HEIGHT
+		(float) this->before_left_position_x,
+		(float) this->before_left_position_x + MainCamera::WIDTH,
+		(float) this->before_top_position_y,
+		(float) this->before_top_position_y - MainCamera::HEIGHT
 		);
 
 	return rect_collision;

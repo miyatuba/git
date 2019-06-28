@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseCollision.h"
-
+//‚±‚êA‹@”\‚µ‚Ä‚È‚¢d
 class ICollision 
 {
 private:

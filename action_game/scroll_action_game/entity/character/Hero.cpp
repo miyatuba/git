@@ -59,9 +59,11 @@ void Hero::MovePositionByInput(Input input)
 {
 	if (input.IsInputLeft()) {
 		this->MoveLeft(Hero::MOVE_FORCE_POINT);
+		this->changeDirectionLeft();
 	}
 	if (input.IsInputRight()) {
 		this->MoveRight(Hero::MOVE_FORCE_POINT);
+		this->changeDirectionRight();
 	}
 	if (input.IsInputUp()) {
 		//this->MoveUp(Hero::MOVE_FORCE_POINT);
@@ -154,7 +156,6 @@ bool Hero::isJump()
 	return this->is_jump;
 }
 
-//—v‚ç‚È‚¢‚©‚à
 void Hero::UpdateBeforeMovingRectCollision()
 {
 	RectCollision current_rect_collision = this->rect_collision;
@@ -180,4 +181,24 @@ int Hero::getSizeY()
 int Hero::getSizeX()
 {
 	return Hero::X_SIZE;
+}
+
+bool Hero::isDirectionRight() const
+{
+	return this->direction == Hero::DIRECTION_RIGHT;
+}
+
+bool Hero::isDirectionLeft() const
+{
+	return this->direction == Hero::DIRECTION_LEFT;
+}
+
+void Hero::changeDirectionRight()
+{
+	this->direction = Hero::DIRECTION_RIGHT;
+}
+
+void Hero::changeDirectionLeft()
+{
+	this->direction = Hero::DIRECTION_LEFT;
 }

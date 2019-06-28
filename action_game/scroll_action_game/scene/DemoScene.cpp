@@ -83,7 +83,7 @@ void DemoScene::Play()
 	this->ProcessStage();
 
 	//ƒq[ƒ[‚â“G‚Ì•`‰æ
-	this->draw.DrawGame(this->hero, this->main_camera);
+	this->DrawCharacter(this->hero);
 
 	if (DebugMode::isDebugMode()) {
 		CollisionService::drawCollisionByRect(this->hero.getCollision(), 0, 255, 0, this->main_camera);
@@ -229,7 +229,7 @@ void DemoScene::checkCameraAndMapForLeftRight()
 					}
 				}
 			}
-		return;
+			return;
 	}
 	return;
 }
@@ -259,7 +259,6 @@ void DemoScene::checkCameraAndMapForTopBottom()
 								}
 								isChecked = true;
 							}
-							int a = 1;
 						}
 					}
 				}
@@ -295,4 +294,13 @@ void DemoScene::ProcessStage()
 			return;
 	}
 
+}
+
+void DemoScene::DrawCharacter(const IDraw& drawObject)
+{
+	if (drawObject.isDirectionRight()) {
+		this->draw.DrawCharacter(drawObject, this->main_camera);
+	} else if (drawObject.isDirectionLeft()) {
+		this->draw.DrawTurnCharacter(drawObject, this->main_camera);
+	}
 }

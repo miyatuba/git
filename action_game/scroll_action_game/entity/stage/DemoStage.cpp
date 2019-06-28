@@ -17,7 +17,7 @@ MapTip DemoStage::getMapTip(int x, int y)
 {
 	int tip_id = this->map_tip_type_id_list[y][x];
 
-	int map_tip_handle = 0;
+	int map_tip_handle = 0;//アドレス0は画像を持たない状態。
 
 	if (tip_id != DemoStage::NO_MAP_TIP) {
 		map_tip_handle = this->map_tip_list[tip_id];

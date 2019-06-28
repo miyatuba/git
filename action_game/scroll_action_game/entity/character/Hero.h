@@ -16,6 +16,10 @@ private:
 
 	const static int X_SIZE = 64;
 	const static int Y_SIZE = 64;
+
+	const static bool DIRECTION_LEFT = false;
+	const static bool DIRECTION_RIGHT = true;
+	bool direction = Hero::DIRECTION_RIGHT;
 	
 	std::string IMAGE_PATH = "./resource/image/test_image.jpg";
 	int defult_image;
@@ -69,8 +73,15 @@ public:
 	virtual int getImageHandle() const;
 	virtual RectCollision getCollision() const;
 
+	virtual bool isDirectionRight() const;
+	virtual bool isDirectionLeft() const;
+
 	RectCollision getBeforeMovingRectCollision();
 
 	int getSizeY();
 	int getSizeX();
+
+	void changeDirectionRight();
+	void changeDirectionLeft();
+	
 };

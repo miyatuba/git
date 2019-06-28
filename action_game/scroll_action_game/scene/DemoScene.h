@@ -10,7 +10,6 @@
 class DemoScene : public BaseScene
 {
 private:
-	
 	const static int STAGE_NUMBER_i = 1;
 	Hero hero;
 	MainCamera main_camera;
@@ -26,10 +25,11 @@ private:
 	void checkPlayerAndMapForTopBottom();
 	void checkCameraAndMapForLeftRight();
 	void checkCameraAndMapForTopBottom();
+
+	void DrawCharacter(const IDraw&);
 public:
 	DemoScene();
 	DemoScene(int);
 	virtual void Play();
-
 
 };

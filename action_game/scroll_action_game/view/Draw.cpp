@@ -6,13 +6,22 @@ void Draw::CallClearDrawScreen()
 	ClearDrawScreen();
 }
 
-void Draw::DrawGame(const IDraw& drawObject, MainCamera main_camera) 
+void Draw::DrawCharacter(const IDraw& drawObject, MainCamera main_camera) 
 {
 	int x = drawObject.getPositionX() - main_camera.MovingDistanceX();
 	int y = -(drawObject.getPositionY() - main_camera.MovingDistanceY()); //DXライブラリでは表示のY座標が逆になるため
 	int draw_image_handle = drawObject.getImageHandle();
 
 	DrawGraph(x, y, draw_image_handle, TRUE);
+}
+
+void Draw::DrawTurnCharacter(const IDraw& drawObject, MainCamera main_camera)
+{
+	int x = drawObject.getPositionX() - main_camera.MovingDistanceX();
+	int y = -(drawObject.getPositionY() - main_camera.MovingDistanceY());
+	int draw_image_handle = drawObject.getImageHandle();
+
+	DrawTurnGraph(x, y, draw_image_handle, TRUE);
 }
 
 void Draw::StageDraw(MapTip& map, int x, int y, MainCamera main_camera)
