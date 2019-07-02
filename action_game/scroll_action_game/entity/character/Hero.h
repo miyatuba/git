@@ -38,6 +38,9 @@ private:
 
 	bool is_fall = true;
 	bool is_jump = false;
+	bool is_run = false;//•à‚­‚ðŽÀ‘•‚·‚é‚©‚Ü‚¾–¢’è
+	bool is_dash = false;
+	bool is_hover = false;
 
 	bool can_left_move = true;
 	bool can_right_move = true;
