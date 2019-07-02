@@ -21,8 +21,10 @@ private:
 	const static bool DIRECTION_RIGHT = true;
 	bool direction = Hero::DIRECTION_RIGHT;
 	
-	std::string IMAGE_PATH = "./resource/image/test_image.jpg";
-	int defult_image;
+	std::string IMAGE_PATH_STAND = "./resource/image/hero/stand.jpg";
+	std::string IMAGE_PATH_JUMP = "./resource/image/hero/jump.png";
+	int stand_image_handle;
+	int jump_image_handle;
 
 	RectCollision rect_collision;
 	RectCollision before_moving_rect_collision;

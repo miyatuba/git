@@ -13,7 +13,8 @@ Hero::Hero()
 								 (float) (this->y - Hero::Y_SIZE)
 	);
 
-	this->defult_image = LoadGraph(this->IMAGE_PATH.c_str());
+	this->stand_image_handle = LoadGraph(this->IMAGE_PATH_STAND.c_str());
+	this->jump_image_handle = LoadGraph(this->IMAGE_PATH_JUMP.c_str());
 	this->rect_collision = rect_collision;
 }
 
@@ -138,7 +139,13 @@ int Hero::getPositionY() const
 int Hero::getImageHandle() const
 {
 	//アニメーション実装時に、個々の返しは切り替えにする
-	return this->defult_image;
+	if (this->is_jump) {
+		return this->jump_image_handle;
+	}
+	if (this->is_fall) {
+		return this->jump_image_handle;
+	}
+	return this->stand_image_handle;
 }
 
 RectCollision Hero::getCollision() const
