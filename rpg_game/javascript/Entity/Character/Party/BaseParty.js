@@ -11,7 +11,7 @@ class BaseParty
     {
         return this.is_playable;
     }
-
+    
     setToPartyTargetPositionNumber(position_number)
     {
         this.to_party_target_position_number = position_number;
