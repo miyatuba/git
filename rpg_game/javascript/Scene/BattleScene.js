@@ -12,6 +12,7 @@ class BattleScene {
     PARTY_NUMBER_ID_ROOK = 6;
     PARTY_NUMBER_ID_BERSERK = 7;
     PARTY_NUMBER_ID_HUNTER = 8;
+    
 
     PARTY_CHARACTER1_POSITION_X = 480;
     PARTY_CHARACTER1_POSITION_Y = 20;
@@ -32,14 +33,14 @@ class BattleScene {
     PLAYER_CURSOR_RELATIVE_POSITION_X = 100;
     PLAYER_CURSOR_RELATIVE_POSITION_Y = 150;
     
-    constructor() {
+    constructor(partyStructure) {
+        this.party_structure = partyStructure;
+
         this.draw = new Draw();
 
         this._initPartyDeploy();
         this._initEnemyDeploy();
         this._initDraw();
-
-        
     }
 
     _initDraw()
@@ -144,32 +145,32 @@ class BattleScene {
     }
 
     _initPartyDeploy() {
-        this.party_character1 = new Soldier(false);
-        this.party_character1.setPartyTargetPositionNumber(1);
-        this.party_character1.setEnemyTargetPositionNumber(1);
-        this.party_character2 = new Lancer(false);
-        this.party_character2.setPartyTargetPositionNumber(1);
-        this.party_character2.setEnemyTargetPositionNumber(1);
-        this.party_character3 = new Archer(false);
-        this.party_character3.setPartyTargetPositionNumber(1);
-        this.party_character3.setEnemyTargetPositionNumber(1);
-        this.party_character4 = new Mage(false);
-        this.party_character4.setPartyTargetPositionNumber(1);
-        this.party_character4.setEnemyTargetPositionNumber(1);
-        this.party_character5 = new Cleric(false);
-        this.party_character5.setPartyTargetPositionNumber(1);
-        this.party_character5.setEnemyTargetPositionNumber(1);
-        this.party_character6 = new Rook(false);
-        this.party_character6.setPartyTargetPositionNumber(1);
-        this.party_character6.setEnemyTargetPositionNumber(1);
-        this.party_character7 = new Berserk(true);//è„éËÇ≠ïœìÆÇ∑ÇÈÇÊÇ§Ç…ïœçXÇ∑ÇÈ
-        this.party_character7.setPartyTargetPositionNumber(1);
-        this.party_character7.setEnemyTargetPositionNumber(1);
-        this.party_character8 = new Hunter(false);
-        this.party_character8.setPartyTargetPositionNumber(1);
-        this.party_character8.setEnemyTargetPositionNumber(1);
+        this.party_character1 = this.party_structure.getPartyForBattlePosition1();
+        this.party_character1.setToPartyTargetPositionNumber(1);
+        this.party_character1.setToEnemyTargetPositionNumber(1);
+        this.party_character2 = this.party_structure.getPartyForBattlePosition2();
+        this.party_character2.setToPartyTargetPositionNumber(1);
+        this.party_character2.setToEnemyTargetPositionNumber(1);
+        this.party_character3 = this.party_structure.getPartyForBattlePosition3();
+        this.party_character3.setToPartyTargetPositionNumber(1);
+        this.party_character3.setToEnemyTargetPositionNumber(1);
+        this.party_character4 = this.party_structure.getPartyForBattlePosition4();
+        this.party_character4.setToPartyTargetPositionNumber(1);
+        this.party_character4.setToEnemyTargetPositionNumber(1);
+        this.party_character5 = this.party_structure.getPartyForBattlePosition5();
+        this.party_character5.setToPartyTargetPositionNumber(1);
+        this.party_character5.setToEnemyTargetPositionNumber(1);
+        this.party_character6 = this.party_structure.getPartyForBattlePosition6();
+        this.party_character6.setToPartyTargetPositionNumber(1);
+        this.party_character6.setToEnemyTargetPositionNumber(1);
+        this.party_character7 = this.party_structure.getPartyForBattlePosition7();
+        this.party_character7.setToPartyTargetPositionNumber(1);
+        this.party_character7.setToEnemyTargetPositionNumber(1);
+        this.party_character8 = this.party_structure.getPartyForBattlePosition8();
+        this.party_character8.setToPartyTargetPositionNumber(1);
+        this.party_character8.setToEnemyTargetPositionNumber(1);
         this.playable_party_id = this.PARTY_NUMBER_ID_BERSERK;
-        this.playable_party_position_number = 7;
+        this.playable_party_position_number = this.party_structure.getPlayablePartyPositionNumber();
     }
 
     _initEnemyDeploy() {
