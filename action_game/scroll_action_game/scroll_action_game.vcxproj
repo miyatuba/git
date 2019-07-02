@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -170,6 +170,7 @@
     <ClCompile Include="scene\BaseScene.cpp" />
     <ClCompile Include="scene\DemoScene.cpp" />
     <ClCompile Include="scene\SceneService.cpp" />
+    <ClCompile Include="view\Audio.cpp" />
     <ClCompile Include="view\Draw.cpp" />
     <ClCompile Include="view\IDraw.cpp" />
   </ItemGroup>
@@ -189,6 +190,7 @@
     <ClInclude Include="scene\BaseScene.h" />
     <ClInclude Include="scene\DemoScene.h" />
     <ClInclude Include="scene\SceneService.h" />
+    <ClInclude Include="view\Audio.h" />
     <ClInclude Include="view\Draw.h" />
     <ClInclude Include="view\IDraw.h" />
   </ItemGroup>
