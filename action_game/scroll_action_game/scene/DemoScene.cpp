@@ -1,4 +1,9 @@
 #include "DemoScene.h"
+//攻撃
+//ダメージ
+//敵キャラ
+//ジャンプの緩急
+//サウンド
 
 DemoScene::DemoScene()
 {

@@ -33,7 +33,8 @@ class BattleScene {
     PLAYER_CURSOR_RELATIVE_POSITION_X = 100;
     PLAYER_CURSOR_RELATIVE_POSITION_Y = 150;
     
-    constructor(partyStructure) {
+    constructor(partyStructure)
+    {
         this.party_structure = partyStructure;
 
         this.draw = new Draw();
@@ -78,7 +79,7 @@ class BattleScene {
         var playerableToPartyCursorPositionX = 0;
         var playerableToPartyCursorPositionY = 0;
         
-        switch (this.getPlayableCharacter().getToPartyTargetPositionNumber()) {
+        switch (this._getPlayableCharacter().getToPartyTargetPositionNumber()) {
             case 1:
                 playerableToPartyCursorPositionX = this.PARTY_CHARACTER1_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
                 playerableToPartyCursorPositionY = this.PARTY_CHARACTER1_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
@@ -141,10 +142,33 @@ class BattleScene {
         }
         this.draw.DrawBmp(this.partyToEnemyCursor1Bmp, partyToEnemyCursorPositionX, partyToEnemyCursorPositionY);
         
-
     }
 
-    _initPartyDeploy() {
+    _getPlayableCharacter()
+    {
+        switch (this.playable_party_position_number)
+        {
+            case 1:
+                return this.party_character1;
+            case 2:
+                return this.party_character2;
+            case 3:
+                return this.party_character3;
+            case 4:
+                return this.party_character4;
+            case 5:
+                return this.party_character5;
+            case 6:
+                return this.party_character6;
+            case 7:
+                return this.party_character7;
+            case 8:
+                return this.party_character8;
+        }
+    }
+
+    _initPartyDeploy()
+    {
         this.party_character1 = this.party_structure.getPartyForBattlePosition1();
         this.party_character1.setToPartyTargetPositionNumber(1);
         this.party_character1.setToEnemyTargetPositionNumber(1);
@@ -173,7 +197,8 @@ class BattleScene {
         this.playable_party_position_number = this.party_structure.getPlayablePartyPositionNumber();
     }
 
-    _initEnemyDeploy() {
+    _initEnemyDeploy()
+    {
         //多分idを渡してモンスターをインスタンス化するようなfactoryクラスが必要になる予感
         this.enemy_character_position1 = new Goblin;
         this.enemy_character_position2 = new Goblin;
@@ -183,7 +208,8 @@ class BattleScene {
         this.enemy_character_position6 = new Goblin;
     }
 
-    play() {
+    play()
+    {
         //入力処理
 
         console.log();
@@ -193,7 +219,8 @@ class BattleScene {
         this.draw.updateStageCreateJS();
     }
 
-    input() {
+    input()
+    {
         //メニューを開いたかどうか
 
         //入力処理（プレイアブル
