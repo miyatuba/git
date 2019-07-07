@@ -11,6 +11,8 @@ BaseScene::BaseScene(int stage_number)
 	this->draw = draw;
 	Input input;
 	this->input = input;
+	Audio audio;
+	this->audio = audio;
 }
 
 void BaseScene::Play()

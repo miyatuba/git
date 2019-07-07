@@ -14,8 +14,15 @@ DemoScene::DemoScene(int stage_number)
 {
 	MainCamera main_camera(80, -80);
 	this->main_camera = main_camera;
+	
 	this->current_stage_id = stage_number;
+	
 	Hero hero;
+	this->hero = hero;
+
+	this->current_bgm_handle = LoadSoundMem(this->BGM_STAGE_TEST1.c_str());
+	this->audio.PlayBGM(this->current_bgm_handle);
+
 }
 
 void DemoScene::initLoopDemoScene()

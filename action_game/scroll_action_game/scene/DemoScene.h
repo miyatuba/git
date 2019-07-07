@@ -26,6 +26,10 @@ private:
 	void checkCameraAndMapForLeftRight();
 	void checkCameraAndMapForTopBottom();
 
+
+	std::string BGM_STAGE_TEST1 = "./resource/sound/bgm/test_sample_bgm1.mp3";
+
+
 	void DrawCharacter(const IDraw&);
 public:
 	DemoScene();
