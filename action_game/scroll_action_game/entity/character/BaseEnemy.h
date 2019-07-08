@@ -13,10 +13,10 @@ protected:
 	int x;
 	int y;
 
-	virtual int getPositionX() const;
-	virtual int getPositionY() const;
+	virtual int getPositionX();
+	virtual int getPositionY();
 	virtual int getImageHandle();
-	virtual bool isDirectionRight() const;
-	virtual bool isDirectionLeft() const;
+	virtual bool isDirectionRight();
+	virtual bool isDirectionLeft();
 public:
 };

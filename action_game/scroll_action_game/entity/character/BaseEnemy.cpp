@@ -1,10 +1,10 @@
 #include "BaseEnemy.h"
 
-int BaseEnemy::getPositionX() const
+int BaseEnemy::getPositionX()
 {
 	return 1;
 }
-int BaseEnemy::getPositionY() const
+int BaseEnemy::getPositionY()
 {
 	return 1;
 }
@@ -14,11 +14,11 @@ int BaseEnemy::getImageHandle()
 	throw error_message;
 	return 1;
 }
-bool BaseEnemy::isDirectionRight() const
+bool BaseEnemy::isDirectionRight()
 {
 	return true;
 }
-bool BaseEnemy::isDirectionLeft() const
+bool BaseEnemy::isDirectionLeft()
 {
 	return true;
 }

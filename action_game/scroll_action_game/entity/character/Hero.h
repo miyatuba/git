@@ -73,13 +73,13 @@ public:
 	bool isFall();
 	bool isJump();
 
-	virtual int getPositionX() const;
-	virtual int getPositionY() const;
-	virtual int getImageHandle();
-	virtual RectCollision getCollision() const;
+	int getPositionX();
+	int getPositionY();
+	int getImageHandle();
+	virtual RectCollision getCollision();
 
-	virtual bool isDirectionRight() const;
-	virtual bool isDirectionLeft() const;
+	virtual bool isDirectionRight();
+	virtual bool isDirectionLeft();
 
 	RectCollision getBeforeMovingRectCollision();
 

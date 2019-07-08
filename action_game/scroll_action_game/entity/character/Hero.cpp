@@ -126,12 +126,12 @@ void Hero::OnFallStatus()
 	this->is_fall = true;
 }
 
-int Hero::getPositionX() const
+int Hero::getPositionX()
 {
 	return this->x;
 }
 
-int Hero::getPositionY() const
+int Hero::getPositionY()
 {
 	return this->y;
 }
@@ -148,7 +148,7 @@ int Hero::getImageHandle()
 	return this->stand_image_handle;
 }
 
-RectCollision Hero::getCollision() const
+RectCollision Hero::getCollision()
 {
 	return this->rect_collision;
 }
@@ -190,12 +190,12 @@ int Hero::getSizeX()
 	return Hero::X_SIZE;
 }
 
-bool Hero::isDirectionRight() const
+bool Hero::isDirectionRight()
 {
 	return this->direction == Hero::DIRECTION_RIGHT;
 }
 
-bool Hero::isDirectionLeft() const
+bool Hero::isDirectionLeft()
 {
 	return this->direction == Hero::DIRECTION_LEFT;
 }
