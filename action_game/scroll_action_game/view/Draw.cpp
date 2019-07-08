@@ -6,7 +6,7 @@ void Draw::CallClearDrawScreen()
 	ClearDrawScreen();
 }
 
-void Draw::DrawCharacter(const IDraw& drawObject, MainCamera main_camera) 
+void Draw::DrawCharacter(IDraw& drawObject, MainCamera main_camera) 
 {
 	int x = drawObject.getPositionX() - main_camera.MovingDistanceX();
 	int y = -(drawObject.getPositionY() - main_camera.MovingDistanceY()); //DXライブラリでは表示のY座標が逆になるため
@@ -19,7 +19,7 @@ void Draw::DrawCharacter(const IDraw& drawObject, MainCamera main_camera)
 	}
 }
 
-void Draw::DrawTurnCharacter(const IDraw& drawObject, MainCamera main_camera)
+void Draw::DrawTurnCharacter(IDraw& drawObject, MainCamera main_camera)
 {
 	int x = drawObject.getPositionX() - main_camera.MovingDistanceX();
 	int y = -(drawObject.getPositionY() - main_camera.MovingDistanceY());

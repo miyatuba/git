@@ -136,7 +136,7 @@ int Hero::getPositionY() const
 	return this->y;
 }
 
-int Hero::getImageHandle() const
+int Hero::getImageHandle()
 {
 	//アニメーション実装時に、個々の返しは切り替えにする
 	if (this->is_jump) {

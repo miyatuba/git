@@ -12,6 +12,6 @@ protected:
 public:
 	const static int DIVIDED_MAP_TIP_X_SIZE = 80;
 	const static int DIVIDED_MAP_TIP_Y_SIZE = 80;
-	virtual MapTip getMapTopHandol(int x, int y);
+	virtual MapTip getMapTip(int x, int y);
 
 };

@@ -3,7 +3,6 @@
 //ダメージ
 //敵キャラ
 //ジャンプの緩急
-//サウンド
 
 DemoScene::DemoScene()
 {
@@ -20,6 +19,9 @@ DemoScene::DemoScene(int stage_number)
 	Hero hero;
 	this->hero = hero;
 
+	EnemyTest1 enemy_test1;
+	this->enemy_test1 = enemy_test1;
+
 	this->current_bgm_handle = LoadSoundMem(this->BGM_STAGE_TEST1.c_str());
 	this->audio.PlayBGM(this->current_bgm_handle);
 
@@ -34,7 +36,6 @@ void DemoScene::initLoopDemoScene()
 	this->hero.UpdateBeforeMovingRectCollision();
 }
 
-//マップチップとの確認の計算コストが高すぎる。5×マップチップの数のループ・・要修正
 //カメラとの当たり判定を検証し、画面外であれば処理しないようにしようか。
 void DemoScene::Play()
 {
@@ -97,6 +98,7 @@ void DemoScene::Play()
 
 	//ヒーローや敵の描画
 	this->DrawCharacter(this->hero);
+	//this->DrawCharacter(this->enemy_test1);
 
 	if (DebugMode::isDebugMode()) {
 		CollisionService::drawCollisionByRect(this->hero.getCollision(), 0, 255, 0, this->main_camera);
@@ -326,7 +328,7 @@ void DemoScene::ProcessStage()
 
 }
 
-void DemoScene::DrawCharacter(const IDraw& drawObject)
+void DemoScene::DrawCharacter(IDraw& drawObject)
 {
 	if (drawObject.isDirectionRight()) {
 		this->draw.DrawCharacter(drawObject, this->main_camera);

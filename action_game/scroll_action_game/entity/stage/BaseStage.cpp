@@ -1,7 +1,7 @@
 #include "BaseStage.h"
 
 
-MapTip BaseStage::getMapTopHandol(int x, int y)
+MapTip BaseStage::getMapTip(int x, int y)
 {
 	std::string error_message = "BaseStage‚ÌgetMapTopHandol‚ªŒÄ‚Î‚ê‚½";
 	throw error_message;

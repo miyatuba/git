@@ -1,1 +1,1 @@
-BaseScene‚Ìˆø”‚È‚µ‚ªŒÄ‚Î‚ê‚½
+BaseEnemy‚ÌgetImageHandlle‚ªŒÄ‚Î‚ê‚½

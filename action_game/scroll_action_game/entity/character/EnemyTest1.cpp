@@ -2,8 +2,8 @@
 
 EnemyTest1::EnemyTest1()
 {
-	this->x = 0;
-	this->y = 0;
+	this->x = 270;
+	this->y = -250;
 
 	RectCollision rect_collision((float)this->x,
 		(float)(this->x + EnemyTest1::X_SIZE),

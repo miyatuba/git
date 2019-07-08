@@ -75,7 +75,7 @@ public:
 
 	virtual int getPositionX() const;
 	virtual int getPositionY() const;
-	virtual int getImageHandle() const;
+	virtual int getImageHandle();
 	virtual RectCollision getCollision() const;
 
 	virtual bool isDirectionRight() const;
