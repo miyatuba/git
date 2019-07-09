@@ -42,6 +42,8 @@ class BattleScene {
         this._initPartyDeploy();
         this._initEnemyDeploy();
         this._initDraw();
+
+       
     }
 
     _initDraw()
@@ -211,11 +213,14 @@ class BattleScene {
     play()
     {
         //入力処理
+        this.input();
 
-        console.log();
         //内部計算
-        //表示
+         //行動中か同課の確認
+        //行動中であればアニメーションを進めてreturn
+        //キャラタッチの確認
 
+        //表示
         this.draw.updateStageCreateJS();
     }
 
@@ -223,395 +228,146 @@ class BattleScene {
     {
         //メニューを開いたかどうか
 
+        
         //入力処理（プレイアブル
+        var selectPositionNumber = 0;
+
+        //イベント登録をループで回しても動かない。
+        //インプットクラスが必要
+        //initでクリックイベントをすべて登録し、関数はinputフラグをオンにする。
+        //inputフラグを見て、どこに入力されているかで処理をする
+        //完了後、inputフラグをオフにする。
+        var rect = new createjs.Shape();
+        rect.graphics.beginFill("blue").drawRect(200, 20, 160, 160);
+        this.draw.DrawBmp(rect, 1, 1);
+        rect.addEventListener("click", handleRectClick);
+        function handleRectClick(event) {
+            alert("四角形がクリックされました");
+        }
+        
+
+        var partyPosition1RectCollision = this.party_character1.getRectCollision();
+        partyPosition1RectCollision.addEventListener("click", selectPartyTarget1);
+        function selectPartyTarget1(event) {
+            selectPositionNumber = 1;
+        }
+
+        var partyPosition2RectCollision = this.party_character2.getRectCollision();
+        partyPosition2RectCollision.addEventListener("click", selectPartyTarget2);
+        function selectPartyTarget2(event) {
+            selectPositionNumber = 2;
+        }
+
+        var partyPosition3RectCollision = this.party_character3.getRectCollision();
+        partyPosition3RectCollision.addEventListener("click", selectPartyTarget3);
+        function selectPartyTarget3(event) {
+            selectPositionNumber = 3;
+        }
+
+        var partyPosition4RectCollision = this.party_character4.getRectCollision();
+        partyPosition4RectCollision.addEventListener("click", selectPartyTarget4);
+        function selectPartyTarget4(event) {
+            selectPositionNumber = 4;
+        }
+
+        var partyPosition5RectCollision = this.party_character5.getRectCollision();
+        partyPosition5RectCollision.addEventListener("click", selectPartyTarget5);
+        function selectPartyTarget5(event) {
+            selectPositionNumber = 5;
+        }
+
+        var partyPosition6RectCollision = this.party_character6.getRectCollision();
+        partyPosition6RectCollision.addEventListener("click", selectPartyTarget6);
+        function selectPartyTarget6(event) {
+            selectPositionNumber = 6;
+        }
+
+        var partyPosition7RectCollision = this.party_character7.getRectCollision();
+        partyPosition7RectCollision.addEventListener("click", selectPartyTarget7);
+        function selectPartyTarget7(event) {
+            selectPositionNumber = 7;
+        }
+
+        var partyPosition8RectCollision = this.party_character8.getRectCollision();
+        partyPosition8RectCollision.addEventListener("click", selectPartyTarget8);
+        function selectPartyTarget8(event) {
+            selectPositionNumber = 8;
+        }
+
+
         switch (this.playable_party_position_number) {
             case 1://流石にここはマジックナンバーで良いと思うんだけど・・
-                this._inputPosition1();
+                this.party_character1.setToPartyTargetPositionNumber(selectPositionNumber);
                 break;
             case 2:
-                this._inputPosition2();
+                this.party_character2.setToPartyTargetPositionNumber(selectPositionNumber);
                 break;
             case 3:
-                this._inputPosition3();
+                this.party_character3.setToPartyTargetPositionNumber(selectPositionNumber);
                 break;
             case 4:
-                this._inputPosition4();
+                this.party_character4.setToPartyTargetPositionNumber(selectPositionNumber);
                 break;
             case 5:
-                this._inputPosition5();
+                this.party_character5.setToPartyTargetPositionNumber(selectPositionNumber);
                 break;
             case 6:
-                this._inputPosition6();
+                this.party_character6.setToPartyTargetPositionNumber(selectPositionNumber);
                 break;
             case 7:
-                this._inputPosition7();
+                this.party_character7.setToPartyTargetPositionNumber(selectPositionNumber);
                 break;
             case 8:
-                this._inputPosition8();
+                this.party_character8.setToPartyTargetPositionNumber(selectPositionNumber);
                 break;
         }
 
+
+        switch (this._getPlayableCharacter().getToPartyTargetPositionNumber()) {
+            case 1:
+                this.playerableToPartyCursor1Bmp.x = this.PARTY_CHARACTER1_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                this.playerableToPartyCursor1Bmp.y = this.PARTY_CHARACTER1_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 2:
+                this.playerableToPartyCursor1Bmp.x = this.PARTY_CHARACTER2_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                this.playerableToPartyCursor1Bmp.y = this.PARTY_CHARACTER2_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 3:
+                this.playerableToPartyCursor1Bmp.x = this.PARTY_CHARACTER3_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                this.playerableToPartyCursor1Bmp.y = this.PARTY_CHARACTER3_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 4:
+                this.playerableToPartyCursor1Bmp.x = this.PARTY_CHARACTER4_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                this.playerableToPartyCursor1Bmp.y = this.PARTY_CHARACTER4_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 5:
+                this.playerableToPartyCursor1Bmp.x = this.PARTY_CHARACTER5_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                this.playerableToPartyCursor1Bmp.y = this.PARTY_CHARACTER5_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 6:
+                this.playerableToPartyCursor1Bmp.x = this.PARTY_CHARACTER6_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                this.playerableToPartyCursor1Bmp.y = this.PARTY_CHARACTER6_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 7:
+                this.playerableToPartyCursor1Bmp.x = this.PARTY_CHARACTER7_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                this.playerableToPartyCursor1Bmp.y = this.PARTY_CHARACTER7_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 8:
+                this.playerableToPartyCursor1Bmp.x = this.PARTY_CHARACTER8_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
+                this.playerableToPartyCursor1Bmp.y = this.PARTY_CHARACTER8_POSITION_Y + this.PLAYER_CURSOR_RELATIVE_POSITION_Y;
+                break;
+        }
+
+
+
         //味方CPの処理
         //敵CPの処理
+        //コマンドの確認
 
         
     }
 
-    _inputPosition1()
-    {
-        var partyPosition1RectCollision = this.party_character1.getRectCollision();
-        partyPosition1RectCollision.addEventListener("click", changePartyTarget1);
-        function changePartyTarget1() {
-            this.party_character_position1.setPartyTarget(1);
-        }
-        var partyPosition2RectCollision = this.party_character2.getRectCollision();
-        partyPosition2RectCollision.addEventListener("click", changePartyTarget2);
-        function changePartyTarget2() {
-            this.party_character_position1.setPartyTarget(2);
-        }
-        var partyPosition3RectCollision = this.party_character3.getRectCollision();
-        partyPosition3RectCollision.addEventListener("click", changePartyTarget3);
-        function changePartyTarget3() {
-            this.party_character_position1.setPartyTarget(3);
-        }
-        var partyPosition4RectCollision = this.party_character4.getRectCollision();
-        partyPosition4RectCollision.addEventListener("click", changePartyTarget4);
-        function changePartyTarget4() {
-            this.party_character_position1.setPartyTarget(4);
-        }
-        var partyPosition5RectCollision = this.party_character5.getRectCollision();
-        partyPosition5RectCollision.addEventListener("click", changePartyTarget5);
-        function changePartyTarget5() {
-            this.party_character_position1.setPartyTarget(5);
-        }
-        var partyPosition6RectCollision = this.party_character6.getRectCollision();
-        partyPosition6RectCollision.addEventListener("click", changePartyTarget6);
-        function changePartyTarget6() {
-            this.party_character_position1.setPartyTarget(6);
-        }
-        var partyPosition7RectCollision = this.party_character7.getRectCollision();
-        partyPosition7RectCollision.addEventListener("click", changePartyTarget7);
-        function changePartyTarget7() {
-            this.party_character_position1.setPartyTarget(7);
-        }
-        var partyPosition8RectCollision = this.party_character8.getRectCollision();
-        partyPosition8RectCollision.addEventListener("click", changePartyTarget8);
-        function changePartyTarget8() {
-            this.party_character_position1.setPartyTarget(8);
-        }
-    }
-
-    _inputPosition2()
-    {
-        var partyPosition1RectCollision = this.party_character1.getRectCollision();
-        partyPosition1RectCollision.addEventListener("click", changePartyTarget1);
-        function changePartyTarget1() {
-            this.party_character_position2.setPartyTarget(1);
-        }
-        var partyPosition2RectCollision = this.party_character2.getRectCollision();
-        partyPosition2RectCollision.addEventListener("click", changePartyTarget2);
-        function changePartyTarget2() {
-            this.party_character_position2.setPartyTarget(2);
-        }
-        var partyPosition3RectCollision = this.party_character3.getRectCollision();
-        partyPosition3RectCollision.addEventListener("click", changePartyTarget3);
-        function changePartyTarget3() {
-            this.party_character_position2.setPartyTarget(3);
-        }
-        var partyPosition4RectCollision = this.party_character4.getRectCollision();
-        partyPosition4RectCollision.addEventListener("click", changePartyTarget4);
-        function changePartyTarget4() {
-            this.party_character_position2.setPartyTarget(4);
-        }
-        var partyPosition5RectCollision = this.party_character5.getRectCollision();
-        partyPosition5RectCollision.addEventListener("click", changePartyTarget5);
-        function changePartyTarget5() {
-            this.party_character_position2.setPartyTarget(5);
-        }
-        var partyPosition6RectCollision = this.party_character6.getRectCollision();
-        partyPosition6RectCollision.addEventListener("click", changePartyTarget6);
-        function changePartyTarget6() {
-            this.party_character_position2.setPartyTarget(6);
-        }
-        var partyPosition7RectCollision = this.party_character7.getRectCollision();
-        partyPosition7RectCollision.addEventListener("click", changePartyTarget7);
-        function changePartyTarget7() {
-            this.party_character_position2.setPartyTarget(7);
-        }
-        var partyPosition8RectCollision = this.party_character8.getRectCollision();
-        partyPosition8RectCollision.addEventListener("click", changePartyTarget8);
-        function changePartyTarget8() {
-            this.party_character_position2.setPartyTarget(8);
-        }
-    }
-
-    _inputPosition3()
-    {
-        var partyPosition1RectCollision = this.party_character1.getRectCollision();
-        partyPosition1RectCollision.addEventListener("click", changePartyTarget1);
-        function changePartyTarget1() {
-            this.party_character_position3.setPartyTarget(1);
-        }
-        var partyPosition2RectCollision = this.party_character2.getRectCollision();
-        partyPosition2RectCollision.addEventListener("click", changePartyTarget2);
-        function changePartyTarget2() {
-            this.party_character_position3.setPartyTarget(2);
-        }
-        var partyPosition3RectCollision = this.party_character3.getRectCollision();
-        partyPosition3RectCollision.addEventListener("click", changePartyTarget3);
-        function changePartyTarget3() {
-            this.party_character_position3.setPartyTarget(3);
-        }
-        var partyPosition4RectCollision = this.party_character4.getRectCollision();
-        partyPosition4RectCollision.addEventListener("click", changePartyTarget4);
-        function changePartyTarget4() {
-            this.party_character_position3.setPartyTarget(4);
-        }
-        var partyPosition5RectCollision = this.party_character5.getRectCollision();
-        partyPosition5RectCollision.addEventListener("click", changePartyTarget5);
-        function changePartyTarget5() {
-            this.party_character_position3.setPartyTarget(5);
-        }
-        var partyPosition6RectCollision = this.party_character6.getRectCollision();
-        partyPosition6RectCollision.addEventListener("click", changePartyTarget6);
-        function changePartyTarget6() {
-            this.party_character_position3.setPartyTarget(6);
-        }
-        var partyPosition7RectCollision = this.party_character7.getRectCollision();
-        partyPosition7RectCollision.addEventListener("click", changePartyTarget7);
-        function changePartyTarget7() {
-            this.party_character_position3.setPartyTarget(7);
-        }
-        var partyPosition8RectCollision = this.party_character8.getRectCollision();
-        partyPosition8RectCollision.addEventListener("click", changePartyTarget8);
-        function changePartyTarget8() {
-            this.party_character_position3.setPartyTarget(8);
-        }
-    }
-
-    _inputPosition4()
-    {
-        var partyPosition1RectCollision = this.party_character1.getRectCollision();
-        partyPosition1RectCollision.addEventListener("click", changePartyTarget1);
-        function changePartyTarget1() {
-            this.party_character_position4.setPartyTarget(1);
-        }
-        var partyPosition2RectCollision = this.party_character2.getRectCollision();
-        partyPosition2RectCollision.addEventListener("click", changePartyTarget2);
-        function changePartyTarget2() {
-            this.party_character_position4.setPartyTarget(2);
-        }
-        var partyPosition3RectCollision = this.party_character3.getRectCollision();
-        partyPosition3RectCollision.addEventListener("click", changePartyTarget3);
-        function changePartyTarget3() {
-            this.party_character_position4.setPartyTarget(3);
-        }
-        var partyPosition4RectCollision = this.party_character4.getRectCollision();
-        partyPosition4RectCollision.addEventListener("click", changePartyTarget4);
-        function changePartyTarget4() {
-            this.party_character_position4.setPartyTarget(4);
-        }
-        var partyPosition5RectCollision = this.party_character5.getRectCollision();
-        partyPosition5RectCollision.addEventListener("click", changePartyTarget5);
-        function changePartyTarget5() {
-            this.party_character_position4.setPartyTarget(5);
-        }
-        var partyPosition6RectCollision = this.party_character6.getRectCollision();
-        partyPosition6RectCollision.addEventListener("click", changePartyTarget6);
-        function changePartyTarget6() {
-            this.party_character_position4.setPartyTarget(6);
-        }
-        var partyPosition7RectCollision = this.party_character7.getRectCollision();
-        partyPosition7RectCollision.addEventListener("click", changePartyTarget7);
-        function changePartyTarget7() {
-            this.party_character_position4.setPartyTarget(7);
-        }
-        var partyPosition8RectCollision = this.party_character8.getRectCollision();
-        partyPosition8RectCollision.addEventListener("click", changePartyTarget8);
-        function changePartyTarget8() {
-            this.party_character_position4.setPartyTarget(8);
-        }
-    }
-
-    _inputPosition5()
-    {
-        var partyPosition1RectCollision = this.party_character1.getRectCollision();
-        partyPosition1RectCollision.addEventListener("click", changePartyTarget1);
-        function changePartyTarget1() {
-            this.party_character_position5.setPartyTarget(1);
-        }
-        var partyPosition2RectCollision = this.party_character2.getRectCollision();
-        partyPosition2RectCollision.addEventListener("click", changePartyTarget2);
-        function changePartyTarget2() {
-            this.party_character_position5.setPartyTarget(2);
-        }
-        var partyPosition3RectCollision = this.party_character3.getRectCollision();
-        partyPosition3RectCollision.addEventListener("click", changePartyTarget3);
-        function changePartyTarget3() {
-            this.party_character_position5.setPartyTarget(3);
-        }
-        var partyPosition4RectCollision = this.party_character4.getRectCollision();
-        partyPosition4RectCollision.addEventListener("click", changePartyTarget4);
-        function changePartyTarget4() {
-            this.party_character_position5.setPartyTarget(4);
-        }
-        var partyPosition5RectCollision = this.party_character5.getRectCollision();
-        partyPosition5RectCollision.addEventListener("click", changePartyTarget5);
-        function changePartyTarget5() {
-            this.party_character_position5.setPartyTarget(5);
-        }
-        var partyPosition6RectCollision = this.party_character6.getRectCollision();
-        partyPosition6RectCollision.addEventListener("click", changePartyTarget6);
-        function changePartyTarget6() {
-            this.party_character_position5.setPartyTarget(6);
-        }
-        var partyPosition7RectCollision = this.party_character7.getRectCollision();
-        partyPosition7RectCollision.addEventListener("click", changePartyTarget7);
-        function changePartyTarget7() {
-            this.party_character_position5.setPartyTarget(7);
-        }
-        var partyPosition8RectCollision = this.party_character8.getRectCollision();
-        partyPosition8RectCollision.addEventListener("click", changePartyTarget8);
-        function changePartyTarget8() {
-            this.party_character_position5.setPartyTarget(8);
-        }
-    }
-
-    _inputPosition6()
-    {
-        var partyPosition1RectCollision = this.party_character1.getRectCollision();
-        partyPosition1RectCollision.addEventListener("click", changePartyTarget1);
-        function changePartyTarget1() {
-            this.party_character_position6.setPartyTarget(1);
-        }
-        var partyPosition2RectCollision = this.party_character2.getRectCollision();
-        partyPosition2RectCollision.addEventListener("click", changePartyTarget2);
-        function changePartyTarget2() {
-            this.party_character_position6.setPartyTarget(2);
-        }
-        var partyPosition3RectCollision = this.party_character3.getRectCollision();
-        partyPosition3RectCollision.addEventListener("click", changePartyTarget3);
-        function changePartyTarget3() {
-            this.party_character_position6.setPartyTarget(3);
-        }
-        var partyPosition4RectCollision = this.party_character4.getRectCollision();
-        partyPosition4RectCollision.addEventListener("click", changePartyTarget4);
-        function changePartyTarget4() {
-            this.party_character_position6.setPartyTarget(4);
-        }
-        var partyPosition5RectCollision = this.party_character5.getRectCollision();
-        partyPosition5RectCollision.addEventListener("click", changePartyTarget5);
-        function changePartyTarget5() {
-            this.party_character_position6.setPartyTarget(5);
-        }
-        var partyPosition6RectCollision = this.party_character6.getRectCollision();
-        partyPosition6RectCollision.addEventListener("click", changePartyTarget6);
-        function changePartyTarget6() {
-            this.party_character_position6.setPartyTarget(6);
-        }
-        var partyPosition7RectCollision = this.party_character7.getRectCollision();
-        partyPosition7RectCollision.addEventListener("click", changePartyTarget7);
-        function changePartyTarget7() {
-            this.party_character_position6.setPartyTarget(7);
-        }
-        var partyPosition8RectCollision = this.party_character8.getRectCollision();
-        partyPosition8RectCollision.addEventListener("click", changePartyTarget8);
-        function changePartyTarget8() {
-            this.party_character_position6.setPartyTarget(8);
-        }
-    }
-
-    _inputPosition7()
-    {
-        //行動中か同課の確認
-        //行動中であればアニメーションを進めてreturn
-        //キャラタッチの確認
-        var partyPosition1RectCollision = this.party_character1.getRectCollision();
-        partyPosition1RectCollision.addEventListener("click", changePartyTarget1);
-        function changePartyTarget1() {
-            this.party_character_position7.setPartyTarget(1);
-        }
-        var partyPosition2RectCollision = this.party_character2.getRectCollision();
-        partyPosition2RectCollision.addEventListener("click", changePartyTarget2);
-        function changePartyTarget2() {
-            this.party_character_position7.setPartyTarget(2);
-        }
-        var partyPosition3RectCollision = this.party_character3.getRectCollision();
-        partyPosition3RectCollision.addEventListener("click", changePartyTarget3);
-        function changePartyTarget3() {
-            this.party_character_position7.setPartyTarget(3);
-        }
-        var partyPosition4RectCollision = this.party_character4.getRectCollision();
-        partyPosition4RectCollision.addEventListener("click", changePartyTarget4);
-        function changePartyTarget4() {
-            this.party_character_position7.setPartyTarget(4);
-        }
-        var partyPosition5RectCollision = this.party_character5.getRectCollision();
-        partyPosition5RectCollision.addEventListener("click", changePartyTarget5);
-        function changePartyTarget5() {
-            this.party_character_position7.setPartyTarget(5);
-        }
-        var partyPosition6RectCollision = this.party_character6.getRectCollision();
-        partyPosition6RectCollision.addEventListener("click", changePartyTarget6);
-        function changePartyTarget6() {
-            this.party_character_position7.setPartyTarget(6);
-        }
-        var partyPosition7RectCollision = this.party_character7.getRectCollision();
-        partyPosition7RectCollision.addEventListener("click", changePartyTarget7);
-        function changePartyTarget7() {
-            this.party_character_position7.setPartyTarget(7);
-        }
-        var partyPosition8RectCollision = this.party_character8.getRectCollision();
-        partyPosition8RectCollision.addEventListener("click", changePartyTarget8);
-        function changePartyTarget8() {
-            this.party_character_position7.setPartyTarget(8);
-        }
-        //コマンドの確認
-    }
-
-    _inputPosition8()
-    {
-        var partyPosition1RectCollision = this.party_character1.getRectCollision();
-        partyPosition1RectCollision.addEventListener("click", changePartyTarget1);
-        function changePartyTarget1() {
-            this.party_character_position8.setPartyTarget(1);
-        }
-        var partyPosition2RectCollision = this.party_character2.getRectCollision();
-        partyPosition2RectCollision.addEventListener("click", changePartyTarget2);
-        function changePartyTarget2() {
-            this.party_character_position8.setPartyTarget(2);
-        }
-        var partyPosition3RectCollision = this.party_character3.getRectCollision();
-        partyPosition3RectCollision.addEventListener("click", changePartyTarget3);
-        function changePartyTarget3() {
-            this.party_character_position8.setPartyTarget(3);
-        }
-        var partyPosition4RectCollision = this.party_character4.getRectCollision();
-        partyPosition4RectCollision.addEventListener("click", changePartyTarget4);
-        function changePartyTarget4() {
-            this.party_character_position8.setPartyTarget(4);
-        }
-        var partyPosition5RectCollision = this.party_character5.getRectCollision();
-        partyPosition5RectCollision.addEventListener("click", changePartyTarget5);
-        function changePartyTarget5() {
-            this.party_character_position8.setPartyTarget(5);
-        }
-        var partyPosition6RectCollision = this.party_character6.getRectCollision();
-        partyPosition6RectCollision.addEventListener("click", changePartyTarget6);
-        function changePartyTarget6() {
-            this.party_character_position8.setPartyTarget(6);
-        }
-        var partyPosition7RectCollision = this.party_character7.getRectCollision();
-        partyPosition7RectCollision.addEventListener("click", changePartyTarget7);
-        function changePartyTarget7() {
-            this.party_character_position8.setPartyTarget(7);
-        }
-        var partyPosition8RectCollision = this.party_character8.getRectCollision();
-        partyPosition8RectCollision.addEventListener("click", changePartyTarget8);
-        function changePartyTarget8() {
-            this.party_character_position8.setPartyTarget(8);
-        }
-    }
+    
 
 
 }

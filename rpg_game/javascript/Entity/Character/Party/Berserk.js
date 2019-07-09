@@ -17,11 +17,13 @@ class Berserk extends BaseParty
         this.party_id = 7;
     }
 
+    //ベース側の処理な気がする
     getBmp()
     {
         return this.bmp;
     }
 
+    //ベース側の処理な気がする
     getRectCollision()
     {
         return this.rectCollision;

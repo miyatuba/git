@@ -33,15 +33,3 @@ class BaseParty
     }
 }
 
-
-/*BaseParty = function (isPlayable)
-{
-    this.Playable = isPlayable;
-
-}
-
-BaseParty.Playable;
-
-BaseParty.prototype.isPlayable = function () {
-    return this.Playable;
-}*/
