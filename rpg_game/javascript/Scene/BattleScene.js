@@ -37,13 +37,27 @@ class BattleScene {
     {
         this.party_structure = partyStructure;
 
+        this.battle_input = new BattleInput();
+
         this.draw = new Draw();
+        
+        
 
         this._initPartyDeploy();
         this._initEnemyDeploy();
         this._initDraw();
 
-       
+        // 四角形の作成
+        var rect = new createjs.Shape();
+        rect.graphics.beginFill("green").drawRect(200, 20, 160, 160);
+        this.draw.DrawBmp(rect);
+        // 各種マウスイベントを登録する
+        rect.addEventListener("click", handleRectClick);
+        // クリックしたとき
+        function handleRectClick(event) {
+            alert("四がクリックされました");
+        }
+
     }
 
     _initDraw()
@@ -237,13 +251,13 @@ class BattleScene {
         //initでクリックイベントをすべて登録し、関数はinputフラグをオンにする。
         //inputフラグを見て、どこに入力されているかで処理をする
         //完了後、inputフラグをオフにする。
-        var rect = new createjs.Shape();
+        /*var rect = new createjs.Shape();
         rect.graphics.beginFill("blue").drawRect(200, 20, 160, 160);
         this.draw.DrawBmp(rect, 1, 1);
         rect.addEventListener("click", handleRectClick);
-        function handleRectClick(event) {
+       function handleRectClick(event) {
             alert("四角形がクリックされました");
-        }
+        }*/
         
 
         var partyPosition1RectCollision = this.party_character1.getRectCollision();
