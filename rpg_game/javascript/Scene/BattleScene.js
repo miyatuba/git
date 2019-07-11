@@ -47,7 +47,7 @@ class BattleScene {
         this._initEnemyDeploy();
         this._initDraw();
 
-        // 四角形の作成
+        /*// 四角形の作成
         var rect = new createjs.Shape();
         rect.graphics.beginFill("green").drawRect(200, 20, 160, 160);
         this.draw.DrawBmp(rect);
@@ -57,6 +57,14 @@ class BattleScene {
         function handleRectClick(event) {
             alert("四がクリックされました");
         }
+        this.draw.updateStageCreateJS();*/
+        
+        // 四角形の作成
+        var rect = new createjs.Shape();
+        rect.graphics.beginFill("red").drawRect(200, 20, 160, 160);
+        this.draw.DrawBmp(rect, 0, 0);
+        
+        this.battle_input.setTest(rect);
 
     }
 
