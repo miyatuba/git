@@ -12,7 +12,6 @@ class BattleScene {
     PARTY_NUMBER_ID_ROOK = 6;
     PARTY_NUMBER_ID_BERSERK = 7;
     PARTY_NUMBER_ID_HUNTER = 8;
-    
 
     PARTY_CHARACTER1_POSITION_X = 480;
     PARTY_CHARACTER1_POSITION_Y = 20;
@@ -32,7 +31,31 @@ class BattleScene {
     PARTY_CHARACTER8_POSITION_Y = 220;
     PLAYER_CURSOR_RELATIVE_POSITION_X = 100;
     PLAYER_CURSOR_RELATIVE_POSITION_Y = 150;
-    
+
+    /**プロパティ
+     * party_structure
+     * battle_input
+     * draw
+     * party_character1
+     * party_character2
+     * party_character3
+     * party_character4
+     * party_character5
+     * party_character6
+     * party_character7
+     * party_character8
+     * playable_party_id
+     * playable_party_position_number
+     * enemy_character_position1
+     * enemy_character_position2
+     * enemy_character_position3
+     * enemy_character_position4
+     * enemy_character_position5
+     * enemy_character_position6
+     * playerableToPartyCursor1Bmp = new createjs.Bitmap(this.PLAYER_CURSOR_1_PATH);
+     * partyToEnemyCursor1Bmp
+     * 
+    */
     constructor(partyStructure)
     {
         this.party_structure = partyStructure;
@@ -40,8 +63,12 @@ class BattleScene {
         this.battle_input = new BattleInput();
 
         this.draw = new Draw();
-        
-        
+
+        // 四角形の作成
+        var rect = new createjs.Shape();
+        rect.graphics.beginFill("red").drawRect(200, 20, 160, 160);
+        this.battle_input.setTest(rect);
+        this.draw.DrawBmp(rect, 0, 0);
 
         this._initPartyDeploy();
         this._initEnemyDeploy();
@@ -59,13 +86,7 @@ class BattleScene {
         }
         this.draw.updateStageCreateJS();*/
         
-        // 四角形の作成
-        var rect = new createjs.Shape();
-        rect.graphics.beginFill("red").drawRect(200, 20, 160, 160);
-        this.draw.DrawBmp(rect, 0, 0);
         
-        this.battle_input.setTest(rect);
-
     }
 
     _initDraw()
@@ -193,6 +214,7 @@ class BattleScene {
 
     _initPartyDeploy()
     {
+        //キャラobjectの準備
         this.party_character1 = this.party_structure.getPartyForBattlePosition1();
         this.party_character1.setToPartyTargetPositionNumber(1);
         this.party_character1.setToEnemyTargetPositionNumber(1);
@@ -219,6 +241,19 @@ class BattleScene {
         this.party_character8.setToEnemyTargetPositionNumber(1);
         this.playable_party_id = this.PARTY_NUMBER_ID_BERSERK;
         this.playable_party_position_number = this.party_structure.getPlayablePartyPositionNumber();
+
+        //キャラのinput操作の登録
+        var rectCollision1 = new createjs.Shape();
+        var rectCollision2 = new createjs.Shape();
+        rectCollision1.graphics.setStrokeStyle(1);
+        //rectCollision1.graphics.beginStroke("blue");
+        rectCollision1.graphics.beginFill("blue");
+        rectCollision1.graphics.drawRect(200, 20, 100, 160);
+        rectCollision2.alpha = 1.0;
+        rectCollision2.graphics.drawRect(0, 0, 100, 160);
+        this.battle_input.setParty1(rectCollision1);
+        this.draw.DrawBmp(rectCollision1, 0, 0);
+        this.draw.DrawBmp(rectCollision2, 0, 0);
     }
 
     _initEnemyDeploy()
@@ -266,56 +301,7 @@ class BattleScene {
        function handleRectClick(event) {
             alert("四角形がクリックされました");
         }*/
-        
-
-        var partyPosition1RectCollision = this.party_character1.getRectCollision();
-        partyPosition1RectCollision.addEventListener("click", selectPartyTarget1);
-        function selectPartyTarget1(event) {
-            selectPositionNumber = 1;
-        }
-
-        var partyPosition2RectCollision = this.party_character2.getRectCollision();
-        partyPosition2RectCollision.addEventListener("click", selectPartyTarget2);
-        function selectPartyTarget2(event) {
-            selectPositionNumber = 2;
-        }
-
-        var partyPosition3RectCollision = this.party_character3.getRectCollision();
-        partyPosition3RectCollision.addEventListener("click", selectPartyTarget3);
-        function selectPartyTarget3(event) {
-            selectPositionNumber = 3;
-        }
-
-        var partyPosition4RectCollision = this.party_character4.getRectCollision();
-        partyPosition4RectCollision.addEventListener("click", selectPartyTarget4);
-        function selectPartyTarget4(event) {
-            selectPositionNumber = 4;
-        }
-
-        var partyPosition5RectCollision = this.party_character5.getRectCollision();
-        partyPosition5RectCollision.addEventListener("click", selectPartyTarget5);
-        function selectPartyTarget5(event) {
-            selectPositionNumber = 5;
-        }
-
-        var partyPosition6RectCollision = this.party_character6.getRectCollision();
-        partyPosition6RectCollision.addEventListener("click", selectPartyTarget6);
-        function selectPartyTarget6(event) {
-            selectPositionNumber = 6;
-        }
-
-        var partyPosition7RectCollision = this.party_character7.getRectCollision();
-        partyPosition7RectCollision.addEventListener("click", selectPartyTarget7);
-        function selectPartyTarget7(event) {
-            selectPositionNumber = 7;
-        }
-
-        var partyPosition8RectCollision = this.party_character8.getRectCollision();
-        partyPosition8RectCollision.addEventListener("click", selectPartyTarget8);
-        function selectPartyTarget8(event) {
-            selectPositionNumber = 8;
-        }
-
+    
 
         switch (this.playable_party_position_number) {
             case 1://流石にここはマジックナンバーで良いと思うんだけど・・
