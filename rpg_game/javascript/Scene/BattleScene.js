@@ -96,21 +96,21 @@ class BattleScene {
         bmp_back_ground.scaleY = 1;
         this.draw.DrawBmp(bmp_back_ground, 0, 0);
         this.draw.DrawBmp(this.party_character1.getBmp(), this.PARTY_CHARACTER1_POSITION_X, this.PARTY_CHARACTER1_POSITION_Y);
-        this.draw.DrawBmp(this.party_character1.getRectCollision(), this.PARTY_CHARACTER1_POSITION_X, this.PARTY_CHARACTER1_POSITION_Y);
+        this.draw.DrawBmp(this.party_character1.getOperationRectDebug(), this.PARTY_CHARACTER1_POSITION_X, this.PARTY_CHARACTER1_POSITION_Y);
         this.draw.DrawBmp(this.party_character2.getBmp(), this.PARTY_CHARACTER2_POSITION_X, this.PARTY_CHARACTER2_POSITION_Y);
-        this.draw.DrawBmp(this.party_character2.getRectCollision(), this.PARTY_CHARACTER2_POSITION_X, this.PARTY_CHARACTER2_POSITION_Y);
+        this.draw.DrawBmp(this.party_character2.getOperationRectDebug(), this.PARTY_CHARACTER2_POSITION_X, this.PARTY_CHARACTER2_POSITION_Y);
         this.draw.DrawBmp(this.party_character3.getBmp(), this.PARTY_CHARACTER3_POSITION_X, this.PARTY_CHARACTER3_POSITION_Y);
-        this.draw.DrawBmp(this.party_character3.getRectCollision(), this.PARTY_CHARACTER3_POSITION_X, this.PARTY_CHARACTER3_POSITION_Y);
+        this.draw.DrawBmp(this.party_character3.getOperationRectDebug(), this.PARTY_CHARACTER3_POSITION_X, this.PARTY_CHARACTER3_POSITION_Y);
         this.draw.DrawBmp(this.party_character4.getBmp(), this.PARTY_CHARACTER4_POSITION_X, this.PARTY_CHARACTER4_POSITION_Y);
-        this.draw.DrawBmp(this.party_character4.getRectCollision(), this.PARTY_CHARACTER4_POSITION_X, this.PARTY_CHARACTER4_POSITION_Y);
+        this.draw.DrawBmp(this.party_character4.getOperationRectDebug(), this.PARTY_CHARACTER4_POSITION_X, this.PARTY_CHARACTER4_POSITION_Y);
         this.draw.DrawBmp(this.party_character5.getBmp(), this.PARTY_CHARACTER5_POSITION_X, this.PARTY_CHARACTER5_POSITION_Y);
-        this.draw.DrawBmp(this.party_character5.getRectCollision(), this.PARTY_CHARACTER5_POSITION_X, this.PARTY_CHARACTER5_POSITION_Y);
+        this.draw.DrawBmp(this.party_character5.getOperationRectDebug(), this.PARTY_CHARACTER5_POSITION_X, this.PARTY_CHARACTER5_POSITION_Y);
         this.draw.DrawBmp(this.party_character6.getBmp(), this.PARTY_CHARACTER6_POSITION_X, this.PARTY_CHARACTER6_POSITION_Y);
-        this.draw.DrawBmp(this.party_character6.getRectCollision(), this.PARTY_CHARACTER6_POSITION_X, this.PARTY_CHARACTER6_POSITION_Y);
+        this.draw.DrawBmp(this.party_character6.getOperationRectDebug(), this.PARTY_CHARACTER6_POSITION_X, this.PARTY_CHARACTER6_POSITION_Y);
         this.draw.DrawBmp(this.party_character7.getBmp(), this.PARTY_CHARACTER7_POSITION_X, this.PARTY_CHARACTER7_POSITION_Y);
-        this.draw.DrawBmp(this.party_character7.getRectCollision(), this.PARTY_CHARACTER7_POSITION_X, this.PARTY_CHARACTER7_POSITION_Y);
+        this.draw.DrawBmp(this.party_character7.getOperationRectDebug(), this.PARTY_CHARACTER7_POSITION_X, this.PARTY_CHARACTER7_POSITION_Y);
         this.draw.DrawBmp(this.party_character8.getBmp(), this.PARTY_CHARACTER8_POSITION_X, this.PARTY_CHARACTER8_POSITION_Y);
-        this.draw.DrawBmp(this.party_character8.getRectCollision(), this.PARTY_CHARACTER8_POSITION_X, this.PARTY_CHARACTER8_POSITION_Y);
+        this.draw.DrawBmp(this.party_character8.getOperationRectDebug(), this.PARTY_CHARACTER8_POSITION_X, this.PARTY_CHARACTER8_POSITION_Y);
         this.draw.DrawBmp(this.enemy_character_position1.getBmp(), 200, 70);
         this.draw.DrawBmp(this.enemy_character_position2.getBmp(), 200, 220);
         this.draw.DrawBmp(this.enemy_character_position3.getBmp(), 100, 20);
@@ -243,17 +243,23 @@ class BattleScene {
         this.playable_party_position_number = this.party_structure.getPlayablePartyPositionNumber();
 
         //キャラのinput操作の登録
-        var rectCollision1 = new createjs.Shape();
-        var rectCollision2 = new createjs.Shape();
-        rectCollision1.graphics.setStrokeStyle(1);
-        //rectCollision1.graphics.beginStroke("blue");
-        rectCollision1.graphics.beginFill("blue");
-        rectCollision1.graphics.drawRect(200, 20, 100, 160);
-        rectCollision2.alpha = 1.0;
-        rectCollision2.graphics.drawRect(0, 0, 100, 160);
-        this.battle_input.setParty1(rectCollision1);
-        this.draw.DrawBmp(rectCollision1, 0, 0);
-        this.draw.DrawBmp(rectCollision2, 0, 0);
+        this.battle_input.setParty1(this.party_character1.getOperationRect());
+        this.draw.DrawBmp(this.party_character1.getOperationRect(), this.PARTY_CHARACTER1_POSITION_X, this.PARTY_CHARACTER1_POSITION_Y);
+        this.battle_input.setParty2(this.party_character2.getOperationRect());
+        this.draw.DrawBmp(this.party_character2.getOperationRect(), this.PARTY_CHARACTER2_POSITION_X, this.PARTY_CHARACTER2_POSITION_Y);
+        this.battle_input.setParty3(this.party_character3.getOperationRect());
+        this.draw.DrawBmp(this.party_character3.getOperationRect(), this.PARTY_CHARACTER3_POSITION_X, this.PARTY_CHARACTER3_POSITION_Y);
+        this.battle_input.setParty4(this.party_character4.getOperationRect());
+        this.draw.DrawBmp(this.party_character4.getOperationRect(), this.PARTY_CHARACTER4_POSITION_X, this.PARTY_CHARACTER4_POSITION_Y);
+        this.battle_input.setParty5(this.party_character5.getOperationRect());
+        this.draw.DrawBmp(this.party_character5.getOperationRect(), this.PARTY_CHARACTER5_POSITION_X, this.PARTY_CHARACTER5_POSITION_Y);
+        this.battle_input.setParty6(this.party_character6.getOperationRect());
+        this.draw.DrawBmp(this.party_character6.getOperationRect(), this.PARTY_CHARACTER6_POSITION_X, this.PARTY_CHARACTER6_POSITION_Y);
+        this.battle_input.setParty7(this.party_character7.getOperationRect());
+        this.draw.DrawBmp(this.party_character7.getOperationRect(), this.PARTY_CHARACTER7_POSITION_X, this.PARTY_CHARACTER7_POSITION_Y);
+        this.battle_input.setParty8(this.party_character8.getOperationRect());
+        this.draw.DrawBmp(this.party_character8.getOperationRect(), this.PARTY_CHARACTER8_POSITION_X, this.PARTY_CHARACTER8_POSITION_Y);
+
     }
 
     _initEnemyDeploy()
@@ -279,6 +285,9 @@ class BattleScene {
 
         //表示
         this.draw.updateStageCreateJS();
+
+        //入力情報のリセット
+        this.battle_input.resetForLoop();
     }
 
     input()
@@ -288,19 +297,6 @@ class BattleScene {
         
         //入力処理（プレイアブル
         var selectPositionNumber = 0;
-
-        //イベント登録をループで回しても動かない。
-        //インプットクラスが必要
-        //initでクリックイベントをすべて登録し、関数はinputフラグをオンにする。
-        //inputフラグを見て、どこに入力されているかで処理をする
-        //完了後、inputフラグをオフにする。
-        /*var rect = new createjs.Shape();
-        rect.graphics.beginFill("blue").drawRect(200, 20, 160, 160);
-        this.draw.DrawBmp(rect, 1, 1);
-        rect.addEventListener("click", handleRectClick);
-       function handleRectClick(event) {
-            alert("四角形がクリックされました");
-        }*/
     
 
         switch (this.playable_party_position_number) {
