@@ -297,34 +297,61 @@ class BattleScene {
         
         //入力処理（プレイアブル
         var selectPositionNumber = 0;
+        if (this.battle_input.isInputParty1()) {
+            selectPositionNumber = 1;
+        }
+        if (this.battle_input.isInputParty2()) {
+            selectPositionNumber = 2;
+        }
+        if (this.battle_input.isInputParty3()) {
+            selectPositionNumber = 3;
+        }
+        if (this.battle_input.isInputParty4()) {
+            selectPositionNumber = 4;
+        }
+        if (this.battle_input.isInputParty5()) {
+            selectPositionNumber = 5;
+        }
+        if (this.battle_input.isInputParty6()) {
+            selectPositionNumber = 6;
+        }
+        if (this.battle_input.isInputParty7()) {
+            selectPositionNumber = 7;
+        }
+        if (this.battle_input.isInputParty8()) {
+            selectPositionNumber = 8;
+        }
     
 
-        switch (this.playable_party_position_number) {
-            case 1://流石にここはマジックナンバーで良いと思うんだけど・・
-                this.party_character1.setToPartyTargetPositionNumber(selectPositionNumber);
-                break;
-            case 2:
-                this.party_character2.setToPartyTargetPositionNumber(selectPositionNumber);
-                break;
-            case 3:
-                this.party_character3.setToPartyTargetPositionNumber(selectPositionNumber);
-                break;
-            case 4:
-                this.party_character4.setToPartyTargetPositionNumber(selectPositionNumber);
-                break;
-            case 5:
-                this.party_character5.setToPartyTargetPositionNumber(selectPositionNumber);
-                break;
-            case 6:
-                this.party_character6.setToPartyTargetPositionNumber(selectPositionNumber);
-                break;
-            case 7:
-                this.party_character7.setToPartyTargetPositionNumber(selectPositionNumber);
-                break;
-            case 8:
-                this.party_character8.setToPartyTargetPositionNumber(selectPositionNumber);
-                break;
+        if (selectPositionNumber != 0) {
+            switch (this.playable_party_position_number) {
+                case 1://流石にここはマジックナンバーで良いと思うんだけど・・
+                    this.party_character1.setToPartyTargetPositionNumber(selectPositionNumber);
+                    break;
+                case 2:
+                    this.party_character2.setToPartyTargetPositionNumber(selectPositionNumber);
+                    break;
+                case 3:
+                    this.party_character3.setToPartyTargetPositionNumber(selectPositionNumber);
+                    break;
+                case 4:
+                    this.party_character4.setToPartyTargetPositionNumber(selectPositionNumber);
+                    break;
+                case 5:
+                    this.party_character5.setToPartyTargetPositionNumber(selectPositionNumber);
+                    break;
+                case 6:
+                    this.party_character6.setToPartyTargetPositionNumber(selectPositionNumber);
+                    break;
+                case 7:
+                    this.party_character7.setToPartyTargetPositionNumber(selectPositionNumber);
+                    break;
+                case 8:
+                    this.party_character8.setToPartyTargetPositionNumber(selectPositionNumber);
+                    break;
+            }
         }
+        
 
 
         switch (this._getPlayableCharacter().getToPartyTargetPositionNumber()) {
