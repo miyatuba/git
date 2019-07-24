@@ -22,3 +22,9 @@ bool BaseEnemy::isDirectionLeft()
 {
 	return true;
 }
+
+void BaseEnemy::AoutAction()
+{
+	std::string error_message = "BaseEnemy‚ÌAoutAction‚ªŒÄ‚Î‚ê‚½";
+	throw error_message;
+}

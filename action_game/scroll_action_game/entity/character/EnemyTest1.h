@@ -11,7 +11,10 @@ private:
 	const static int X_SIZE = 64;
 	const static int Y_SIZE = 64;
 
+	void MoveLeft(int);
+
 public:
 	EnemyTest1();
 	int getImageHandle();
+	void AoutAction();
 };

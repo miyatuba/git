@@ -18,5 +18,7 @@ protected:
 	//virtual int getImageHandle();
 	virtual bool isDirectionRight();
 	virtual bool isDirectionLeft();
+	
 public:
+	virtual void AoutAction();
 };
