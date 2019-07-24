@@ -18,5 +18,5 @@ EnemyTest1::EnemyTest1()
 
 int EnemyTest1::getImageHandle()
 {
-	return 1;
+	return this->stand_image_handle;
 }

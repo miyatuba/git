@@ -2,18 +2,18 @@
 
 int BaseEnemy::getPositionX()
 {
-	return 1;
+	return this->x;
 }
 int BaseEnemy::getPositionY()
 {
-	return 1;
+	return this->y;
 }
-int BaseEnemy::getImageHandle()
+/*int BaseEnemy::getImageHandle()
 {
 	std::string error_message = "BaseEnemy‚ÌgetImageHandlle‚ªŒÄ‚Î‚ê‚½";
 	throw error_message;
 	return 1;
-}
+}*/
 bool BaseEnemy::isDirectionRight()
 {
 	return true;

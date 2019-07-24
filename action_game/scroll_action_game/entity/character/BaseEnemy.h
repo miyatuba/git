@@ -15,7 +15,7 @@ protected:
 
 	virtual int getPositionX();
 	virtual int getPositionY();
-	virtual int getImageHandle();
+	//virtual int getImageHandle();
 	virtual bool isDirectionRight();
 	virtual bool isDirectionLeft();
 public:

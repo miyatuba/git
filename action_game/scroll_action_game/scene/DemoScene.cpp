@@ -76,7 +76,10 @@ void DemoScene::Play()
 	//プレイヤーとマップの判定で、プレイヤーの可能な状態を整理、上下移動（後程、画面内のみに変える
 	this->checkPlayerAndMapForTopBottom();
 
+	//敵行動
+
 	//敵とマップの判定
+
 
 	//敵からの攻撃や障害物
 
@@ -98,7 +101,7 @@ void DemoScene::Play()
 
 	//ヒーローや敵の描画
 	this->DrawCharacter(this->hero);
-	//this->DrawCharacter(this->enemy_test1);
+	this->DrawCharacter(this->enemy_test1);
 
 	if (DebugMode::isDebugMode()) {
 		CollisionService::drawCollisionByRect(this->hero.getCollision(), 0, 255, 0, this->main_camera);
