@@ -44,7 +44,7 @@ class BattleInput {
             handleParty1Click();
         });
         function handleParty1Click() {
-            alert("ソルジャーがクリックされました");
+            //alert("ソルジャーがクリックされました");
             instatnce.is_input_party1 = true;
         }
     }
@@ -60,7 +60,7 @@ class BattleInput {
             handleParty2Click();
         });
         function handleParty2Click() {
-            alert("ランサーがクリックされました");
+            //alert("ランサーがクリックされました");
             instatnce.is_input_party2 = true;
         }
     }
@@ -75,7 +75,7 @@ class BattleInput {
             handleParty3Click();
         });
         function handleParty3Click() {
-            alert("アーチャーがクリックされました");
+            //alert("アーチャーがクリックされました");
             instatnce.is_input_party3 = true;
         }
     }
@@ -90,7 +90,7 @@ class BattleInput {
             handleParty4Click();
         });
         function handleParty4Click() {
-            alert("メイジがクリックされました");
+            //alert("メイジがクリックされました");
             instatnce.is_input_party4 = true;
         }
     }
@@ -105,7 +105,7 @@ class BattleInput {
             handleParty5Click();
         });
         function handleParty5Click() {
-            alert("クレリックがクリックされました");
+            //alert("クレリックがクリックされました");
             instatnce.is_input_party5 = true;
         }
     }
@@ -120,7 +120,7 @@ class BattleInput {
             handleParty6Click();
         });
         function handleParty6Click() {
-            alert("ルークがクリックされました");
+            //alert("ルークがクリックされました");
             instatnce.is_input_party6 = true;
         }
     }
@@ -135,7 +135,7 @@ class BattleInput {
             handleParty7Click();
         });
         function handleParty7Click() {
-            alert("ベルセルクがクリックされました");
+            //alert("ベルセルクがクリックされました");
             instatnce.is_input_party7 = true;
         }
     }
@@ -150,7 +150,7 @@ class BattleInput {
             handleParty8Click();
         });
         function handleParty8Click() {
-            alert("ハンターがクリックされました");
+            //alert("ハンターがクリックされました");
             instatnce.is_input_party8 = true;
         }
     }
