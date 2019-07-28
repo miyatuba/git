@@ -77,6 +77,7 @@ void DemoScene::Play()
 	this->checkPlayerAndMapForTopBottom();
 
 	//“Gs“®
+	this->enemy_test1.AoutAction();
 
 	//“G‚Æƒ}ƒbƒv‚Ì”»’è
 
