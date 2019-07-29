@@ -106,6 +106,7 @@ void DemoScene::Play()
 
 	if (DebugMode::isDebugMode()) {
 		CollisionService::drawCollisionByRect(this->hero.getCollision(), 0, 255, 0, this->main_camera);
+		CollisionService::drawCollisionByRect(this->enemy_test1.getCollision(), 0, 255, 0, this->main_camera);
 	}
 	if (DebugMode::isDebugMode()) {
 		DrawFormatString(0, 0, GetColor(0, 0, 255), "LX座標%f:RX座標%f:TY座標%f:BY座標%f",
@@ -170,6 +171,25 @@ void DemoScene::checkPlayerAndMapForLeftRight()
 								float difference = CollisionService::differenceXRightByRectandRect(this->hero.getCollision(), map_tip.getCollision());
 								this->hero.MoveLeft((int)difference);
 							}
+
+						}
+
+						if (CollisionService::checkCollisionByRectAndRect(this->enemy_test1.getCollision(), map_tip.getCollision())) {
+
+							//敵の計算もこのタイミングでしていいかどうか確かめる、敵の数は多い為に、配列でforeachした方が良いかもしれん。
+							if (this->enemy_test1.isDirectionLeft()) {
+								float enemy_test1_dfference = CollisionService::differenceXLeftByRectandRect(this->enemy_test1.getCollision(), map_tip.getCollision());
+								this->enemy_test1.MoveRight((int)enemy_test1_dfference);
+								//AI系になるから、EnemyEntityに記述したい感がある。
+								this->enemy_test1.changeDirectionRight();
+							}
+
+							else if (this->enemy_test1.isDirectionRight()) {
+								float enemy_test1_dfference = CollisionService::differenceXRightByRectandRect(this->enemy_test1.getCollision(), map_tip.getCollision());
+								this->enemy_test1.MoveLeft((int)enemy_test1_dfference);
+								this->enemy_test1.changeDirectionLeft();
+							}
+							
 						}
 
 					}
