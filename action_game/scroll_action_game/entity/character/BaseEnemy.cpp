@@ -16,15 +16,31 @@ int BaseEnemy::getPositionY()
 }*/
 bool BaseEnemy::isDirectionRight()
 {
-	return true;
+	return this->direction == BaseEnemy::DIRECTION_RIGHT;
 }
+
 bool BaseEnemy::isDirectionLeft()
 {
-	return true;
+	return this->direction == BaseEnemy::DIRECTION_LEFT;
 }
 
 void BaseEnemy::AoutAction()
 {
 	std::string error_message = "BaseEnemy‚ÌAoutAction‚ªŒÄ‚Î‚ê‚½";
 	throw error_message;
+}
+
+RectCollision BaseEnemy::getCollision()
+{
+	return this->rect_collision;
+}
+
+void BaseEnemy::changeDirectionLeft()
+{
+	this->direction = BaseEnemy::DIRECTION_LEFT;
+}
+
+void BaseEnemy::changeDirectionRight()
+{
+	this->direction = BaseEnemy::DIRECTION_RIGHT;
 }

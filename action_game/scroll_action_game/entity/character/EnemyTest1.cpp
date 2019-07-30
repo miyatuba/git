@@ -14,6 +14,7 @@ EnemyTest1::EnemyTest1()
 	this->rect_collision = rect_collision;
 
 	this->stand_image_handle = LoadGraph(this->IMAGE_PATH.c_str());
+	this->direction = BaseEnemy::DIRECTION_LEFT;
 }
 
 int EnemyTest1::getImageHandle()
@@ -24,7 +25,13 @@ int EnemyTest1::getImageHandle()
 void EnemyTest1::AoutAction()
 {
 	//ó‘Ô‚É‰ž‚¶‚Ä•ÏX‚·‚é‚±‚Æ‚É‚È‚é‚ªA‚Ü‚¸‚Í¶‚ÉˆÚ“®‚·‚é‚¾‚¯‚ÌAI
-	this->MoveLeft(1);
+	if (this->isDirectionLeft()) {
+		this->MoveLeft(1);
+	}
+	else if (this->isDirectionRight()) {
+		this->MoveRight(1);
+	}
+
 
 }
 
@@ -32,4 +39,10 @@ void EnemyTest1::MoveLeft(int x)
 {
 	this->x -= x;
 	this->rect_collision.moveCollisionX(-x);
+}
+
+void EnemyTest1::MoveRight(int x)
+{
+	this->x += x;
+	this->rect_collision.moveCollisionX(x);
 }
