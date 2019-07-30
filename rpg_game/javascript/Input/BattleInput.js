@@ -10,6 +10,12 @@ class BattleInput {
         this.is_input_party7 = false;
         this.is_input_party8 = false;
 
+        this.is_input_enemy1 = false;
+        this.is_input_enemy2 = false;
+        this.is_input_enemy3 = false;
+        this.is_input_enemy4 = false;
+        this.is_input_enemy5 = false;
+        this.is_input_enemy6 = false;
 
         this.test = false;
     }
@@ -37,15 +43,15 @@ class BattleInput {
 
     }
 
-    setParty1(rect)
+    setRectParty1(rect)
     {
-        var instatnce = this;
+        var instance = this;
         rect.addEventListener("click", function () {
             handleParty1Click();
         });
         function handleParty1Click() {
             //alert("ソルジャーがクリックされました");
-            instatnce.is_input_party1 = true;
+            instance.is_input_party1 = true;
         }
     }
 
@@ -54,14 +60,14 @@ class BattleInput {
         return this.is_input_party1;
     }
 
-    setParty2(rect) {
-        var instatnce = this;
+    setRectParty2(rect) {
+        var instance = this;
         rect.addEventListener("click", function () {
             handleParty2Click();
         });
         function handleParty2Click() {
             //alert("ランサーがクリックされました");
-            instatnce.is_input_party2 = true;
+            instance.is_input_party2 = true;
         }
     }
 
@@ -69,14 +75,14 @@ class BattleInput {
         return this.is_input_party2;
     }
 
-    setParty3(rect) {
-        var instatnce = this;
+    setRectParty3(rect) {
+        var instance = this;
         rect.addEventListener("click", function () {
             handleParty3Click();
         });
         function handleParty3Click() {
             //alert("アーチャーがクリックされました");
-            instatnce.is_input_party3 = true;
+            instance.is_input_party3 = true;
         }
     }
 
@@ -84,14 +90,14 @@ class BattleInput {
         return this.is_input_party3;
     }
 
-    setParty4(rect) {
-        var instatnce = this;
+    setRectParty4(rect) {
+        var instance = this;
         rect.addEventListener("click", function () {
             handleParty4Click();
         });
         function handleParty4Click() {
             //alert("メイジがクリックされました");
-            instatnce.is_input_party4 = true;
+            instance.is_input_party4 = true;
         }
     }
 
@@ -99,14 +105,14 @@ class BattleInput {
         return this.is_input_party4;
     }
 
-    setParty5(rect) {
-        var instatnce = this;
+    setRectParty5(rect) {
+        var instance = this;
         rect.addEventListener("click", function () {
             handleParty5Click();
         });
         function handleParty5Click() {
             //alert("クレリックがクリックされました");
-            instatnce.is_input_party5 = true;
+            instance.is_input_party5 = true;
         }
     }
 
@@ -114,14 +120,14 @@ class BattleInput {
         return this.is_input_party5;
     }
 
-    setParty6(rect) {
-        var instatnce = this;
+    setRectParty6(rect) {
+        var instance = this;
         rect.addEventListener("click", function () {
             handleParty6Click();
         });
         function handleParty6Click() {
             //alert("ルークがクリックされました");
-            instatnce.is_input_party6 = true;
+            instance.is_input_party6 = true;
         }
     }
 
@@ -129,14 +135,14 @@ class BattleInput {
         return this.is_input_party6;
     }
 
-    setParty7(rect) {
-        var instatnce = this;
+    setRectParty7(rect) {
+        var instance = this;
         rect.addEventListener("click", function () {
             handleParty7Click();
         });
         function handleParty7Click() {
             //alert("ベルセルクがクリックされました");
-            instatnce.is_input_party7 = true;
+            instance.is_input_party7 = true;
         }
     }
 
@@ -144,19 +150,103 @@ class BattleInput {
         return this.is_input_party7;
     }
 
-    setParty8(rect) {
-        var instatnce = this;
+    setRectParty8(rect) {
+        var instance = this;
         rect.addEventListener("click", function () {
             handleParty8Click();
         });
         function handleParty8Click() {
             //alert("ハンターがクリックされました");
-            instatnce.is_input_party8 = true;
+            instance.is_input_party8 = true;
         }
     }
 
     isInputParty8() {
         return this.is_input_party8;
+    }
+
+    setRectEnemy1(rect) {
+        var instance = this;
+        rect.addEventListener("click", function () {
+            handleEnemy1Click();
+        });
+        function handleEnemy1Click() {    
+            instance.is_input_enemy1 = true;
+        }
+    }
+
+    isInputEnemy1() {
+        return this.is_input_enemy1;
+    }
+
+    setRectEnemy2(rect) {
+        var instance = this;
+        rect.addEventListener("click", function () {
+            handleEnemy2Click();
+        });
+        function handleEnemy2Click() {
+            instance.is_input_enemy2 = true;
+        }
+    }
+
+    isInputEnemy2() {
+        return this.is_input_enemy2;
+    }
+
+    setRectEnemy3(rect) {
+        var instance = this;
+        rect.addEventListener("click", function () {
+            handleEnemy3Click();
+        });
+        function handleEnemy3Click() {
+            instance.is_input_enemy3 = true;
+        }
+    }
+
+    isInputEnemy3() {
+        return this.is_input_enemy3;
+    }
+
+    setRectEnemy4(rect) {
+        var instance = this;
+        rect.addEventListener("click", function () {
+            handleEnemy4Click();
+        });
+        function handleEnemy4Click() {
+            instance.is_input_enemy4 = true;
+        }
+    }
+
+    isInputEnemy4() {
+        return this.is_input_enemy4;
+    }
+
+    setRectEnemy5(rect) {
+        var instance = this;
+        rect.addEventListener("click", function () {
+            handleEnemy5Click();
+        });
+        function handleEnemy5Click() {
+            instance.is_input_enemy5 = true;
+        }
+    }
+
+    isInputEnemy5() {
+        return this.is_input_enemy5;
+    }
+
+    setRectEnemy6(rect) {
+        var instance = this;
+        rect.addEventListener("click", function () {
+            handleEnemy6Click();
+        });
+        function handleEnemy6Click() {
+            instance.is_input_enemy6 = true;
+        }
+    }
+
+    isInputEnemy6() {
+        return this.is_input_enemy6;
     }
 
     resetForLoop()
@@ -169,6 +259,13 @@ class BattleInput {
         this.is_input_party6 = false;
         this.is_input_party7 = false;
         this.is_input_party8 = false;
+
+        this.is_input_enemy1 = false;
+        this.is_input_enemy2 = false;
+        this.is_input_enemy3 = false;
+        this.is_input_enemy4 = false;
+        this.is_input_enemy5 = false;
+        this.is_input_enemy6 = false;
     }
 
 }
