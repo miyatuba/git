@@ -24,10 +24,8 @@ private:
 	void ProcessStage();
 	void initLoopDemoScene();
 
-	bool is_checked_scaffold_for_hero = false;
-	bool is_checked_scaffold_for_enemy1 = false;
-	void checkPlayerAndMapForLeftRight();
-	void checkPlayerAndMapForTopBottom();
+	void checkCharacterAndMapForLeftRight();
+	void checkCharacterAndMapForTopBottom();
 	void checkCameraAndMapForLeftRight();
 	void checkCameraAndMapForTopBottom();
 

@@ -5,6 +5,8 @@
 #include "../../view/IDraw.h"
 #include "../../collision/ICollision.h"
 #include "../../collision/RectCollision.h"
+#include "../map/MapTip.h"
+#include "../../collision/CollisionService.h"
 
 class Hero : virtual public IDraw, ICollision
 {
@@ -41,11 +43,7 @@ private:
 	bool is_run = false;//•à‚­‚ðŽÀ‘•‚·‚é‚©‚Ü‚¾–¢’è
 	bool is_dash = false;
 	bool is_hover = false;
-
-	bool can_left_move = true;
-	bool can_right_move = true;
-	bool can_up_move = true;
-	bool can_down_move = true;
+	bool is_checked_scaffold_for_hero = false;
 
 	int jump_frame_elapsed_time = this->JUMP_FRAME_TIME;
 
@@ -88,5 +86,7 @@ public:
 
 	void changeDirectionRight();
 	void changeDirectionLeft();
-	
+
+	void checkHeroAndMapForLeftRight(MapTip, Input);
+	void checkHeroAndMapForTopBottom(MapTip);
 };

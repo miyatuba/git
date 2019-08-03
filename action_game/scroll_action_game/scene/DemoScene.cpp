@@ -30,12 +30,12 @@ DemoScene::DemoScene(int stage_number)
 
 void DemoScene::initLoopDemoScene()
 {	
-	this->is_checked_scaffold_for_hero = false;
-	this->is_checked_scaffold_for_enemy1 = false;
 	this->main_camera.initForLoop();
 
 	this->hero.initForLoop();
 	this->hero.UpdateBeforeMovingRectCollision();
+
+	this->enemy_test1.initForLoop();
 }
 
 //カメラとの当たり判定を検証し、画面外であれば処理しないようにしようか。
@@ -45,7 +45,7 @@ void DemoScene::Play()
 	BaseScene::Play();
 	//入力用デバッグ指定したキーのみでブレークしたいときに
 	if (DebugMode::isDebugMode()) {
-		if ((this->input.IsInputUp()) && (this->input.IsInputRight())) {
+		if ((this->input.isInputUp()) && (this->input.isInputRight())) {
 			int a = 1;
 		}
 	}
@@ -70,13 +70,13 @@ void DemoScene::Play()
 	this->hero.MovePositionByInput(this->input);
 
 	//プレイヤーとマップの判定で、プレイヤーの可能な状態を整理、左右移動（後程、画面内のみに変える
-	this->checkPlayerAndMapForLeftRight();
+	this->checkCharacterAndMapForLeftRight();
 
 	//プレイヤーの移動、上下
 	this->hero.MoveNoInput();
 
 	//プレイヤーとマップの判定で、プレイヤーの可能な状態を整理、上下移動（後程、画面内のみに変える
-	this->checkPlayerAndMapForTopBottom();
+	this->checkCharacterAndMapForTopBottom();
 
 	//敵行動
 	this->enemy_test1.AoutAction();
@@ -103,8 +103,8 @@ void DemoScene::Play()
 	this->ProcessStage();
 
 	//ヒーローや敵の描画
-	this->DrawCharacter(this->hero);
 	this->DrawCharacter(this->enemy_test1);
+	this->DrawCharacter(this->hero);
 
 	if (DebugMode::isDebugMode()) {
 		CollisionService::drawCollisionByRect(this->hero.getCollision(), 0, 255, 0, this->main_camera);
@@ -147,7 +147,7 @@ void DemoScene::Play()
 }
 
 
-void DemoScene::checkPlayerAndMapForLeftRight()
+void DemoScene::checkCharacterAndMapForLeftRight()
 {
 	switch (this->current_stage_id)
 	{
@@ -163,35 +163,11 @@ void DemoScene::checkPlayerAndMapForLeftRight()
 					}
 
 					if (map_tip.hasCollision()) {
-						if (CollisionService::checkCollisionByRectAndRect(this->hero.getCollision(), map_tip.getCollision())) {
-							if (this->input.IsInputLeft()) {
-								float difference = CollisionService::differenceXLeftByRectandRect(this->hero.getCollision(), map_tip.getCollision());
-								this->hero.MoveRight((int)difference);
-							}
 
-							if (this->input.IsInputRight()) {
-								float difference = CollisionService::differenceXRightByRectandRect(this->hero.getCollision(), map_tip.getCollision());
-								this->hero.MoveLeft((int)difference);
-							}
+						this->hero.checkHeroAndMapForLeftRight(map_tip, this->input);
 
-						}
-
-						if (CollisionService::checkCollisionByRectAndRect(this->enemy_test1.getCollision(), map_tip.getCollision())) {
-
-							//敵の計算もこのタイミングでしていいかどうか確かめる、敵の数は多い為に、配列でforeachした方が良いかもしれん。
-							//また、カメラ外の処理をしないようにもする。
-							if (this->enemy_test1.isDirectionLeft()) {
-								float enemy_test1_dfference = CollisionService::differenceXLeftByRectandRect(this->enemy_test1.getCollision(), map_tip.getCollision());
-								this->enemy_test1.MoveRight((int)enemy_test1_dfference);
-								//AI系になるから、EnemyEntityに記述したい感がある。
-								this->enemy_test1.changeDirectionRight();
-							} else if (this->enemy_test1.isDirectionRight()) {
-								float enemy_test1_dfference = CollisionService::differenceXRightByRectandRect(this->enemy_test1.getCollision(), map_tip.getCollision());
-								this->enemy_test1.MoveLeft((int)enemy_test1_dfference);
-								this->enemy_test1.changeDirectionLeft();
-							}
-							
-						}
+						//敵の計算もこのタイミングでしていいかどうか確かめる、敵の数は多い為に、配列でforeachした方が良いかもしれん。
+						this->enemy_test1.checkHeroAndMapForLeftRight(map_tip);
 
 					}
 				}
@@ -202,7 +178,7 @@ void DemoScene::checkPlayerAndMapForLeftRight()
 	return;
 }
 
-void DemoScene::checkPlayerAndMapForTopBottom()
+void DemoScene::checkCharacterAndMapForTopBottom()
 {
 	switch (this->current_stage_id)
 	{
@@ -218,65 +194,12 @@ void DemoScene::checkPlayerAndMapForTopBottom()
 					}
 
 					if (map_tip.hasCollision()) {
-						if (CollisionService::checkCollisionByRectAndRect(this->hero.getCollision(), map_tip.getCollision())) {
-							if (this->hero.isFall()) {
-								float difference = CollisionService::differenceYBottomByRectandRect(this->hero.getCollision(), map_tip.getCollision());
-								this->hero.MoveUp((int)difference);
-							}
 
-							if (hero.isJump()) {
-								float difference = CollisionService::differenceYTopByRectandRect(this->hero.getCollision(), map_tip.getCollision());
-								DebugMode::floatVariable = difference;
-								this->hero.MoveDown((int)difference);
-								
-							}
-						}
+						this->hero.checkHeroAndMapForTopBottom(map_tip);
 
-						//下が足場かどうか確認
-						if (!this->is_checked_scaffold_for_hero) {
-							RectCollision expected_rect_collision = this->hero.getCollision();
-							expected_rect_collision.moveCollisionY(-1);
-							if (!CollisionService::checkCollisionByRectAndRect(expected_rect_collision, map_tip.getCollision())) {
-								this->hero.OnFallStatus();
-							}
-							else {
-								this->hero.OffFallStatus();
-								this->is_checked_scaffold_for_hero = true;
-							}
-							expected_rect_collision.moveCollisionY(1);
-
-						}
-
-						if (CollisionService::checkCollisionByRectAndRect(this->enemy_test1.getCollision(), map_tip.getCollision())) {
-
-							//敵の計算もこのタイミングでしていいかどうか確かめる、敵の数は多い為に、配列でforeachした方が良いかもしれん。
-							//また、カメラ外の処理をしないようにもする。
-							if (this->enemy_test1.isFall()) {
-								float enemy_test1_dfference = CollisionService::differenceYBottomByRectandRect(this->enemy_test1.getCollision(), map_tip.getCollision());
-								this->enemy_test1.MoveUp((int)enemy_test1_dfference);
-							}
-							/*if (this->enemy_test1.isDirectionRight()) {
-								float enemy_test1_dfference = CollisionService::differenceXRightByRectandRect(this->enemy_test1.getCollision(), map_tip.getCollision());
-								this->enemy_test1.MoveLeft((int)enemy_test1_dfference);
-								this->enemy_test1.changeDirectionLeft();
-							}*/
-
-						}
-
-						//下が足場かどうか確認
-						if (! this->is_checked_scaffold_for_enemy1) {
-							RectCollision expected_rect_collision = this->enemy_test1.getCollision();
-							expected_rect_collision.moveCollisionY(-1);
-							if (! CollisionService::checkCollisionByRectAndRect(expected_rect_collision, map_tip.getCollision())) {
-								this->enemy_test1.OnFallStatus();
-							}
-							else {
-								this->enemy_test1.OffFallStatus();
-								this->is_checked_scaffold_for_enemy1 = true;
-							}
-							expected_rect_collision.moveCollisionY(1);
-
-						}
+						//敵の計算もこのタイミングでしていいかどうか確かめる、敵の数は多い為に、配列でforeachした方が良いかもしれん。
+						this->enemy_test1.checkHeroAndMapForTopBottom(map_tip);
+						
 
 					}
 				}
@@ -300,12 +223,12 @@ void DemoScene::checkCameraAndMapForLeftRight()
 						if (CollisionService::checkCollisionByRectAndRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
 							if (isChecked == false) {
 								if (this->main_camera.isCameraMovedLeft()) {
-									float difference = CollisionService::differenceXLeftByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+									float difference = CollisionService::differenceXLeftByRectAndRect(this->main_camera.createRectCollision(), map_tip.getCollision());
 									this->main_camera.moveRightX((int)difference);
 								}
 
 								if (this->main_camera.isCameraMovedRight()) {
-									float difference = CollisionService::differenceXRightByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+									float difference = CollisionService::differenceXRightByRectAndRect(this->main_camera.createRectCollision(), map_tip.getCollision());
 									this->main_camera.moveLeftX((int)difference);
 								}
 								isChecked = true;
@@ -332,12 +255,12 @@ void DemoScene::checkCameraAndMapForTopBottom()
 						if (CollisionService::checkCollisionByRectAndRect(this->main_camera.createRectCollision(), map_tip.getCollision())) {
 							if (isChecked == false) {
 								if (this->main_camera.isCameraMovedUp()) {
-									float difference = CollisionService::differenceYTopByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+									float difference = CollisionService::differenceYTopByRectAndRect(this->main_camera.createRectCollision(), map_tip.getCollision());
 									this->main_camera.moveDownY((int)difference);
 								}
 
 								if (this->main_camera.isCameraMovedDown()) {
-									float difference = CollisionService::differenceYBottomByRectandRect(this->main_camera.createRectCollision(), map_tip.getCollision());
+									float difference = CollisionService::differenceYBottomByRectAndRect(this->main_camera.createRectCollision(), map_tip.getCollision());
 									this->main_camera.moveUpY((int)difference);
 
 								}

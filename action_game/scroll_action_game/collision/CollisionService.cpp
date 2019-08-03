@@ -14,25 +14,25 @@ bool CollisionService::checkCollisionByRectAndRect(RectCollision basis_rect_coll
 }
 
 //マイナスを考えるとわけわからんので絶対値で出す。
-float CollisionService::differenceXLeftByRectandRect(RectCollision basis_rect_collision, RectCollision target_rect_collision)
+float CollisionService::differenceXLeftByRectAndRect(RectCollision basis_rect_collision, RectCollision target_rect_collision)
 {
 	float difference = basis_rect_collision.getCurrentXLeft() - target_rect_collision.getCurrentXRight();
 	return fabsf(difference);
 }
 
-float CollisionService::differenceXRightByRectandRect(RectCollision basis_rect_collision, RectCollision target_rect_collision)
+float CollisionService::differenceXRightByRectAndRect(RectCollision basis_rect_collision, RectCollision target_rect_collision)
 {
 	float difference = basis_rect_collision.getCurrentXRight() - target_rect_collision.getCurrentXLeft();
 	return fabsf(difference);
 }
 
-float CollisionService::differenceYTopByRectandRect(RectCollision basis_rect_collision, RectCollision target_rect_collision)
+float CollisionService::differenceYTopByRectAndRect(RectCollision basis_rect_collision, RectCollision target_rect_collision)
 {
 	float difference = basis_rect_collision.getCurrentYTop() - target_rect_collision.getCurrentYBottom();
 	return fabsf(difference);
 }
 
-float CollisionService::differenceYBottomByRectandRect(RectCollision basis_rect_collision, RectCollision target_rect_collision)
+float CollisionService::differenceYBottomByRectAndRect(RectCollision basis_rect_collision, RectCollision target_rect_collision)
 {
 	float difference = basis_rect_collision.getCurrentYBottom() - target_rect_collision.getCurrentYTop();
 	return fabsf(difference);

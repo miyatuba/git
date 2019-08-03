@@ -17,52 +17,52 @@ void Input::CheckInput()
 	this->is_input_4 = (bool)CheckHitKey(KEY_INPUT_4);
 }
 
-bool Input::IsInputLeft() 
+bool Input::isInputLeft() 
 {
 	return this->is_input_left;
 }
 
-bool Input::IsInputRight() 
+bool Input::isInputRight() 
 {
 	return this->is_input_right;
 }
 
-bool Input::IsInputUp() 
+bool Input::isInputUp() 
 {
 	return this->is_input_up;
 }
 
-bool Input::IsInputDown() 
+bool Input::isInputDown() 
 {
 	return this->is_input_down;
 }
 
-bool Input::IsInputA()
+bool Input::isInputA()
 {
 	return this->is_input_a;
 }
 
-bool Input::IsInputEscape()
+bool Input::isInputEscape()
 {
 	return this->is_input_escape;
 }
 
-bool Input::IsInput1()
+bool Input::isInput1()
 {
 	return this->is_input_1;
 }
 
-bool Input::IsInput2()
+bool Input::isInput2()
 {
 	return this->is_input_2;
 }
 
-bool Input::IsInput3()
+bool Input::isInput3()
 {
 	return this->is_input_3;
 }
 
-bool Input::IsInput4()
+bool Input::isInput4()
 {
 	return this->is_input_4;
 }

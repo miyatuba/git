@@ -13,7 +13,7 @@ private:
 
 	// baseに記述するか迷ったけど。各モンスター毎で違うかと考えたので、個別に記述してみる
 	bool is_fall = true;
-	
+	bool is_checked_scaffold = false;
 
 public:
 	EnemyTest1();
@@ -27,4 +27,9 @@ public:
 
 	void OnFallStatus();
 	void OffFallStatus();
+	void checkHeroAndMapForLeftRight(MapTip map_tip);
+	void checkHeroAndMapForTopBottom(MapTip map_tip);
+
+	void initForLoop();
+
 };

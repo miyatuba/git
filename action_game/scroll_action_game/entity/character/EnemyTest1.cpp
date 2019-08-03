@@ -17,6 +17,12 @@ EnemyTest1::EnemyTest1()
 	this->direction = BaseEnemy::DIRECTION_LEFT;
 }
 
+//これはベースにも記述するべき？
+void EnemyTest1::initForLoop()
+{
+	this->is_checked_scaffold = false;
+}
+
 int EnemyTest1::getImageHandle()
 {
 	return this->stand_image_handle;
@@ -74,4 +80,55 @@ void EnemyTest1::OnFallStatus()
 void EnemyTest1::OffFallStatus()
 {
 	this->is_fall = false;
+}
+
+void EnemyTest1::checkHeroAndMapForLeftRight(MapTip map_tip)
+{
+	if (CollisionService::checkCollisionByRectAndRect(this->getCollision(), map_tip.getCollision())) {
+
+		if (this->isDirectionLeft()) {
+			float dfference = CollisionService::differenceXLeftByRectAndRect(this->getCollision(), map_tip.getCollision());
+			this->MoveRight((int) dfference);
+			//AI系になるから、EnemyEntityに記述したい感がある。
+			this->changeDirectionRight();
+		}
+		else if (this->isDirectionRight()) {
+			float dfference = CollisionService::differenceXRightByRectAndRect(this->getCollision(), map_tip.getCollision());
+			this->MoveLeft((int) dfference);
+			this->changeDirectionLeft();
+		}
+
+	}
+}
+
+void EnemyTest1::checkHeroAndMapForTopBottom(MapTip map_tip)
+{
+	if (CollisionService::checkCollisionByRectAndRect(this->getCollision(), map_tip.getCollision())) {
+
+		if (this->isFall()) {
+			float dfference = CollisionService::differenceYBottomByRectAndRect(this->getCollision(), map_tip.getCollision());
+			this->MoveUp((int) dfference);
+
+		}
+		if (false) {//敵の上へ移動する条件次第
+			float dfference = CollisionService::differenceYTopByRectAndRect(this->getCollision(), map_tip.getCollision());
+			this->MoveDown((int) dfference);
+		}
+
+	}
+
+	//下が足場かどうか確認
+	if (! this->is_checked_scaffold) {
+		RectCollision expected_rect_collision = this->getCollision();
+		expected_rect_collision.moveCollisionY(-1);
+		if (! CollisionService::checkCollisionByRectAndRect(expected_rect_collision, map_tip.getCollision())) {
+			this->OnFallStatus();
+		}
+		else {
+			this->OffFallStatus();
+			this->is_checked_scaffold = true;
+		}
+		expected_rect_collision.moveCollisionY(1);
+
+	}
 }

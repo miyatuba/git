@@ -20,61 +20,54 @@ Hero::Hero()
 
 void Hero::initForLoop()
 {
-	this->can_down_move = true;
-	this->can_left_move = true;
-	this->can_right_move = true;
-	this->can_up_move = true;
 	this->UpdateBeforeMovingRectCollision();
+	this->is_checked_scaffold_for_hero = false;
 }
 
 //この辺り、intで扱って最終的にfloatに変換するか、もしくはその逆か、はっきりさせないと危ない
 void Hero::MoveLeft(int x)
 {
-	if (!this->can_left_move) return;
 	this->x -= x;
 	this->rect_collision.moveCollisionX(-x);//誤さ起きそう
 }
 
 void Hero::MoveRight(int x)
 {
-	if (!this->can_right_move) return;
 	this->x += x;
 	this->rect_collision.moveCollisionX(x);//誤さ起きそう
 }
 
 void Hero::MoveUp(int y)
 {
-	if (!this->can_up_move) return;
 	this->y += y;
 	this->rect_collision.moveCollisionY(y);//誤さ起きそう
 }
 
 void Hero::MoveDown(int y)
 {
-	if (!this->can_down_move) return;
 	this->y -= y;
 	this->rect_collision.moveCollisionY(-y);//誤さ起きそう
 }
 
 void Hero::MovePositionByInput(Input input)
 {
-	if (input.IsInputLeft()) {
+	if (input.isInputLeft()) {
 		this->MoveLeft(Hero::MOVE_FORCE_POINT);
 		this->changeDirectionLeft();
 	}
-	if (input.IsInputRight()) {
+	if (input.isInputRight()) {
 		this->MoveRight(Hero::MOVE_FORCE_POINT);
 		this->changeDirectionRight();
 	}
-	if (input.IsInputUp()) {
+	if (input.isInputUp()) {
 		//this->MoveUp(Hero::MOVE_FORCE_POINT);
 	}
-	if (input.IsInputDown()) {
+	if (input.isInputDown()) {
 		//this->MoveDown(Hero::MOVE_FORCE_POINT);
 	}
 
 
-	if (input.IsInputA()) {
+	if (input.isInputA()) {
 		//空が飛べる前提なので、落下状態は見ない
 		this->ChangeJumpStatus();
 		this->jump_frame_elapsed_time = Hero::JUMP_FRAME_TIME;
@@ -163,6 +156,7 @@ bool Hero::isJump()
 	return this->is_jump;
 }
 
+//これ使ってる？
 void Hero::UpdateBeforeMovingRectCollision()
 {
 	RectCollision current_rect_collision = this->rect_collision;
@@ -208,4 +202,48 @@ void Hero::changeDirectionRight()
 void Hero::changeDirectionLeft()
 {
 	this->direction = Hero::DIRECTION_LEFT;
+}
+
+void Hero::checkHeroAndMapForLeftRight(MapTip map_tip, Input input)
+{
+	if (CollisionService::checkCollisionByRectAndRect(this->getCollision(), map_tip.getCollision())) {
+		if (input.isInputLeft()) {
+			float difference = CollisionService::differenceXLeftByRectAndRect(this->getCollision(), map_tip.getCollision());
+			this->MoveRight((int) difference);
+		}
+
+		if (input.isInputRight()) {
+			float difference = CollisionService::differenceXRightByRectAndRect(this->getCollision(), map_tip.getCollision());
+			this->MoveLeft((int) difference);
+		}
+	}
+}
+
+void Hero::checkHeroAndMapForTopBottom(MapTip map_tip)
+{
+	if (CollisionService::checkCollisionByRectAndRect(this->getCollision(), map_tip.getCollision())) {
+		if (this->isFall()) {
+			float difference = CollisionService::differenceYBottomByRectAndRect(this->getCollision(), map_tip.getCollision());
+			this->MoveUp((int) difference);
+			this->OffFallStatus();
+		}
+		if (this->isJump()) {//ジャンプだけで見ているが、恐らくホバリングも対象
+			float difference = CollisionService::differenceYTopByRectAndRect(this->getCollision(), map_tip.getCollision());
+			this->MoveDown((int) difference);
+		}
+	}
+
+	if (! this->is_checked_scaffold_for_hero) {
+		RectCollision expected_rect_collision = this->getCollision();
+		expected_rect_collision.moveCollisionY(-1);
+		if (! CollisionService::checkCollisionByRectAndRect(expected_rect_collision, map_tip.getCollision())) {
+			this->OnFallStatus();
+		}
+		else {
+			this->OffFallStatus();
+			this->is_checked_scaffold_for_hero = true;
+		}
+		expected_rect_collision.moveCollisionY(1);
+	}
+
 }

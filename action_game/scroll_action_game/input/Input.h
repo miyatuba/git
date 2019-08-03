@@ -17,15 +17,15 @@ private:
 
 public:
 	void CheckInput();
-	bool IsInputLeft();
-	bool IsInputRight();
-	bool IsInputUp();
-	bool IsInputDown();
-	bool IsInputA();
-	bool IsInputEscape();
-	bool IsInput1();
-	bool IsInput2();
-	bool IsInput3();
-	bool IsInput4();
+	bool isInputLeft();
+	bool isInputRight();
+	bool isInputUp();
+	bool isInputDown();
+	bool isInputA();
+	bool isInputEscape();
+	bool isInput1();
+	bool isInput2();
+	bool isInput3();
+	bool isInput4();
 
 };

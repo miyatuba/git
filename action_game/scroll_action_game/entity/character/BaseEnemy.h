@@ -3,6 +3,8 @@
 #include <string>
 #include "../../view/IDraw.h"
 #include "../../collision/RectCollision.h" 
+#include "../../collision/CollisionService.h" 
+#include "../map/MapTip.h"
 
 class BaseEnemy : virtual public IDraw
 {
