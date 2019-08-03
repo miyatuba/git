@@ -3,6 +3,7 @@
 //ダメージ
 //敵キャラ
 //ジャンプの緩急
+//マップチップの当たり処理はヒーローや敵のentityないで記述するのが政界の気がする。今のままだと処理*敵数だけsourceが長くなる
 
 DemoScene::DemoScene()
 {
@@ -30,6 +31,7 @@ DemoScene::DemoScene(int stage_number)
 void DemoScene::initLoopDemoScene()
 {	
 	this->is_checked_scaffold_for_hero = false;
+	this->is_checked_scaffold_for_enemy1 = false;
 	this->main_camera.initForLoop();
 
 	this->hero.initForLoop();
@@ -97,7 +99,7 @@ void DemoScene::Play()
 	//描画削除
 	this->draw.CallClearDrawScreen();
 
-	//ステージの描画（画面に映るものだけにしたい
+	//ステージの描画
 	this->ProcessStage();
 
 	//ヒーローや敵の描画
@@ -177,14 +179,13 @@ void DemoScene::checkPlayerAndMapForLeftRight()
 						if (CollisionService::checkCollisionByRectAndRect(this->enemy_test1.getCollision(), map_tip.getCollision())) {
 
 							//敵の計算もこのタイミングでしていいかどうか確かめる、敵の数は多い為に、配列でforeachした方が良いかもしれん。
+							//また、カメラ外の処理をしないようにもする。
 							if (this->enemy_test1.isDirectionLeft()) {
 								float enemy_test1_dfference = CollisionService::differenceXLeftByRectandRect(this->enemy_test1.getCollision(), map_tip.getCollision());
 								this->enemy_test1.MoveRight((int)enemy_test1_dfference);
 								//AI系になるから、EnemyEntityに記述したい感がある。
 								this->enemy_test1.changeDirectionRight();
-							}
-
-							else if (this->enemy_test1.isDirectionRight()) {
+							} else if (this->enemy_test1.isDirectionRight()) {
 								float enemy_test1_dfference = CollisionService::differenceXRightByRectandRect(this->enemy_test1.getCollision(), map_tip.getCollision());
 								this->enemy_test1.MoveLeft((int)enemy_test1_dfference);
 								this->enemy_test1.changeDirectionLeft();
@@ -245,6 +246,38 @@ void DemoScene::checkPlayerAndMapForTopBottom()
 							expected_rect_collision.moveCollisionY(1);
 
 						}
+
+						if (CollisionService::checkCollisionByRectAndRect(this->enemy_test1.getCollision(), map_tip.getCollision())) {
+
+							//敵の計算もこのタイミングでしていいかどうか確かめる、敵の数は多い為に、配列でforeachした方が良いかもしれん。
+							//また、カメラ外の処理をしないようにもする。
+							if (this->enemy_test1.isFall()) {
+								float enemy_test1_dfference = CollisionService::differenceYBottomByRectandRect(this->enemy_test1.getCollision(), map_tip.getCollision());
+								this->enemy_test1.MoveUp((int)enemy_test1_dfference);
+							}
+							/*if (this->enemy_test1.isDirectionRight()) {
+								float enemy_test1_dfference = CollisionService::differenceXRightByRectandRect(this->enemy_test1.getCollision(), map_tip.getCollision());
+								this->enemy_test1.MoveLeft((int)enemy_test1_dfference);
+								this->enemy_test1.changeDirectionLeft();
+							}*/
+
+						}
+
+						//下が足場かどうか確認
+						if (! this->is_checked_scaffold_for_enemy1) {
+							RectCollision expected_rect_collision = this->enemy_test1.getCollision();
+							expected_rect_collision.moveCollisionY(-1);
+							if (! CollisionService::checkCollisionByRectAndRect(expected_rect_collision, map_tip.getCollision())) {
+								this->enemy_test1.OnFallStatus();
+							}
+							else {
+								this->enemy_test1.OffFallStatus();
+								this->is_checked_scaffold_for_enemy1 = true;
+							}
+							expected_rect_collision.moveCollisionY(1);
+
+						}
+
 					}
 				}
 			}

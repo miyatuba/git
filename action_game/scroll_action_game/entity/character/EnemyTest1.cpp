@@ -32,7 +32,9 @@ void EnemyTest1::AoutAction()
 		this->MoveRight(1);
 	}
 
-
+	if (this->isFall()) {
+		this->MoveDown(1);
+	}
 }
 
 void EnemyTest1::MoveLeft(int x)
@@ -45,4 +47,31 @@ void EnemyTest1::MoveRight(int x)
 {
 	this->x += x;
 	this->rect_collision.moveCollisionX(x);
+}
+
+void EnemyTest1::MoveDown(int y)
+{
+	this->y -= y;
+	this->rect_collision.moveCollisionY(-y);
+}
+
+void EnemyTest1::MoveUp(int y)
+{
+	this->y += y;
+	this->rect_collision.moveCollisionY(y);
+}
+
+bool EnemyTest1::isFall()
+{
+	return this->is_fall;
+}
+
+void EnemyTest1::OnFallStatus()
+{
+	this->is_fall = true;
+}
+
+void EnemyTest1::OffFallStatus()
+{
+	this->is_fall = false;
 }

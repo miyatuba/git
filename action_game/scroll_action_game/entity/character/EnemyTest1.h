@@ -11,7 +11,9 @@ private:
 	const static int X_SIZE = 64;
 	const static int Y_SIZE = 64;
 
-
+	// baseに記述するか迷ったけど。各モンスター毎で違うかと考えたので、個別に記述してみる
+	bool is_fall = true;
+	
 
 public:
 	EnemyTest1();
@@ -19,4 +21,10 @@ public:
 	void AoutAction();
 	void MoveLeft(int);
 	void MoveRight(int);
+	void MoveDown(int);
+	void MoveUp(int);
+	bool isFall();
+
+	void OnFallStatus();
+	void OffFallStatus();
 };
