@@ -31,6 +31,20 @@ class BattleScene {
     PARTY_CHARACTER8_POSITION_Y = 220;
     PLAYER_CURSOR_RELATIVE_POSITION_X = 100;
     PLAYER_CURSOR_RELATIVE_POSITION_Y = 150;
+    ENEMY_1_POSITION_X = 200;
+    ENEMY_1_POSITION_Y = 70;
+    ENEMY_2_POSITION_X = 200;
+    ENEMY_2_POSITION_Y = 220;
+    ENEMY_3_POSITION_X = 100;
+    ENEMY_3_POSITION_Y = 20;
+    ENEMY_4_POSITION_X = 100;
+    ENEMY_4_POSITION_Y = 170;
+    ENEMY_5_POSITION_X = 0;
+    ENEMY_5_POSITION_Y = 70;
+    ENEMY_6_POSITION_X = 0;
+    ENEMY_6_POSITION_Y = 220;
+    ENEMY_CURSOR_RELATIVE_POSITION_X = 100;
+    ENEMY_CURSOR_RELATIVE_POSITION_Y = 150;
 
     /**プロパティ
      * party_structure
@@ -63,12 +77,6 @@ class BattleScene {
         this.battle_input = new BattleInput();
 
         this.draw = new Draw();
-
-        // 四角形の作成
-        var rect = new createjs.Shape();
-        rect.graphics.beginFill("red").drawRect(200, 20, 160, 160);
-        this.battle_input.setTest(rect);
-        this.draw.DrawBmp(rect, 0, 0);
 
         this._initPartyDeploy();
         this._initEnemyDeploy();
@@ -111,12 +119,18 @@ class BattleScene {
         this.draw.DrawBmp(this.party_character7.getOperationRectDebug(), this.PARTY_CHARACTER7_POSITION_X, this.PARTY_CHARACTER7_POSITION_Y);
         this.draw.DrawBmp(this.party_character8.getBmp(), this.PARTY_CHARACTER8_POSITION_X, this.PARTY_CHARACTER8_POSITION_Y);
         this.draw.DrawBmp(this.party_character8.getOperationRectDebug(), this.PARTY_CHARACTER8_POSITION_X, this.PARTY_CHARACTER8_POSITION_Y);
-        this.draw.DrawBmp(this.enemy_character_position1.getBmp(), 200, 70);
-        this.draw.DrawBmp(this.enemy_character_position2.getBmp(), 200, 220);
-        this.draw.DrawBmp(this.enemy_character_position3.getBmp(), 100, 20);
-        this.draw.DrawBmp(this.enemy_character_position4.getBmp(), 100, 170);
-        this.draw.DrawBmp(this.enemy_character_position5.getBmp(), 0, 70);
-        this.draw.DrawBmp(this.enemy_character_position6.getBmp(), 0, 220);
+        this.draw.DrawBmp(this.enemy_character_position1.getBmp(), this.ENEMY_1_POSITION_X, this.ENEMY_1_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position1.getOperationRectDebug(), this.ENEMY_1_POSITION_X, this.ENEMY_1_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position2.getBmp(), this.ENEMY_2_POSITION_X, this.ENEMY_2_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position2.getOperationRectDebug(), this.ENEMY_2_POSITION_X, this.ENEMY_2_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position3.getBmp(), this.ENEMY_3_POSITION_X, this.ENEMY_3_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position3.getOperationRectDebug(), this.ENEMY_3_POSITION_X, this.ENEMY_3_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position4.getBmp(), this.ENEMY_4_POSITION_X, this.ENEMY_4_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position4.getOperationRectDebug(), this.ENEMY_4_POSITION_X, this.ENEMY_4_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position5.getBmp(), this.ENEMY_5_POSITION_X, this.ENEMY_5_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position5.getOperationRectDebug(), this.ENEMY_5_POSITION_X, this.ENEMY_5_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position6.getBmp(), this.ENEMY_6_POSITION_X, this.ENEMY_6_POSITION_Y);
+        this.draw.DrawBmp(this.enemy_character_position6.getOperationRectDebug(), this.ENEMY_6_POSITION_X, this.ENEMY_6_POSITION_Y);
 
         this.playerableToPartyCursor1Bmp = new createjs.Bitmap(this.PLAYER_CURSOR_1_PATH);
         this.playerableToPartyCursor1Bmp.scaleX = 0.1;
@@ -243,21 +257,21 @@ class BattleScene {
         this.playable_party_position_number = this.party_structure.getPlayablePartyPositionNumber();
 
         //キャラのinput操作の登録
-        this.battle_input.setParty1(this.party_character1.getOperationRect());
+        this.battle_input.setRectParty1(this.party_character1.getOperationRect());
         this.draw.DrawBmp(this.party_character1.getOperationRect(), this.PARTY_CHARACTER1_POSITION_X, this.PARTY_CHARACTER1_POSITION_Y);
-        this.battle_input.setParty2(this.party_character2.getOperationRect());
+        this.battle_input.setRectParty2(this.party_character2.getOperationRect());
         this.draw.DrawBmp(this.party_character2.getOperationRect(), this.PARTY_CHARACTER2_POSITION_X, this.PARTY_CHARACTER2_POSITION_Y);
-        this.battle_input.setParty3(this.party_character3.getOperationRect());
+        this.battle_input.setRectParty3(this.party_character3.getOperationRect());
         this.draw.DrawBmp(this.party_character3.getOperationRect(), this.PARTY_CHARACTER3_POSITION_X, this.PARTY_CHARACTER3_POSITION_Y);
-        this.battle_input.setParty4(this.party_character4.getOperationRect());
+        this.battle_input.setRectParty4(this.party_character4.getOperationRect());
         this.draw.DrawBmp(this.party_character4.getOperationRect(), this.PARTY_CHARACTER4_POSITION_X, this.PARTY_CHARACTER4_POSITION_Y);
-        this.battle_input.setParty5(this.party_character5.getOperationRect());
+        this.battle_input.setRectParty5(this.party_character5.getOperationRect());
         this.draw.DrawBmp(this.party_character5.getOperationRect(), this.PARTY_CHARACTER5_POSITION_X, this.PARTY_CHARACTER5_POSITION_Y);
-        this.battle_input.setParty6(this.party_character6.getOperationRect());
+        this.battle_input.setRectParty6(this.party_character6.getOperationRect());
         this.draw.DrawBmp(this.party_character6.getOperationRect(), this.PARTY_CHARACTER6_POSITION_X, this.PARTY_CHARACTER6_POSITION_Y);
-        this.battle_input.setParty7(this.party_character7.getOperationRect());
+        this.battle_input.setRectParty7(this.party_character7.getOperationRect());
         this.draw.DrawBmp(this.party_character7.getOperationRect(), this.PARTY_CHARACTER7_POSITION_X, this.PARTY_CHARACTER7_POSITION_Y);
-        this.battle_input.setParty8(this.party_character8.getOperationRect());
+        this.battle_input.setRectParty8(this.party_character8.getOperationRect());
         this.draw.DrawBmp(this.party_character8.getOperationRect(), this.PARTY_CHARACTER8_POSITION_X, this.PARTY_CHARACTER8_POSITION_Y);
 
     }
@@ -271,6 +285,9 @@ class BattleScene {
         this.enemy_character_position4 = new Goblin;
         this.enemy_character_position5 = new Goblin;
         this.enemy_character_position6 = new Goblin;
+
+        this.battle_input.setRectParty1(this.party_character1.getOperationRect());
+        this.draw.DrawBmp(this.party_character1.getOperationRect(), this.PARTY_CHARACTER1_POSITION_X, this.PARTY_CHARACTER1_POSITION_Y);
     }
 
     play()
