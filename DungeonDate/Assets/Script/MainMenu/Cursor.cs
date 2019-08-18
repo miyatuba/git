@@ -23,24 +23,17 @@ public class Cursor : MonoBehaviour
         
     }
 
-    public void SelectCursorChangeByInput(InputManager input_manager)
+    public void SelectCursorChangeById(int id)
     {
-        if (input_manager.IsUpArrowKey()) {
-            this.select_number += 3; 
-        }
 
-        if (input_manager.IsDownArrowKey()) {
-            this.select_number += 1;
-        }
-
-        this.select_number = this.select_number % 4;
+        this.select_number = id;
 
         // transformを取得
         Transform transform = this.transform;
 
         // 座標を取得
         Vector3 position = transform.position;
-        position.y = this.y_position_list[this.select_number];
+        position.y = this.y_position_list[this.select_number - 1];
         
         transform.position = position;  // 座標を設定
 
