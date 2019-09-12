@@ -4,7 +4,8 @@ class Soldier extends BaseParty
 {
     constructor(is_playable)
     {
-        super(is_playable);
+        var job_type = JobType.createInstanceForSoldier();
+        super(is_playable, job_type);
         this.bmp = new createjs.Bitmap(SOLDIER_IMAGE_DEFAULT_1_PATH);
         this.bmp.scaleX = 0.6;
         this.bmp.scaleY = 0.6;

@@ -1,4 +1,10 @@
-window.addEventListener('load', init);
+
+try {
+    window.addEventListener('load', init);
+} catch {
+    console.log(error.message);
+}
+
 
 var main;
 

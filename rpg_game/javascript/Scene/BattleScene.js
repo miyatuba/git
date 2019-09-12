@@ -4,15 +4,7 @@ class BattleScene {
     PLAYER_CURSOR_1_PATH = "resource/image/battle/player_cursor1.png";
     ENEMY_CURSOR_1_PATH = "resource/image/battle/enemy_cursor1.png";
 
-    PARTY_NUMBER_ID_SOLDIER = 1;
-    PARTY_NUMBER_ID_LANCER = 2;
-    PARTY_NUMBER_ID_ARCHER = 3;
-    PARTY_NUMBER_ID_MAGE = 4;
-    PARTY_NUMBER_ID_CLERIC = 5;
-    PARTY_NUMBER_ID_ROOK = 6;
-    PARTY_NUMBER_ID_BERSERK = 7;
-    PARTY_NUMBER_ID_HUNTER = 8;
-
+    //初期座標
     PARTY_CHARACTER1_POSITION_X = 480;
     PARTY_CHARACTER1_POSITION_Y = 20;
     PARTY_CHARACTER2_POSITION_X = 450;
@@ -66,7 +58,7 @@ class BattleScene {
      * enemy_character_position4
      * enemy_character_position5
      * enemy_character_position6
-     * playerableToPartyCursor1Bmp = new createjs.Bitmap(this.PLAYER_CURSOR_1_PATH);
+     * playerableToPartyCursor1Bmp
      * partyToEnemyCursor1Bmp
      * 
     */
@@ -79,6 +71,7 @@ class BattleScene {
         this.draw = new Draw();
 
         this._initPartyDeploy();
+        this._initAbilityDeploy();
         this._initEnemyDeploy();
         this._initDraw();
 
@@ -286,8 +279,23 @@ class BattleScene {
         this.enemy_character_position5 = new Goblin;
         this.enemy_character_position6 = new Goblin;
 
-        this.battle_input.setRectParty1(this.party_character1.getOperationRect());
-        this.draw.DrawBmp(this.party_character1.getOperationRect(), this.PARTY_CHARACTER1_POSITION_X, this.PARTY_CHARACTER1_POSITION_Y);
+        this.battle_input.setRectEnemy1(this.enemy_character_position1.getOperationRect());
+        this.draw.DrawBmp(this.enemy_character_position1.getOperationRect(), this.ENEMY_1_POSITION_X, this.ENEMY_1_POSITION_Y);
+        this.battle_input.setRectEnemy2(this.enemy_character_position2.getOperationRect());
+        this.draw.DrawBmp(this.enemy_character_position2.getOperationRect(), this.ENEMY_2_POSITION_X, this.ENEMY_2_POSITION_Y);
+        this.battle_input.setRectEnemy3(this.enemy_character_position3.getOperationRect());
+        this.draw.DrawBmp(this.enemy_character_position3.getOperationRect(), this.ENEMY_3_POSITION_X, this.ENEMY_3_POSITION_Y);
+        this.battle_input.setRectEnemy4(this.enemy_character_position4.getOperationRect());
+        this.draw.DrawBmp(this.enemy_character_position4.getOperationRect(), this.ENEMY_4_POSITION_X, this.ENEMY_4_POSITION_Y);
+        this.battle_input.setRectEnemy5(this.enemy_character_position5.getOperationRect());
+        this.draw.DrawBmp(this.enemy_character_position5.getOperationRect(), this.ENEMY_5_POSITION_X, this.ENEMY_5_POSITION_Y);
+        this.battle_input.setRectEnemy6(this.enemy_character_position6.getOperationRect());
+        this.draw.DrawBmp(this.enemy_character_position6.getOperationRect(), this.ENEMY_6_POSITION_X, this.ENEMY_6_POSITION_Y);
+    }
+
+    _initAbilityDeploy()
+    {
+        //this.battle_input.setRectAbility1();
     }
 
     play()
@@ -313,64 +321,62 @@ class BattleScene {
 
         
         //入力処理（プレイアブル
-        var selectPositionNumber = 0;
+        var selectPartyPositionNumber = 0;
         if (this.battle_input.isInputParty1()) {
-            selectPositionNumber = 1;
+            selectPartyPositionNumber = 1;
         }
         if (this.battle_input.isInputParty2()) {
-            selectPositionNumber = 2;
+            selectPartyPositionNumber = 2;
         }
         if (this.battle_input.isInputParty3()) {
-            selectPositionNumber = 3;
+            selectPartyPositionNumber = 3;
         }
         if (this.battle_input.isInputParty4()) {
-            selectPositionNumber = 4;
+            selectPartyPositionNumber = 4;
         }
         if (this.battle_input.isInputParty5()) {
-            selectPositionNumber = 5;
+            selectPartyPositionNumber = 5;
         }
         if (this.battle_input.isInputParty6()) {
-            selectPositionNumber = 6;
+            selectPartyPositionNumber = 6;
         }
         if (this.battle_input.isInputParty7()) {
-            selectPositionNumber = 7;
+            selectPartyPositionNumber = 7;
         }
         if (this.battle_input.isInputParty8()) {
-            selectPositionNumber = 8;
+            selectPartyPositionNumber = 8;
         }
     
-
-        if (selectPositionNumber != 0) {
+        //ターゲットセット
+        if (selectPartyPositionNumber != 0) {
             switch (this.playable_party_position_number) {
                 case 1://流石にここはマジックナンバーで良いと思うんだけど・・
-                    this.party_character1.setToPartyTargetPositionNumber(selectPositionNumber);
+                    this.party_character1.setToPartyTargetPositionNumber(selectPartyPositionNumber);
                     break;
                 case 2:
-                    this.party_character2.setToPartyTargetPositionNumber(selectPositionNumber);
+                    this.party_character2.setToPartyTargetPositionNumber(selectPartyPositionNumber);
                     break;
                 case 3:
-                    this.party_character3.setToPartyTargetPositionNumber(selectPositionNumber);
+                    this.party_character3.setToPartyTargetPositionNumber(selectPartyPositionNumber);
                     break;
                 case 4:
-                    this.party_character4.setToPartyTargetPositionNumber(selectPositionNumber);
+                    this.party_character4.setToPartyTargetPositionNumber(selectPartyPositionNumber);
                     break;
                 case 5:
-                    this.party_character5.setToPartyTargetPositionNumber(selectPositionNumber);
+                    this.party_character5.setToPartyTargetPositionNumber(selectPartyPositionNumber);
                     break;
                 case 6:
-                    this.party_character6.setToPartyTargetPositionNumber(selectPositionNumber);
+                    this.party_character6.setToPartyTargetPositionNumber(selectPartyPositionNumber);
                     break;
                 case 7:
-                    this.party_character7.setToPartyTargetPositionNumber(selectPositionNumber);
+                    this.party_character7.setToPartyTargetPositionNumber(selectPartyPositionNumber);
                     break;
                 case 8:
-                    this.party_character8.setToPartyTargetPositionNumber(selectPositionNumber);
+                    this.party_character8.setToPartyTargetPositionNumber(selectPartyPositionNumber);
                     break;
             }
         }
-        
-
-
+        //ターゲット描画更新
         switch (this._getPlayableCharacter().getToPartyTargetPositionNumber()) {
             case 1:
                 this.playerableToPartyCursor1Bmp.x = this.PARTY_CHARACTER1_POSITION_X + this.PLAYER_CURSOR_RELATIVE_POSITION_X;
@@ -406,6 +412,83 @@ class BattleScene {
                 break;
         }
 
+        //入力処理（敵ターゲット
+        var selectEnemyPositionNumber = 0;
+        if (this.battle_input.isInputEnemy1()) {
+            selectEnemyPositionNumber = 1;
+        }
+        if (this.battle_input.isInputEnemy2()) {
+            selectEnemyPositionNumber = 2;
+        }
+        if (this.battle_input.isInputEnemy3()) {
+            selectEnemyPositionNumber = 3;
+        }
+        if (this.battle_input.isInputEnemy4()) {
+            selectEnemyPositionNumber = 4;
+        }
+        if (this.battle_input.isInputEnemy5()) {
+            selectEnemyPositionNumber = 5;
+        }
+        if (this.battle_input.isInputEnemy6()) {
+            selectEnemyPositionNumber = 6;
+        }
+
+        if (selectEnemyPositionNumber != 0) {
+            switch (this.playable_party_position_number) {
+                case 1:
+                    this.party_character1.setToEnemyTargetPositionNumber(selectEnemyPositionNumber);
+                    break;
+                case 2:
+                    this.party_character2.setToEnemyTargetPositionNumber(selectEnemyPositionNumber);
+                    break;
+                case 3:
+                    this.party_character3.setToEnemyTargetPositionNumber(selectEnemyPositionNumber);
+                    break;
+                case 4:
+                    this.party_character4.setToEnemyTargetPositionNumber(selectEnemyPositionNumber);
+                    break;
+                case 5:
+                    this.party_character5.setToEnemyTargetPositionNumber(selectEnemyPositionNumber);
+                    break;
+                case 6:
+                    this.party_character6.setToEnemyTargetPositionNumber(selectEnemyPositionNumber);
+                    break;
+                case 7:
+                    this.party_character7.setToEnemyTargetPositionNumber(selectEnemyPositionNumber);
+                    break;
+                case 8:
+                    this.party_character8.setToEnemyTargetPositionNumber(selectEnemyPositionNumber);
+                    break;
+            }
+        }
+
+        //ターゲット描画更新
+        switch (this._getPlayableCharacter().getToEnemyTargetPositionNumber()) {
+            case 1:
+                this.partyToEnemyCursor1Bmp.x = this.ENEMY_1_POSITION_X + this.ENEMY_CURSOR_RELATIVE_POSITION_X;
+                this.partyToEnemyCursor1Bmp.y = this.ENEMY_1_POSITION_Y + this.ENEMY_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 2:
+                this.partyToEnemyCursor1Bmp.x = this.ENEMY_2_POSITION_X + this.ENEMY_CURSOR_RELATIVE_POSITION_X;
+                this.partyToEnemyCursor1Bmp.y = this.ENEMY_2_POSITION_Y + this.ENEMY_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 3:
+                this.partyToEnemyCursor1Bmp.x = this.ENEMY_3_POSITION_X + this.ENEMY_CURSOR_RELATIVE_POSITION_X;
+                this.partyToEnemyCursor1Bmp.y = this.ENEMY_3_POSITION_Y + this.ENEMY_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 4:
+                this.partyToEnemyCursor1Bmp.x = this.ENEMY_4_POSITION_X + this.ENEMY_CURSOR_RELATIVE_POSITION_X;
+                this.partyToEnemyCursor1Bmp.y = this.ENEMY_4_POSITION_Y + this.ENEMY_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 5:
+                this.partyToEnemyCursor1Bmp.x = this.ENEMY_5_POSITION_X + this.ENEMY_CURSOR_RELATIVE_POSITION_X;
+                this.partyToEnemyCursor1Bmp.y = this.ENEMY_5_POSITION_Y + this.ENEMY_CURSOR_RELATIVE_POSITION_Y;
+                break;
+            case 6:
+                this.partyToEnemyCursor1Bmp.x = this.ENEMY_6_POSITION_X + this.ENEMY_CURSOR_RELATIVE_POSITION_X;
+                this.partyToEnemyCursor1Bmp.y = this.ENEMY_6_POSITION_Y + this.ENEMY_CURSOR_RELATIVE_POSITION_Y;
+                break;
+        }
 
 
         //味方CPの処理

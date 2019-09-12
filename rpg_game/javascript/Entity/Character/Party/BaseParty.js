@@ -1,6 +1,6 @@
 class BaseParty
 {
-    constructor(is_playable)
+    constructor(is_playable, job_type)
     {
         this.is_playable = is_playable;
         this.to_party_target_position_number = 1;
@@ -14,6 +14,8 @@ class BaseParty
         this.operation_rect = new createjs.Shape();
         this.operation_rect.graphics.beginFill("black");
         this.operation_rect.graphics.drawRect(0, 0, 100, 160);
+
+        this.job_type = job_type;
     }
 
     getOperationRect()
@@ -38,19 +40,18 @@ class BaseParty
         this.to_party_target_position_number = position_number;
     }
 
-    setToEnemyTargetPositionNumber(position_number)
-    {
-        this.to_enemy_target_position_number = position_number;
-    }
-
     getToPartyTargetPositionNumber()
     {
         return this.to_party_target_position_number;
     }
 
+    setToEnemyTargetPositionNumber(position_number) {
+        this.to_enemy_target_position_number = position_number;
+    }
+
     getToEnemyTargetPositionNumber()
     {
-        return this.to_party_target_position_number;
+        return this.to_enemy_target_position_number;
     }
 }
 

@@ -2,16 +2,13 @@ const HUNTER_IMAGE_DEFAULT_1_PATH = "resource/image/party_character/hunter_defau
 
 class Hunter extends BaseParty
 {
-    constructor(is_playable) {
-        super(is_playable);
+    constructor(is_playable)
+    {
+        var job_type = JobType.createInstanceForHunter();
+        super(is_playable, job_type);
         this.bmp = new createjs.Bitmap(HUNTER_IMAGE_DEFAULT_1_PATH);
         this.bmp.scaleX = 0.4;
         this.bmp.scaleY = 0.4;
-
-        this.rectCollision = new createjs.Shape();
-        this.rectCollision.graphics.setStrokeStyle(1);
-        this.rectCollision.graphics.beginStroke("blue");
-        this.rectCollision.graphics.drawRect(0, 0, 100, 160);
 
         this.party_id = 8;
     }
