@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using System;
 
 public class DifficultSelect : MonoBehaviour
 {
     private int selectDifficultId;
+
+    public EventSystem event_system;
 
     public GameObject back_object;
     public GameObject decision_object;
@@ -55,33 +59,51 @@ public class DifficultSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject clicked_game_object = null;
-
+    
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit2d = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
-
-            if (hit2d)
+            if (this.event_system.currentSelectedGameObject == null)
             {
-                clicked_game_object = hit2d.transform.gameObject;
+                this.clickGameObject();
+            }else {
+                this.clickUI();
             }
+
+
+           
 
         }
 
+
+        
+    }
+
+    private void clickGameObject()
+    {
+        GameObject clicked_game_object = null;
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit2d = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
+
+        if (hit2d)
+        {
+            clicked_game_object = hit2d.transform.gameObject;
+        }
 
         if (clicked_game_object != null)
         {
             string clicked_object_name = clicked_game_object.name;
             foreach (GameObject difficult_not_select in this.difficult_not_select_list)
             {
-                
+
                 if (clicked_object_name == difficult_not_select.name)
                 {
                     this.selectDifficultId = difficult_not_select.GetComponent<Difficult>().getId();
                     this.difficult_select_list[selectDifficultId - 1].SetActive(true);
                 }
-                else
+                else if (clicked_object_name == this.easy_not_select_object.name || 
+                         clicked_object_name == this.nomal_not_select_object.name || 
+                         clicked_object_name == this.hard_not_select_object.name)
                 {
                     this.selectDifficultId = difficult_not_select.GetComponent<Difficult>().getId();
                     this.difficult_select_list[selectDifficultId - 1].SetActive(false);
@@ -89,12 +111,22 @@ public class DifficultSelect : MonoBehaviour
             }
 
             //help help_button上のループと分ける必要あり
-            if(clicked_object_name == this.help_button.name)
+            if (clicked_object_name == this.help_button.name)
             {
                 this.help_canvase.SetActive(true);
             }
 
             //進むとか戻るとかの処理
+        }
+    }
+
+    private void clickUI()
+    {
+        switch(this.event_system.currentSelectedGameObject.name)
+        {
+            case "help_canvas":
+                this.help_canvase.SetActive(false);
+                break;
         }
     }
 }
