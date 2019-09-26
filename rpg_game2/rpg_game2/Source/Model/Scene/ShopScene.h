@@ -5,10 +5,12 @@
 class ShopScene : public BaseScene
 {
 	private:
+		Rect test;
 	public:
 		ShopScene();
 		void Initialize() override;
 		void Finalize() override;
 		void Update() override;
+		void Draw() override;
 	protected:
 };

@@ -116,6 +116,7 @@
     <ClCompile Include="Source\Model\Scene\MenuScene.cpp" />
     <ClCompile Include="Source\Model\Scene\ShopScene.cpp" />
     <ClCompile Include="Source\Service\Scene\SceneService.cpp" />
+    <ClCompile Include="Source\View\Draw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\engine\texture\box-shadow\128.png" />
@@ -205,6 +206,8 @@
     <ClInclude Include="Source\Model\Scene\MenuScene.h" />
     <ClInclude Include="Source\Model\Scene\ShopScene.h" />
     <ClInclude Include="Source\Service\Scene\SceneService.h" />
+    <ClInclude Include="Source\Type\SceneType.h" />
+    <ClInclude Include="Source\View\Draw.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,11 +5,12 @@
 class BattleScene: public BaseScene 
 {
 private:
-
+	Rect test;
 public:
 	BattleScene();
 	void Initialize() override;
 	void Finalize() override;
 	void Update() override;
+	void Draw() override;
 protected:
 };

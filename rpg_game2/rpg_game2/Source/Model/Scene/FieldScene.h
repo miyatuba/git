@@ -5,10 +5,11 @@
 class FieldScene : public BaseScene
 {
 private:
-	
+	Rect test;
 public:
 	FieldScene();
 	void Initialize() override;
 	void Finalize() override;
 	void Update() override;
+	void Draw() override;
 };

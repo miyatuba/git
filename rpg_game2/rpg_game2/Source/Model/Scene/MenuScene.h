@@ -5,11 +5,12 @@
 class MenuScene : public BaseScene
 {
 private:
-
+	Rect test;
 public:
 	MenuScene();
 	void Initialize() override;
 	void Finalize() override;
 	void Update() override;
+	void Draw() override;
 protected:
 };

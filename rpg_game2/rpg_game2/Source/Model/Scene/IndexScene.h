@@ -5,11 +5,12 @@
 class IndexScene : public BaseScene
 {
 	private:
-
+		Rect test;
 	public:
 		IndexScene();
 		void Initialize() override;
 		void Finalize() override;
 		void Update() override;
+		void Draw() override;
 	protected:
 };
