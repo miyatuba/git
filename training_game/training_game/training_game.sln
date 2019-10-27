@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "training_game", "training_game.vcxproj", "{7D40F47E-83E3-46C8-A19B-11B676612C05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D40F47E-83E3-46C8-A19B-11B676612C05}.Debug|x64.ActiveCfg = Debug|x64
+		{7D40F47E-83E3-46C8-A19B-11B676612C05}.Debug|x64.Build.0 = Debug|x64
+		{7D40F47E-83E3-46C8-A19B-11B676612C05}.Release|x64.ActiveCfg = Release|x64
+		{7D40F47E-83E3-46C8-A19B-11B676612C05}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C14B86EA-C10B-4316-8539-A592EB348072}
+	EndGlobalSection
+EndGlobal

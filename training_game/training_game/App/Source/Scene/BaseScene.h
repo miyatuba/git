@@ -1,6 +1,6 @@
 #pragma once
 #include <Siv3D.hpp> // OpenSiv3D v0.4.0
-#include "../../Type/SceneType.h"
+#include "../Type/SceneType.h"
 
 class BaseScene
 {
