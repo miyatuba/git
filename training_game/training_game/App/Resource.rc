@@ -57,6 +57,7 @@ Resource(engine/soundfont/GMGSx.sf2.zstdcmp)
 Resource(example/windmill.png)
 Resource(Resource/Character/test1.png)
 Resource(Resource/Character/test.jpg)
+Resource(Resource/Common/select_triangle.png)
 
 
 /* 

@@ -1,6 +1,11 @@
 #pragma once
-# include <Siv3D.hpp> // OpenSiv3D v0.4.0
-# include "BaseScene.h"
+#include <Siv3D.hpp> // OpenSiv3D v0.4.0
+#include "BaseScene.h"
+#include "../Model/Monster/AllyMonsterEntity.h"
+#include "../Model/Monster/EnemyMonsterEntity.h"
+#include "../Model/System/SelectEntity.h"
+#include <string.h>
+#include <initializer_list>
 
 class BattleScene : public BaseScene
 {
@@ -42,13 +47,39 @@ private:
 	Rect grid_5_6;
 	Rect grid_6_6;
 
+	SelectEntity* select;
+
+	AllyMonsterEntity* player_monster1;
+	int player_monster1_x_hosei;//‚ ‚Æ‚Åíœ
+	int player_monster1_y_hosei;//‚ ‚Æ‚Åíœ
+
+	AllyMonsterEntity* player_monster2;
+	AllyMonsterEntity* player_monster3;
+	AllyMonsterEntity* player_monster4;
+	AllyMonsterEntity* player_monster5;
+
+	EnemyMonsterEntity* enemy_monster1;
+	EnemyMonsterEntity* enemy_monster2;
+	EnemyMonsterEntity* enemy_monster3;
+	EnemyMonsterEntity* enemy_monster4;
+	EnemyMonsterEntity* enemy_monster5;
+
 	Texture test1;
 	Texture test2;
+	
+	void DrawSelectOptionTexts();
+
+	//‰¼A‘½•ªDrawƒNƒ‰ƒX‚ğì‚Á‚Ä‚»‚¿‚ç‚ÉˆÚ‚·
+	Font font;
+
+	//‰¼
+
 public:
 	BattleScene();
 	void Initialize() override;
 	void Finalize() override;
 	void Update() override;
 	void Draw() override;
+	
 protected:
 };
