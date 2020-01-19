@@ -5,7 +5,7 @@
 class BaseScene
 {
 private:
-	eSceneId m_next_scene_id = eSceneId::e_scene_none_id;
+	SceneType::eSceneId m_next_scene_id = SceneType::eSceneId::e_scene_none_id;
 public:
 	BaseScene();
 	virtual ~BaseScene() {};
@@ -14,7 +14,7 @@ public:
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 	bool SholdChangeScene();
-	eSceneId GetNextSceneId();
+	SceneType::eSceneId GetNextSceneId();
 protected:
-	void SetNextSceneId(eSceneId next_scene_id);
+	void SetNextSceneId(SceneType::eSceneId next_scene_id);
 };

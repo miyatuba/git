@@ -10,11 +10,11 @@ class SceneService
 {
 private:
 	BaseScene* m_p_scene;
-	eSceneId m_next_scene_id;
+	SceneType::eSceneId m_next_scene_id;
 public:
 	SceneService();
 	void Initialize();
 	void Finalize();
 	void Update();
-	void SetNextScene(eSceneId next_scene);
+	void SetNextScene(SceneType::eSceneId next_scene);
 };

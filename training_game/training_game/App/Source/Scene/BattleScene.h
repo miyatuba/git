@@ -4,6 +4,7 @@
 #include "../Model/Monster/AllyMonsterEntity.h"
 #include "../Model/Monster/EnemyMonsterEntity.h"
 #include "../Model/System/SelectEntity.h"
+#include "../Type/BattleCommandType.h"
 #include <string.h>
 #include <initializer_list>
 
@@ -72,7 +73,19 @@ private:
 	//‰¼A‘½•ªDrawƒNƒ‰ƒX‚ğì‚Á‚Ä‚»‚¿‚ç‚ÉˆÚ‚·
 	Font font;
 
-	//‰¼
+	enum class SelectMode {
+		Main,
+		ActivityTargetSelect,
+	};
+
+	SelectMode select_mode = SelectMode::Main;
+	
+	BattleCommandType* battle_command_type;
+
+	void CommandMain();
+
+	void CommandActivityTargetSelect();
+	
 
 public:
 	BattleScene();
