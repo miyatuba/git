@@ -11,7 +11,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	try {
 		GameMain();
-
 	}
 	catch (std::string error_message){
 		std::ofstream outputfile("error_log/error_log.txt");

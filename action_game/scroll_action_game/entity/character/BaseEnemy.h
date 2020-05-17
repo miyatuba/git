@@ -10,8 +10,6 @@ class BaseEnemy : virtual public IDraw
 {
 private:
 
-	
-
 protected:
 	const static bool DIRECTION_LEFT = false;
 	const static bool DIRECTION_RIGHT = true;
@@ -22,7 +20,7 @@ protected:
 
 	virtual int getPositionX();
 	virtual int getPositionY();
-	//virtual int getImageHandle();
+	virtual int getImageHandle();
 	
 
 	bool direction; //モンスターによって向きが一定ではないかもなので、初期化で設定すること

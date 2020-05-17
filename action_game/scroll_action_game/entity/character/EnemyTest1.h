@@ -18,7 +18,8 @@ private:
 public:
 	EnemyTest1();
 	int getImageHandle();
-	void AoutAction();
+	void AutoActionLeftRight();
+	void AutoActionUpDown();
 	void MoveLeft(int);
 	void MoveRight(int);
 	void MoveDown(int);
@@ -27,7 +28,7 @@ public:
 
 	void OnFallStatus();
 	void OffFallStatus();
-	void checkHeroAndMapForLeftRight(MapTip map_tip);
+	void checkEnemyAndMapForLeftRight(MapTip map_tip);
 	void checkHeroAndMapForTopBottom(MapTip map_tip);
 
 	void initForLoop();

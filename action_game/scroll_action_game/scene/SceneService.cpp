@@ -2,32 +2,19 @@
 
 SceneService::SceneService()
 {
-	this->current_scene_type_id = SceneService::SCENE_TYPE_DEMO;
+	//デモ作成のため、とりあえずステージをいきなり起動する
+	this->current_scene_type_id = SceneService::SCENE_TYPE_STAGE;
 
 	int stage_no = 1;
-	DemoScene demo_scene(stage_no);
-	this->demo_scene = demo_scene;
+	this->p_current_scene = (BaseScene*) new StageScene(stage_no);
 }
 
 void SceneService::Play()
 {
-	//この書き方回避できないのかな・・分岐の量やばそう
-	switch (this->current_scene_type_id) {
-		case SceneService::SCENE_TYPE_DEMO:
-			this->demo_scene.Play();
-			return;
-	}
-
+	this->p_current_scene->Play();
 }
 
 bool SceneService::isGameEnd()
 {
-	switch (this->current_scene_type_id) {
-		case SceneService::SCENE_TYPE_DEMO:
-		return this->demo_scene.isGameEnd();
-	}
-
-	return false;
-
-	
+	return this->p_current_scene->isGameEnd();	
 }

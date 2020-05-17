@@ -28,7 +28,7 @@ int EnemyTest1::getImageHandle()
 	return this->stand_image_handle;
 }
 
-void EnemyTest1::AoutAction()
+void EnemyTest1::AutoActionLeftRight()
 {
 	//ó‘Ô‚É‰ž‚¶‚Ä•ÏX‚·‚é‚±‚Æ‚É‚È‚é‚ªA‚Ü‚¸‚Í¶‚ÉˆÚ“®‚·‚é‚¾‚¯‚ÌAI
 	if (this->isDirectionLeft()) {
@@ -37,7 +37,10 @@ void EnemyTest1::AoutAction()
 	else if (this->isDirectionRight()) {
 		this->MoveRight(1);
 	}
+}
 
+void EnemyTest1::AutoActionUpDown()
+{
 	if (this->isFall()) {
 		this->MoveDown(1);
 	}
@@ -82,7 +85,7 @@ void EnemyTest1::OffFallStatus()
 	this->is_fall = false;
 }
 
-void EnemyTest1::checkHeroAndMapForLeftRight(MapTip map_tip)
+void EnemyTest1::checkEnemyAndMapForLeftRight(MapTip map_tip)
 {
 	if (CollisionService::checkCollisionByRectAndRect(this->getCollision(), map_tip.getCollision())) {
 

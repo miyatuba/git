@@ -204,7 +204,7 @@ void Hero::changeDirectionLeft()
 	this->direction = Hero::DIRECTION_LEFT;
 }
 
-void Hero::checkHeroAndMapForLeftRight(MapTip map_tip, Input input)
+void Hero::checkCollisionHeroAndMapForLeftRight(MapTip map_tip, Input input)
 {
 	if (CollisionService::checkCollisionByRectAndRect(this->getCollision(), map_tip.getCollision())) {
 		if (input.isInputLeft()) {
@@ -219,7 +219,7 @@ void Hero::checkHeroAndMapForLeftRight(MapTip map_tip, Input input)
 	}
 }
 
-void Hero::checkHeroAndMapForTopBottom(MapTip map_tip)
+void Hero::checkCollisionHeroAndMapForTopBottom(MapTip map_tip)
 {
 	if (CollisionService::checkCollisionByRectAndRect(this->getCollision(), map_tip.getCollision())) {
 		if (this->isFall()) {
@@ -246,4 +246,11 @@ void Hero::checkHeroAndMapForTopBottom(MapTip map_tip)
 		expected_rect_collision.moveCollisionY(1);
 	}
 
+}
+
+void Hero::checkCollisionHeroAndEnemy(BaseEnemy enemy)
+{
+	if (CollisionService::checkCollisionByRectAndRect(this->getCollision(), enemy.getCollision())) {
+
+	}
 }

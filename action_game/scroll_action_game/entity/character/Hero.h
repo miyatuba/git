@@ -7,6 +7,7 @@
 #include "../../collision/RectCollision.h"
 #include "../map/MapTip.h"
 #include "../../collision/CollisionService.h"
+#include "BaseEnemy.h"
 
 class Hero : virtual public IDraw, ICollision
 {
@@ -87,6 +88,7 @@ public:
 	void changeDirectionRight();
 	void changeDirectionLeft();
 
-	void checkHeroAndMapForLeftRight(MapTip, Input);
-	void checkHeroAndMapForTopBottom(MapTip);
+	void checkCollisionHeroAndMapForLeftRight(MapTip, Input);
+	void checkCollisionHeroAndMapForTopBottom(MapTip);
+	void checkCollisionHeroAndEnemy(BaseEnemy);
 };
